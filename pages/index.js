@@ -1,4 +1,5 @@
 import { Box, Button } from "@material-ui/core";
+import MainLayout from "@layouts/main-layout/MainLayout";
 import { useState } from "react";
 
 export default function Home() {
@@ -6,15 +7,7 @@ export default function Home() {
 
   return (
     <Box>
-      Hello Next!
-      <Button
-        variant={state ? "contained" : "outlined"}
-        color="primary"
-        onClick={() => setState(!state)}
-      >
-        안뇽
-      </Button>
-      {state ? "true" : "false"}
+      <MainLayout />
     </Box>
   );
 }
