@@ -1,5 +1,5 @@
 import React from "react"
-import Document, { Head, Main, NextScript } from "next/document"
+import Document, { Head, Html, Main, NextScript } from "next/document"
 import { ServerStyleSheets } from "@material-ui/styles"
 
 class MyDocument extends Document {
@@ -29,7 +29,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <html>
+      <Html>
         <Head>
           <link
             rel='stylesheet'
@@ -40,7 +40,7 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     )
   }
 }

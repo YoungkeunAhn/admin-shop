@@ -37,14 +37,12 @@ export default function MenuItemBox(props: Props) {
         </Box>
 
         {subMenu ? (
-          <Collapse in={false} className={classes.subMenuBox}>
+          <Collapse in={expand} className={classes.subMenuBox}>
             <Box display='flex' flexDirection='column'>
               {subMenu.map((sub, idx) => (
-                <Box key={idx}>
-                  <ButtonBase>
-                    <Typography variant='body2'>{sub}</Typography>
-                  </ButtonBase>
-                </Box>
+                <ButtonBase key={idx} className={classes.itemButton}>
+                  <Typography variant='body2'>{sub}</Typography>
+                </ButtonBase>
               ))}
             </Box>
           </Collapse>
