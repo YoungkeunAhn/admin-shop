@@ -1,6 +1,8 @@
+import { sideMenu } from "@/types/side-menu";
 import { Box, IconButton, Typography } from "@material-ui/core";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import React from "react";
+import MenuItemBox from "../menu-item/MenuItemBox";
 import useStyles from "./styles";
 
 function SideMenuBar() {
@@ -14,6 +16,10 @@ function SideMenuBar() {
           <ChevronLeftIcon />
         </IconButton>
       </Box>
+
+      {sideMenu.map((menu, idx) => (
+        <MenuItemBox key={idx} menu={menu} expand={true} />
+      ))}
     </Box>
   );
 }

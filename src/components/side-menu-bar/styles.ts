@@ -3,7 +3,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     sideBar: {
-      maxWidth: "272px",
+      maxWidth: "22vw",
       height: "100vh",
       backgroundColor: "#182C62",
 

@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "space-between",
       alignItems: "center",
     },
+    titleIcon: {
+      color: "#fff",
+      marginRight: theme.spacing(2),
+    },
     subMenuBox: {
       width: "100%",
       "& .MuiCollapse-wrapperInner": {
