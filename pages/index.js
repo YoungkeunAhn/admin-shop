@@ -1,5 +1,5 @@
 import { Box, Button } from "@material-ui/core";
-import MainLayout from "@layouts/main-layout/MainLayout";
+import MainLayout from "@layouts/main/MainLayout";
 import { useState } from "react";
 
 export default function Home() {

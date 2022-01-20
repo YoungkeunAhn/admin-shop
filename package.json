@@ -17,5 +17,18 @@
   "devDependencies": {
     "eslint": "8.7.0",
     "eslint-config-next": "12.0.8"
-  }
+  },
+  "description": "가맹점이 자신의 점포를 관리할 수 있는 페이지",
+  "version": "1.0.0",
+  "main": "next.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YoungkeunAhn/admin-shop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YoungkeunAhn/admin-shop/issues"
+  },
+  "homepage": "https://github.com/YoungkeunAhn/admin-shop#readme"
 }

@@ -1,4 +1,4 @@
-import { SideMenuType } from "@/types/side-menu"
+import { SideMenuType } from '@/types/side-menu'
 import {
   Box,
   ButtonBase,
@@ -7,11 +7,11 @@ import {
   ListItem,
   Typography,
   Icon,
-} from "@material-ui/core"
-import ExpandLessIcon from "@material-ui/icons/ExpandLess"
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
-import React from "react"
-import useStyles from "./styles"
+} from '@material-ui/core'
+import ExpandLessIcon from '@material-ui/icons/ExpandLess'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import React from 'react'
+import useStyles from './styles'
 
 type Props = {
   menu: SideMenuType
@@ -31,14 +31,24 @@ export default function MenuItemBox(props: Props) {
             <Icon className={classes.titleIcon}>{icon}</Icon>
             <Typography variant='body1'>{menu.title}</Typography>
           </Box>
-          <IconButton>
-            {subMenu ? expand ? <ExpandMoreIcon /> : <ExpandLessIcon /> : null}
+          <IconButton size='small'>
+            {subMenu ? (
+              expand ? (
+                <ExpandMoreIcon fontSize='small' />
+              ) : (
+                <ExpandLessIcon fontSize='small' />
+              )
+            ) : null}
           </IconButton>
         </Box>
 
         {subMenu ? (
           <Collapse in={expand} className={classes.subMenuBox}>
-            <Box display='flex' flexDirection='column'>
+            <Box
+              className={classes.subMenuBox}
+              display='flex'
+              flexDirection='column'
+            >
               {subMenu.map((sub, idx) => (
                 <ButtonBase key={idx} className={classes.itemButton}>
                   <Typography variant='body2'>{sub}</Typography>
