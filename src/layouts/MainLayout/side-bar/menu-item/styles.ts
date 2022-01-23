@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
+        justifyContent: 'center',
         borderBottom: '1px solid #888',
         padding: theme.spacing(0),
       },

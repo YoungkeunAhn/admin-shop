@@ -10,18 +10,25 @@ import {
 } from '@material-ui/core'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import useStyles from './styles'
 
 type Props = {
   menu: SideMenuType
   expand: boolean
+  drawerOpen: boolean
 }
 
 export default function MenuItemBox(props: Props) {
-  const { menu, expand } = props
+  const { menu, expand, drawerOpen } = props
   const { subMenu, icon } = menu
   const classes = useStyles()
+
+  const [menuExpand, setMenuExpand] = useState<boolean>(expand)
+
+  useEffect(() => {
+    if (!drawerOpen) setMenuExpand(false)
+  }, [drawerOpen])
 
   return (
     <div className={classes.root}>
@@ -31,19 +38,22 @@ export default function MenuItemBox(props: Props) {
             <Icon className={classes.titleIcon}>{icon}</Icon>
             <Typography variant='body1'>{menu.title}</Typography>
           </Box>
-          <IconButton size='small'>
-            {subMenu ? (
-              expand ? (
+
+          {subMenu ? (
+            menuExpand ? (
+              <IconButton size='small'>
                 <ExpandMoreIcon fontSize='small' />
-              ) : (
+              </IconButton>
+            ) : (
+              <IconButton size='small'>
                 <ExpandLessIcon fontSize='small' />
-              )
-            ) : null}
-          </IconButton>
+              </IconButton>
+            )
+          ) : null}
         </Box>
 
         {subMenu ? (
-          <Collapse in={expand} className={classes.subMenuBox}>
+          <Collapse in={menuExpand} className={classes.subMenuBox}>
             <Box
               className={classes.subMenuBox}
               display='flex'

@@ -3,9 +3,10 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core'
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      display: 'flex',
-      padding: theme.spacing(0),
+      background: '#182C62',
+      color: '#fff',
     },
   })
 )
+
 export default useStyles
