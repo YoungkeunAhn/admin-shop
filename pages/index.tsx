@@ -2,6 +2,7 @@ import useStyles from './styles'
 import {
   Box,
   Button,
+  ButtonBase,
   Container,
   Divider,
   Input,
@@ -20,7 +21,7 @@ export default function Home() {
   return (
     <Container maxWidth='xs' className={classes.container}>
       <Box className={classes.root}>
-        <Typography variant='h4'>INCAPPAY</Typography>
+        <Typography variant='h2'>INCAPPAY</Typography>
         <TextField fullWidth variant='outlined' label='아이디 입력' />
         <TextField
           fullWidth
@@ -31,10 +32,19 @@ export default function Home() {
         <Button variant='contained' color='primary' onClick={onLogin}>
           로그인
         </Button>
-        <Box display='flex' justifyContent='center'>
-          <Typography variant='caption'>비밀번호 찾기</Typography>
+        <Box className={classes.menuPart}>
+          <ButtonBase>
+            <Typography
+              variant='caption'
+              onClick={() => alert('준비중인 페이지 입니다.')}
+            >
+              비밀번호 찾기
+            </Typography>
+          </ButtonBase>
           <Divider orientation='vertical' variant='middle' flexItem />
-          <Typography variant='caption'>회원가입</Typography>
+          <ButtonBase onClick={() => router.push('sign-up')}>
+            <Typography variant='caption'>회원가입</Typography>
+          </ButtonBase>
         </Box>
       </Box>
     </Container>

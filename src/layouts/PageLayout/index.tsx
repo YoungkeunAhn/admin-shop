@@ -1,4 +1,4 @@
-import PageContainer from '@/components/PageContainer'
+import PageContainer from '@/components/PageContainer/PageContainer'
 import { Box, Paper } from '@material-ui/core'
 import React from 'react'
 

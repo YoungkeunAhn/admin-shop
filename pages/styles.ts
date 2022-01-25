@@ -7,18 +7,32 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      border: '1px solid black',
     },
     root: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
 
-      '& h4': {
+      '& > .MuiTypography-root': {
+        color: '#3266F1',
         marginBottom: theme.spacing(3),
+        fontWeight: 600,
       },
       '& .MuiFormControl-root': {
         marginBottom: theme.spacing(2),
+        width: '25vw',
+      },
+      '& > button': {
+        width: '25vw',
+        marginBottom: theme.spacing(3),
+      },
+    },
+    menuPart: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      '& .MuiTypography-root': {
+        color: '#888',
       },
     },
   })
