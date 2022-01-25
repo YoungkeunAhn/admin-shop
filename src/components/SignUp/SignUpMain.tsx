@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
+import StepMoveBtnBox from './SignUpSteps/StepMoveBtnBox/StepMoveBtnBox'
 import useStyles from './styles'
 
 export default function SignUpMain() {
@@ -45,11 +46,12 @@ export default function SignUpMain() {
   function getStepContent(step: number) {
     switch (step) {
       case 0:
-        return <SignUp1 handleNext={handleNext} handleBack={handleBack} />
+        return <SignUp1 />
       case 1:
-        return <SignUp2 handleNext={handleNext} handleBack={handleBack} />
+        return <SignUp2 userName='test1' />
       case 2:
-        return <SignUp3 handleNext={handleNext} handleBack={handleBack} />
+        return <SignUp3 />
+
       default:
         return <SignUpDone />
     }
@@ -86,6 +88,9 @@ export default function SignUpMain() {
       <div>
         <Box>{getStepContent(activeStep)}</Box>
       </div>
+      {activeStep < 3 ? (
+        <StepMoveBtnBox handleBack={handleBack} handleNext={handleNext} />
+      ) : null}
     </Container>
   )
 }

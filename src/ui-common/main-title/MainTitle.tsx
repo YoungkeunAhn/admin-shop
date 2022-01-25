@@ -12,7 +12,7 @@ export default function MainTitle(props: Props) {
 
   return (
     <Typography className={classes.title} variant={titleSize}>
-      INCAPPAY
+      INCARPAY
     </Typography>
   )
 }

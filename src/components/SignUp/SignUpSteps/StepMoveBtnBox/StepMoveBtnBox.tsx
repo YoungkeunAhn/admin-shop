@@ -14,6 +14,7 @@ export default function StepMoveBtnBox(props: Props) {
       display='flex'
       justifyContent='space-evenly'
       alignItems='center'
+      width='inherit'
     >
       <Button variant='contained' color='default' onClick={handleBack}>
         이전으로

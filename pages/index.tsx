@@ -10,6 +10,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import { useRouter } from 'next/router'
+import MainTitle from '@/ui-common/main-title/MainTitle'
 
 export default function Home() {
   const router = useRouter()
@@ -21,7 +22,8 @@ export default function Home() {
   return (
     <Container maxWidth='xs' className={classes.container}>
       <Box className={classes.root}>
-        <Typography variant='h2'>INCAPPAY</Typography>
+        {/* <Typography variant='h2'>INCARPAY</Typography> */}
+        <MainTitle titleSize='h2' />
         <TextField fullWidth variant='outlined' label='아이디 입력' />
         <TextField
           fullWidth

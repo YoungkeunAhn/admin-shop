@@ -1,14 +1,10 @@
-import { Box, Button, Paper } from '@material-ui/core'
+import { Box, Button } from '@material-ui/core'
 import React, { useState } from 'react'
-import SignUpDataFiled from '../../SignUpDataFiled/SignUpDataFiled'
+import SignUpDataFiled from '../../SignUpDataFiled/SignUpTextFiled'
 import StepPaperBox from '../../StepPaperBox/StepPaperBox'
-import StepMoveBtnBox from '../StepMoveBtnBox/StepMoveBtnBox'
 import useStyles from './styles'
 
-type Props = {
-  handleNext: () => void
-  handleBack: () => void
-}
+type Props = {}
 
 type InputsType = {
   username: string
@@ -22,8 +18,11 @@ const initialInputs: InputsType = {
   authNum: null,
 }
 
+const alertMsg = `
+해당 휴대폰 번호로 인증번호가 전송되었습니다.
+인증번호를 입력해주세요.
+`
 export default function SignUp1(props: Props) {
-  const { handleNext, handleBack } = props
   const [inputs, setInputs] = useState<InputsType>(initialInputs)
   const [disabled, setDisabled] = useState<boolean>(false)
   const classes = useStyles()
@@ -36,12 +35,7 @@ export default function SignUp1(props: Props) {
   //인증하기 버튼 클릭
   const onClickPhoneAuthBtn = () => {
     setDisabled(true)
-    alert(
-      `
-해당 휴대폰 번호로 인증번호가 전송되었습니다.
-인증번호를 입력해주세요.
-`
-    )
+    alert(alertMsg)
   }
 
   return (
@@ -79,9 +73,6 @@ export default function SignUp1(props: Props) {
           />
         </>
       </StepPaperBox>
-      <Box></Box>
-
-      <StepMoveBtnBox handleBack={handleBack} handleNext={handleNext} />
     </>
   )
 }

@@ -8,6 +8,7 @@ type Props = {
   value: string | number | null
   onChange: (evnet: React.ChangeEvent<HTMLInputElement>) => void
 
+  type?: 'password'
   require?: true
   noInput?: false
   children?: React.ReactChild
@@ -15,8 +16,17 @@ type Props = {
 }
 
 export default function SignUpDataFiled(props: Props) {
-  const { label, require, noInput, children, name, value, disabled, onChange } =
-    props
+  const {
+    label,
+    name,
+    value,
+    type,
+    require,
+    noInput,
+    children,
+    disabled,
+    onChange,
+  } = props
   const classes = useStyles()
 
   return (
@@ -27,6 +37,7 @@ export default function SignUpDataFiled(props: Props) {
       {require && <span style={{ color: '#EEBA00' }}>*</span>}
       {!noInput ? (
         <TextField
+          type={type}
           className={classes.input}
           variant='outlined'
           size='small'
