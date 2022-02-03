@@ -1,6 +1,7 @@
 import { Box, Button } from '@material-ui/core'
 import React, { useState } from 'react'
-import SignUpDataFiled from '../../SignUpDataFiled/SignUpTextFiled'
+import SignUpDataFiled from '../../SignUpDataFiled/SignUpDataFiled'
+
 import StepPaperBox from '../../StepPaperBox/StepPaperBox'
 import useStyles from './styles'
 

@@ -5,12 +5,12 @@ import useStyles from './styles'
 type Props = {
   label: string
   name: string
-  value: string | number | null
+  value: string | number | boolean | null
   onChange: (evnet: React.ChangeEvent<HTMLInputElement>) => void
 
   type?: 'password'
   require?: true
-  noInput?: false
+  noInput?: true
   children?: React.ReactChild
   disabled?: boolean
 }
@@ -31,10 +31,10 @@ export default function SignUpDataFiled(props: Props) {
 
   return (
     <Box className={classes.root}>
-      <Typography className={classes.label} variant='body2'>
-        {label}
-      </Typography>
-      {require && <span style={{ color: '#EEBA00' }}>*</span>}
+      <Box className={classes.label}>
+        <Typography variant='body2'>{label}</Typography>
+        {require && <span className={classes.require}>*</span>}
+      </Box>
       {!noInput ? (
         <TextField
           type={type}

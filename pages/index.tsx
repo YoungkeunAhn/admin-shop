@@ -9,6 +9,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import useStyles from './styles'
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
   const onLogin = () => {
     router.push('/dashboard')
   }
+
   return (
     <Container maxWidth='xs' className={classes.container}>
       <Box className={classes.root}>

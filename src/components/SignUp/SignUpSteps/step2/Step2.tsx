@@ -1,5 +1,6 @@
+import { FormControl, MenuItem, Select } from '@material-ui/core'
 import React, { useState } from 'react'
-import SignUpDataFiled from '../../SignUpDataFiled/SignUpTextFiled'
+import SignUpDataFiled from '../../SignUpDataFiled/SignUpDataFiled'
 import StepPaperBox from '../../StepPaperBox/StepPaperBox'
 
 type Props = {
@@ -32,10 +33,12 @@ const initialBankInfo: BankInfoInputsType = {
 
 export default function SignUp2(props: Props) {
   const {} = props
+
   const [userInputs, setUserInputs] =
     useState<UserInfoInputysType>(initialUserInfo)
   const [bankInputs, setBankInputs] =
     useState<BankInfoInputsType>(initialBankInfo)
+  const [selectBank, setSelectBank] = useState<string>('국민')
 
   const onChangeUserInputs = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserInputs({ ...userInputs, [event.target.name]: event.target.value })
@@ -44,6 +47,11 @@ export default function SignUp2(props: Props) {
   const onChangeBankInputs = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBankInputs({ ...bankInputs, [event.target.name]: event.target.value })
   }
+
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setSelectBank(event.target.value as string)
+  }
+
   return (
     <>
       <StepPaperBox title='계정정보'>
@@ -78,16 +86,43 @@ export default function SignUp2(props: Props) {
         </>
       </StepPaperBox>
       <StepPaperBox title='정산정보'>
-        <SignUpDataFiled
-          label='은행'
-          name='은행'
-          value={bankInputs.bankName}
-          onChange={onChangeBankInputs}
-          require={true}
-          noInput={false}
-        >
-          <select></select>
-        </SignUpDataFiled>
+        <>
+          <SignUpDataFiled
+            label='은행'
+            name='bankName'
+            value={bankInputs.bankName}
+            onChange={onChangeBankInputs}
+            require={true}
+            noInput={true}
+          >
+            <FormControl variant='outlined' size='small'>
+              <Select
+                labelId='demo-simple-select-outlined-label'
+                id='demo-simple-select-outlined'
+                value={'국민'}
+                onChange={handleChange}
+              >
+                <MenuItem value={'국민'}>국민</MenuItem>
+                <MenuItem value={'신한'}>신한</MenuItem>
+                <MenuItem value={'기업'}>기업</MenuItem>
+              </Select>
+            </FormControl>
+          </SignUpDataFiled>
+          <SignUpDataFiled
+            label='예금주명'
+            name='bankOwnerName'
+            value={bankInputs.bankOwnerName}
+            onChange={onChangeBankInputs}
+            require={true}
+          />
+          <SignUpDataFiled
+            label='계좌번호'
+            name='bankAccount'
+            value={bankInputs.bankAccount}
+            onChange={onChangeBankInputs}
+            require={true}
+          />
+        </>
       </StepPaperBox>
     </>
   )

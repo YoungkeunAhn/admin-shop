@@ -1,6 +1,6 @@
 import SignUp1 from '@/components/SignUp/SignUpSteps/step1/Step1'
 import SignUp2 from '@/components/SignUp/SignUpSteps/step2/Step2'
-import SignUp3 from '@/components/SignUp/SignUpSteps/Step3'
+import SignUp3 from '@/components/SignUp/SignUpSteps/step3/Step3'
 import SignUpDone from '@/components/SignUp/SignUpSteps/StepDone'
 import MainTitle from '@/ui-common/main-title/MainTitle'
 import {
