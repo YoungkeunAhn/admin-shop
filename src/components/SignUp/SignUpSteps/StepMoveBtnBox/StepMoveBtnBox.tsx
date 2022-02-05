@@ -4,13 +4,15 @@ import React from 'react'
 type Props = {
   handleBack: () => void
   handleNext: () => void
+  step: number
 }
 export default function StepMoveBtnBox(props: Props) {
-  const { handleBack, handleNext } = props
+  const { handleBack, handleNext, step } = props
 
   return (
     <Box
       mt={4}
+      pb={10}
       display='flex'
       justifyContent='space-evenly'
       alignItems='center'
@@ -20,7 +22,7 @@ export default function StepMoveBtnBox(props: Props) {
         이전으로
       </Button>
       <Button variant='contained' color='primary' onClick={handleNext}>
-        다음으로
+        {step === 2 ? '회원가입 완료' : '다음으로'}
       </Button>
     </Box>
   )

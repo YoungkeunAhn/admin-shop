@@ -1,10 +1,11 @@
 import SignUp1 from '@/components/SignUp/SignUpSteps/step1/Step1'
 import SignUp2 from '@/components/SignUp/SignUpSteps/step2/Step2'
 import SignUp3 from '@/components/SignUp/SignUpSteps/step3/Step3'
-import SignUpDone from '@/components/SignUp/SignUpSteps/StepDone'
+import SignUpDone from '@/components/SignUp/SignUpSteps/done/StepDone'
 import MainTitle from '@/ui-common/main-title/MainTitle'
 import {
   Box,
+  Button,
   ButtonBase,
   Container,
   Step,
@@ -89,8 +90,22 @@ export default function SignUpMain() {
         <Box>{getStepContent(activeStep)}</Box>
       </div>
       {activeStep < 3 ? (
-        <StepMoveBtnBox handleBack={handleBack} handleNext={handleNext} />
-      ) : null}
+        <StepMoveBtnBox
+          handleBack={handleBack}
+          handleNext={handleNext}
+          step={activeStep}
+        />
+      ) : (
+        <Box className={classes.btnSpacing}>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={() => router.push('/')}
+          >
+            로그인 화면으로 이동
+          </Button>
+        </Box>
+      )}
     </Container>
   )
 }

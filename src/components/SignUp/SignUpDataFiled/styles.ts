@@ -6,17 +6,32 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'center',
       '& .MuiSelect-root': {
-        width: 400,
+        width: 250,
         boxSizing: 'border-box',
       },
+      '& + &': {
+        marginTop: theme.spacing(2),
+      },
+      '& .MuiFormGroup-root': {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'nowrap',
+        alignItems: 'center',
+      },
+      '& .MuiFormControlLabel-label': {
+        fontSize: '0.7rem',
+      },
     },
-    label: {
+    labelBox: {
       minWidth: 150,
       fontWeight: 600,
       display: 'flex',
     },
+    label: {
+      fontWeight: 600,
+    },
     input: {
-      width: 400,
+      width: 250,
     },
     require: {
       color: '#EEBA00',

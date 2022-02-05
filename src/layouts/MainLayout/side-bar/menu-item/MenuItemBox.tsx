@@ -17,10 +17,11 @@ type Props = {
   menu: SideMenuType
   expand: boolean
   drawerOpen: boolean
+  onClickMenu: (url: string) => void
 }
 
 export default function MenuItemBox(props: Props) {
-  const { menu, expand, drawerOpen } = props
+  const { menu, expand, drawerOpen, onClickMenu } = props
   const { subMenu, icon } = menu
   const classes = useStyles()
 
@@ -60,8 +61,12 @@ export default function MenuItemBox(props: Props) {
               flexDirection='column'
             >
               {subMenu.map((sub, idx) => (
-                <ButtonBase key={idx} className={classes.itemButton}>
-                  <Typography variant='body2'>{sub}</Typography>
+                <ButtonBase
+                  key={idx}
+                  className={classes.itemButton}
+                  onClick={() => onClickMenu(sub.url)}
+                >
+                  <Typography variant='body2'>{sub.label}</Typography>
                 </ButtonBase>
               ))}
             </Box>

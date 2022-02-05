@@ -31,8 +31,10 @@ export default function SignUpDataFiled(props: Props) {
 
   return (
     <Box className={classes.root}>
-      <Box className={classes.label}>
-        <Typography variant='body2'>{label}</Typography>
+      <Box className={classes.labelBox}>
+        <Typography variant='body2' className={classes.label}>
+          {label}
+        </Typography>
         {require && <span className={classes.require}>*</span>}
       </Box>
       {!noInput ? (

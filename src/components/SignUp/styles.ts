@@ -30,6 +30,10 @@ const useStyles = makeStyles((theme: Theme) =>
         marginBottom: theme.spacing(0.5),
       },
     },
+    btnSpacing: {
+      marginTop: theme.spacing(2),
+      paddingBottom: theme.spacing(10),
+    },
   })
 )
 

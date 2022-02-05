@@ -15,9 +15,9 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     content: {
-      '& > div + div': {
-        marginTop: theme.spacing(2),
-      },
+      // '& > div + div': {
+      //   marginTop: theme.spacing(2),
+      // },
     },
   })
 )
