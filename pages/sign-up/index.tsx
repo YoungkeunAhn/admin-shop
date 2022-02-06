@@ -1,11 +1,12 @@
-import PageContainer from '@/components/PageContainer/PageContainer'
-import SignUpMain from '@/components/SignUp/SignUpMain'
+import SignUpMain from '@/features/SignUp/SignUpMain'
+import { Container } from '@material-ui/core'
+
 import React from 'react'
 
 export default function index() {
   return (
-    <PageContainer>
+    <Container maxWidth='lg'>
       <SignUpMain />
-    </PageContainer>
+    </Container>
   )
 }

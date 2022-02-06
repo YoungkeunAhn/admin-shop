@@ -1,4 +1,4 @@
-import OrderListView from '@/components/OrderListView/OrderListView'
+import OrderListView from '@/features/OrderListView/OrderListView'
 import MainLayout from '@/layouts/MainLayout'
 import React from 'react'
 
