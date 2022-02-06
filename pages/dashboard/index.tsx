@@ -1,5 +1,5 @@
 import MainLayout from '@/layouts/MainLayout'
-import PageHeader from '@/layouts/PageLayout/PageHeader'
+import PageHeader from '@/layouts/PageHeader'
 import React from 'react'
 
 export default function DashboardPage() {

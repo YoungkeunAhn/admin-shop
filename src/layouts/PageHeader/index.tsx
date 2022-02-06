@@ -27,7 +27,7 @@ const shopState: Record<ShopStateKey, string> = {
   A002: '영업 종료',
 }
 
-export default function index(props: Props) {
+export default function PageHeader(props: Props) {
   const { title } = props
   const classes = useStyles()
   const [profileUrl, setProfileUrl] = useState<string | null>(null)
