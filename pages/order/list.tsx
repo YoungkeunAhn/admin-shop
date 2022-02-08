@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function list() {
   return (
-    <MainLayout>
+    <MainLayout title='실시간 주문 현황'>
       <OrderListView />
     </MainLayout>
   )

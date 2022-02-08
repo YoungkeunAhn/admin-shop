@@ -1,4 +1,4 @@
-import StyledTableContainer from '@/ui-common/styled-table-container/StyledTableContainer'
+import StyledTableContainer from '@/common/styled-table-container/StyledTableContainer'
 import { TableBody, TableCell, TableHead, TableRow } from '@material-ui/core'
 import React from 'react'
 import OrderListTableRow from './tbody-row/OrderListTbodyRow'

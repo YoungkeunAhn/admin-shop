@@ -1,4 +1,4 @@
-import MainTitle from '@/ui-common/main-title/MainTitle'
+import MainTitle from '@/common/main-title/MainTitle'
 import {
   Box,
   Button,
@@ -8,8 +8,8 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core'
+import axios from 'axios'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 import useStyles from './styles'
 
 export default function Home() {
@@ -17,7 +17,8 @@ export default function Home() {
   const classes = useStyles()
 
   const onLogin = () => {
-    router.push('/dashboard')
+    axios.get('http://pilot.inautopay.com:8070/test')
+    // router.push('/dashboard')
   }
 
   return (

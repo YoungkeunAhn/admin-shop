@@ -2,20 +2,25 @@ import { Box } from '@material-ui/core'
 import React from 'react'
 import SideMenuBar from './side-bar/SideMenuBar'
 import useStyles from './styles'
+import TopMenu from './top-menu'
 
 type Props = {
   children: React.ReactChild
+  title: string
 }
 
 function MainLayout(props: Props) {
-  const { children } = props
+  const { children, title } = props
   const classes = useStyles()
 
   return (
     <Box className={classes.root}>
       <SideMenuBar />
 
-      <main>{children}</main>
+      <main className={classes.main}>
+        <TopMenu title={title} />
+        <Box>{children}</Box>
+      </main>
     </Box>
   )
 }
