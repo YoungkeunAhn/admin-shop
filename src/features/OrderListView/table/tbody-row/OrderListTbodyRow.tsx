@@ -11,6 +11,7 @@ import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined'
 import AccountBalanceWalletOutlinedIcon from '@material-ui/icons/AccountBalanceWalletOutlined'
 import ReportProblemOutlinedIcon from '@material-ui/icons/ReportProblemOutlined'
 import useStyles from './styles'
+import { DialogType } from '../OrderListTable'
 
 type Props = {
   seq: number
@@ -21,10 +22,21 @@ type Props = {
   price: number
   goodsList: Array<{ amount: number; goodsId: string }>
   state: number
+  openDialog: (dialogId: DialogType) => void
 }
 
 export default function OrderListTableRow(props: Props) {
-  const { seq, id, time, nickname, carNum, price, goodsList, state } = props
+  const {
+    seq,
+    id,
+    time,
+    nickname,
+    carNum,
+    price,
+    goodsList,
+    state,
+    openDialog,
+  } = props
   const classes = useStyles()
 
   return (
@@ -52,24 +64,33 @@ export default function OrderListTableRow(props: Props) {
         <Button
           size='small'
           endIcon={<ShoppingBasketOutlinedIcon fontSize='small' />}
-          // variant='contained'
           className={classes.stateChangeBtn}
+          onClick={() => openDialog('stateChangeDialog')}
         >
           상태변경
         </Button>
       </TableCell>
       <TableCell align='center'>
-        <ButtonBase color='primary'>
+        <ButtonBase
+          color='primary'
+          onClick={() => openDialog('locationViewDialog')}
+        >
           <LocationOnOutlinedIcon fontSize='small' />
         </ButtonBase>
       </TableCell>
       <TableCell align='center'>
-        <ButtonBase color='primary'>
+        <ButtonBase
+          color='primary'
+          onClick={() => openDialog('orderInfoDialog')}
+        >
           <AccountBalanceWalletOutlinedIcon fontSize='small' />
         </ButtonBase>
       </TableCell>
       <TableCell align='center'>
-        <ButtonBase color='primary'>
+        <ButtonBase
+          color='primary'
+          onClick={() => openDialog('orderReportDialog')}
+        >
           <ReportProblemOutlinedIcon fontSize='small' />
         </ButtonBase>
       </TableCell>

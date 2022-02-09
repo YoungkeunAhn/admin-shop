@@ -1,7 +1,3 @@
-import SignUp1 from '@/components/SignUp/SignUpSteps/step1/Step1'
-import SignUp2 from '@/components/SignUp/SignUpSteps/step2/Step2'
-import SignUp3 from '@/components/SignUp/SignUpSteps/step3/Step3'
-import SignUpDone from '@/components/SignUp/SignUpSteps/done/StepDone'
 import MainTitle from '@/common/main-title/MainTitle'
 import {
   Box,
@@ -15,6 +11,10 @@ import {
 } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React from 'react'
+import SignUpDone from './SignUpSteps/done/StepDone'
+import SignUp1 from './SignUpSteps/step1/Step1'
+import SignUp2 from './SignUpSteps/step2/Step2'
+import SignUp3 from './SignUpSteps/step3/Step3'
 import StepMoveBtnBox from './SignUpSteps/StepMoveBtnBox/StepMoveBtnBox'
 import useStyles from './styles'
 

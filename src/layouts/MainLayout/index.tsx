@@ -19,7 +19,7 @@ function MainLayout(props: Props) {
 
       <main className={classes.main}>
         <TopMenu title={title} />
-        <Box>{children}</Box>
+        <Box p={1}>{children}</Box>
       </main>
     </Box>
   )

@@ -17,8 +17,8 @@ export default function Home() {
   const classes = useStyles()
 
   const onLogin = () => {
-    axios.get('http://pilot.inautopay.com:8070/test')
-    // router.push('/dashboard')
+    // axios.get('http://pilot.inautopay.com:8070/test')
+    router.push('/dashboard')
   }
 
   return (
