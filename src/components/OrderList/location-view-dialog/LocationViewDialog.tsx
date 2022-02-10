@@ -42,8 +42,8 @@ export default function LocationViewDialog(props: Props) {
             <Typography variant='body1'>123123</Typography>
           </Box>
         </Box>
-        <Box>
-          <img src='map_image.png' alt='map image' width='100%' height={200} />
+        <Box className={classes.imgBox}>
+          <img src='/map_image.png' alt='map image' />
         </Box>
       </DialogContent>
       <DialogActions></DialogActions>

@@ -4,29 +4,23 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     content: {
       padding: theme.spacing(2),
+      '& hr': {
+        margin: theme.spacing(3, 0),
+      },
     },
     infoBox: {
-      marginBottom: theme.spacing(3),
       '& > div': {
         display: 'flex',
         '& p:first-child': {
           marginRight: theme.spacing(2),
           color: '#888',
         },
-        '& p': {
+        '& p:last-child': {
           fontWeight: 600,
         },
       },
       '& > div + div': {
         marginTop: theme.spacing(2),
-      },
-    },
-    imgBox: {
-      width: '100%',
-      objectFit: 'contain',
-      '& img': {
-        width: '100%',
-        height: '100%',
       },
     },
   })

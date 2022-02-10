@@ -6,27 +6,32 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(2),
     },
     infoBox: {
+      padding: theme.spacing(2),
+      background: '#f5f5f5',
+      borderRadius: 8,
       marginBottom: theme.spacing(3),
       '& > div': {
         display: 'flex',
         '& p:first-child': {
           marginRight: theme.spacing(2),
-          color: '#888',
-        },
-        '& p': {
-          fontWeight: 600,
         },
       },
       '& > div + div': {
         marginTop: theme.spacing(2),
       },
     },
-    imgBox: {
-      width: '100%',
-      objectFit: 'contain',
-      '& img': {
-        width: '100%',
-        height: '100%',
+    radioItemBox: {
+      '& .MuiTypography-caption': {
+        color: '#888',
+      },
+    },
+    captionBox: {
+      display: 'flex',
+      flexDirection: 'column',
+      color: '#888',
+      marginTop: theme.spacing(2),
+      '& span:last-child': {
+        marginLeft: theme.spacing(1),
       },
     },
   })
