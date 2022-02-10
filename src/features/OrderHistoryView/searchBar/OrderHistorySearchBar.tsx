@@ -38,6 +38,12 @@ export default function OrderHistorySearchBar() {
               value={firstDate}
               onChange={onChangeFirstDate}
             />
+            <span>~</span>
+            <TextField
+              type='date'
+              value={secondDate}
+              onChange={onChangeSecondDate}
+            />
           </Box>
 
           <ResetButton />

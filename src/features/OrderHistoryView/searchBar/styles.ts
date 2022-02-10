@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'center',
       marginRight: theme.spacing(2),
-      '& .MuiTypography-root': {
+      '& span': {
         margin: theme.spacing(0, 1),
       },
     },

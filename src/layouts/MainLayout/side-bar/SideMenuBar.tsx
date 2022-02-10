@@ -35,7 +35,7 @@ function SideMenuBar() {
     >
       <Box className={classes.sideBar}>
         <Box className={classes.sideBarHeader}>
-          {open && <Typography variant='h5'>INCAPPAY</Typography>}
+          {open && <Typography variant='h5'>INCARPAY</Typography>}
 
           <IconButton onClick={handleDrawer}>
             {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
