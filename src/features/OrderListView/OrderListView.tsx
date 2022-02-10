@@ -1,5 +1,5 @@
 import React from 'react'
-import OrderListSearchBar from './SearchBar/OrderListSearchBar'
+import OrderListSearchBar from './searchBar/OrderListSearchBar'
 import useStyles from './styles'
 import OrderListTable from './table/OrderListTable'
 
