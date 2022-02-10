@@ -9,7 +9,7 @@ export default function SignUpDone() {
   return (
     <StepPaperBox title=''>
       <Box className={classes.root}>
-        <Box className='imgBox'>
+        <Box>
           <img src='checkOk.png' alt='checkOk image' />
         </Box>
         <Typography variant='body1'>
