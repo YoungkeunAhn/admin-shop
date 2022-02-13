@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import useStyles from './styles'
 
-export default function ResetButton() {
+export default function ReloadButton() {
   const router = useRouter()
   const classes = useStyles()
 

@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import React from 'react'
 import useStyles from './styles'
 type Props = {
-  children: React.ReactChild
+  children: React.ReactNode
   className?: React.CSSProperties
 }
 
