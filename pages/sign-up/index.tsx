@@ -5,7 +5,7 @@ import React from 'react'
 
 export default function index() {
   return (
-    <Container maxWidth='lg'>
+    <Container maxWidth="lg">
       <SignUpMain />
     </Container>
   )

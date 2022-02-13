@@ -1,4 +1,4 @@
-import StyledInfoPaper from '@/common/StyledInfoPaper/StyledInfoPaper'
+import StyledInfoPaper from '@/common/styled-info-paper/StyledInfoPaper'
 import { Box, Typography } from '@material-ui/core'
 import React from 'react'
 

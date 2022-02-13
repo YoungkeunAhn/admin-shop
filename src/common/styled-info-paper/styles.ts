@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       width: '60vw',
       minWidth: 900,
-      padding: theme.spacing(3),
+      padding: theme.spacing(4, 3),
       border: '1px solid #ddd',
       '& > .MuiTypography-root': {
         marginBottom: theme.spacing(4),
@@ -14,10 +14,8 @@ const useStyles = makeStyles((theme: Theme) =>
         marginTop: theme.spacing(3),
       },
     },
-    content: {
-      // '& > div + div': {
-      //   marginTop: theme.spacing(2),
-      // },
+    fullWidth: {
+      width: '100%',
     },
   })
 )

@@ -1,7 +1,7 @@
 import { Box, FormControlLabel, Radio, RadioGroup } from '@material-ui/core'
 import React, { useState } from 'react'
-import SignUpDataFiled from '../../SignUpDataFiled/SignUpDataFiled'
-import StyledInfoPaper from '@/common/StyledInfoPaper/StyledInfoPaper'
+import DataInputForm from '@/common/data-input-form/DataInputForm'
+import StyledInfoPaper from '@/common/styled-info-paper/StyledInfoPaper'
 import useStyles from './styles'
 
 type Props = {}
@@ -72,27 +72,27 @@ export default function SignUp3(props: Props) {
       <StyledInfoPaper title="지점정보">
         <Box className={classes.shopInfoContainer}>
           <Box>
-            <SignUpDataFiled
+            <DataInputForm
               label="지점명"
               name="shopName"
               value={shopInfoInputs.shopName}
               onChange={onChangeShopInputs}
               require
             />
-            <SignUpDataFiled
+            <DataInputForm
               label="사업자번호"
               name="businessNum"
               value={shopInfoInputs.businessNum}
               onChange={onChangeShopInputs}
               require
             />
-            <SignUpDataFiled
+            <DataInputForm
               label="지점번호"
               name="shopTel"
               value={shopInfoInputs.shopTel}
               onChange={onChangeShopInputs}
             />
-            <SignUpDataFiled
+            <DataInputForm
               label="휴무"
               name="holiday"
               value={shopInfoInputs.holiday}
@@ -101,27 +101,27 @@ export default function SignUp3(props: Props) {
           </Box>
 
           <Box>
-            <SignUpDataFiled
+            <DataInputForm
               label="업종형태"
               name="category"
               value={shopInfoInputs.category}
               onChange={onChangeShopInputs}
             />
-            <SignUpDataFiled
+            <DataInputForm
               label="대표자명"
               name="ownerName"
               value={shopInfoInputs.ownerName}
               onChange={onChangeShopInputs}
               require
             />
-            <SignUpDataFiled
+            <DataInputForm
               label="대표자 연락처"
               name="ownerPhoneNum"
               value={shopInfoInputs.ownerPhoneNum}
               onChange={onChangeShopInputs}
               require
             />
-            <SignUpDataFiled
+            <DataInputForm
               label="공휴일"
               name="holiday"
               value={shopInfoInputs.legalHoliday}
@@ -146,28 +146,28 @@ export default function SignUp3(props: Props) {
                   labelPlacement="end"
                 />
               </RadioGroup>
-            </SignUpDataFiled>
+            </DataInputForm>
           </Box>
         </Box>
       </StyledInfoPaper>
       <StyledInfoPaper title="위치 정보">
         <Box className={classes.positionInfoContainer}>
           <Box>
-            <SignUpDataFiled
+            <DataInputForm
               label="우편번호"
               name="zipNum"
               value={positionInfoInputs.zipNum}
               onChange={onChangePositionInputs}
               require
             />
-            <SignUpDataFiled
+            <DataInputForm
               label="기본주소"
               name="address"
               value={positionInfoInputs.address}
               onChange={onChangePositionInputs}
               require
             />
-            <SignUpDataFiled
+            <DataInputForm
               label="주차장 유무"
               name="havePark"
               value={positionInfoInputs.havePark}
@@ -195,17 +195,17 @@ export default function SignUp3(props: Props) {
                   labelPlacement="end"
                 />
               </RadioGroup>
-            </SignUpDataFiled>
+            </DataInputForm>
           </Box>
           <Box>
-            <SignUpDataFiled
+            <DataInputForm
               label="상세주소"
               name="detailAddress"
               value={positionInfoInputs.detailAddress}
               onChange={onChangePositionInputs}
               require
             />
-            <SignUpDataFiled
+            <DataInputForm
               label="드라이브 스루"
               name="haveDriveThru"
               value={positionInfoInputs.haveDriveThru}
@@ -229,7 +229,7 @@ export default function SignUp3(props: Props) {
                   labelPlacement="end"
                 />
               </RadioGroup>
-            </SignUpDataFiled>
+            </DataInputForm>
           </Box>
         </Box>
       </StyledInfoPaper>

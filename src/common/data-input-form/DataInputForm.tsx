@@ -1,4 +1,5 @@
 import { Box, TextField, Typography } from '@material-ui/core'
+import clsx from 'clsx'
 import React from 'react'
 import useStyles from './styles'
 
@@ -12,10 +13,10 @@ type Props = {
   require?: true
   noInput?: true
   children?: React.ReactChild
-  disabled?: boolean
+  disabled?: true
 }
 
-export default function SignUpDataFiled(props: Props) {
+export default function DataInputForm(props: Props) {
   const {
     label,
     name,
@@ -32,7 +33,7 @@ export default function SignUpDataFiled(props: Props) {
   return (
     <Box className={classes.root}>
       <Box className={classes.labelBox}>
-        <Typography variant='body2' className={classes.label}>
+        <Typography variant="body2" className={classes.label}>
           {label}
         </Typography>
         {require && <span className={classes.require}>*</span>}
@@ -40,9 +41,9 @@ export default function SignUpDataFiled(props: Props) {
       {!noInput ? (
         <TextField
           type={type}
-          className={classes.input}
-          variant='outlined'
-          size='small'
+          className={clsx(classes.input, disabled && classes.disabled)}
+          variant="outlined"
+          size="small"
           disabled={disabled}
           name={name}
           value={value}

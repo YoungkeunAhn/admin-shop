@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme: Theme) =>
       color: '#EEBA00',
       marginLeft: theme.spacing(1),
     },
+    disabled: {
+      background: '#f2f2f2',
+    },
   })
 )
 

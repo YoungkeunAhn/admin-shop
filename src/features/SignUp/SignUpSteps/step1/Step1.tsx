@@ -1,8 +1,7 @@
+import StyledInfoPaper from '@/common/styled-info-paper/StyledInfoPaper'
 import { Box, Button } from '@material-ui/core'
 import React, { useState } from 'react'
-import SignUpDataFiled from '../../SignUpDataFiled/SignUpDataFiled'
-import StyledInfoPaper from '@/common/StyledInfoPaper/StyledInfoPaper'
-
+import DataInputForm from '@/common/data-input-form/DataInputForm'
 import useStyles from './styles'
 
 type Props = {}
@@ -41,37 +40,35 @@ export default function SignUp1(props: Props) {
 
   return (
     <StyledInfoPaper title="본인인증 확인">
-      <>
-        <SignUpDataFiled
-          label="이름"
-          name="username"
-          value={inputs.username}
+      <DataInputForm
+        label="이름"
+        name="username"
+        value={inputs.username}
+        onChange={onChangeInput}
+      />
+      <Box display="flex" alignItems="center">
+        <DataInputForm
+          label="휴대폰번호"
+          name="phoneNum"
+          value={inputs.phoneNum}
           onChange={onChangeInput}
+          disabled={disabled}
         />
-        <Box display="flex" alignItems="center">
-          <SignUpDataFiled
-            label="휴대폰번호"
-            name="phoneNum"
-            value={inputs.phoneNum}
-            onChange={onChangeInput}
-            disabled={disabled}
-          />
-          <Button
-            className={classes.phoneAuthBtn}
-            variant="contained"
-            color="primary"
-            onClick={onClickPhoneAuthBtn}
-          >
-            인증하기
-          </Button>
-        </Box>
-        <SignUpDataFiled
-          label="인증번호"
-          name="authNum"
-          value={inputs.authNum}
-          onChange={onChangeInput}
-        />
-      </>
+        <Button
+          className={classes.phoneAuthBtn}
+          variant="contained"
+          color="primary"
+          onClick={onClickPhoneAuthBtn}
+        >
+          인증하기
+        </Button>
+      </Box>
+      <DataInputForm
+        label="인증번호"
+        name="authNum"
+        value={inputs.authNum}
+        onChange={onChangeInput}
+      />
     </StyledInfoPaper>
   )
 }

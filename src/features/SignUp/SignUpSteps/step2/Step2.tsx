@@ -1,7 +1,7 @@
 import { FormControl, MenuItem, Select } from '@material-ui/core'
 import React, { useState } from 'react'
-import SignUpDataFiled from '../../SignUpDataFiled/SignUpDataFiled'
-import StyledInfoPaper from '@/common/StyledInfoPaper/StyledInfoPaper'
+import DataInputForm from '@/common/data-input-form/DataInputForm'
+import StyledInfoPaper from '@/common/styled-info-paper/StyledInfoPaper'
 
 type Props = {
   userName: string
@@ -56,27 +56,27 @@ export default function SignUp2(props: Props) {
     <>
       <StyledInfoPaper title="계정정보">
         <>
-          <SignUpDataFiled
+          <DataInputForm
             label="아이디"
             name="userId"
             value={userInputs.userId}
             onChange={onChangeUserInputs}
           />
-          <SignUpDataFiled
+          <DataInputForm
             label="이름"
             name="userName"
             value={'test1'}
             onChange={onChangeUserInputs}
             disabled={true}
           />
-          <SignUpDataFiled
+          <DataInputForm
             label="비밀번호"
             name="passwd"
             value={userInputs.passwd}
             type="password"
             onChange={onChangeUserInputs}
           />
-          <SignUpDataFiled
+          <DataInputForm
             label="비밀번호 확인"
             name="passwdMatch"
             value={userInputs.passwdMatch}
@@ -87,7 +87,7 @@ export default function SignUp2(props: Props) {
       </StyledInfoPaper>
       <StyledInfoPaper title="정산정보">
         <>
-          <SignUpDataFiled
+          <DataInputForm
             label="은행"
             name="bankName"
             value={bankInputs.bankName}
@@ -107,15 +107,15 @@ export default function SignUp2(props: Props) {
                 <MenuItem value={'기업'}>기업</MenuItem>
               </Select>
             </FormControl>
-          </SignUpDataFiled>
-          <SignUpDataFiled
+          </DataInputForm>
+          <DataInputForm
             label="예금주명"
             name="bankOwnerName"
             value={bankInputs.bankOwnerName}
             onChange={onChangeBankInputs}
             require={true}
           />
-          <SignUpDataFiled
+          <DataInputForm
             label="계좌번호"
             name="bankAccount"
             value={bankInputs.bankAccount}

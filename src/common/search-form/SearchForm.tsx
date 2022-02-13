@@ -30,23 +30,25 @@ export default function SearchForm(props: Props) {
   }
 
   return (
-    <Box display='flex'>
+    <Box display="flex">
       <FormControl
-        size='small'
-        variant='outlined'
+        size="small"
+        variant="outlined"
         className={classes.selectForm}
       >
         <InputLabel disableAnimation={true}></InputLabel>
         <Select onChange={onChangeSelect} value={searchType}>
-          <MenuItem value='all'>전체</MenuItem>
+          <MenuItem value="all">전체</MenuItem>
           {menuList.map((menu, idx) => (
-            <MenuItem value={menu.value}>{menu.title}</MenuItem>
+            <MenuItem key={idx} value={menu.value}>
+              {menu.title}
+            </MenuItem>
           ))}
         </Select>
       </FormControl>
       <TextField
-        size='small'
-        variant='outlined'
+        size="small"
+        variant="outlined"
         className={classes.input}
         value={searchValue}
         onChange={onChangeSearchValue}
@@ -57,9 +59,9 @@ export default function SearchForm(props: Props) {
         }}
       />
       <Button
-        variant='contained'
-        color='primary'
-        size='small'
+        variant="contained"
+        color="primary"
+        size="small"
         className={classes.btn}
         onClick={() => onSearch(searchValue, searchType)}
       >
