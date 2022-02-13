@@ -19,18 +19,18 @@ export const sideMenu: SideMenuType[] = [
     title: '지점관리',
     icon: 'storefront',
     subMenu: [
-      { label: '지점 정보 수정', url: '' },
-      { label: '메뉴 관리', url: '' },
-      { label: '정산 관리', url: '' },
-      { label: '카메라 목록', url: '' },
+      { label: '지점 정보 수정', url: '/my-store' },
+      { label: '메뉴 관리', url: '/my-store/goods' },
+      { label: '정산 관리', url: '/my-store/work-out' },
+      { label: '카메라 목록', url: '/my-store/camera' },
     ],
   },
   {
     title: '서비스이용',
     icon: 'notifications',
     subMenu: [
-      { label: '공지사항', url: '' },
-      { label: '문의하기', url: '' },
+      { label: '공지사항', url: '/bbs/notice' },
+      { label: '문의하기', url: '/bbs/qna' },
     ],
   },
 ]
