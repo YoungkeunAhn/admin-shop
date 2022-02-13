@@ -1,7 +1,7 @@
 import { Box, FormControlLabel, Radio, RadioGroup } from '@material-ui/core'
 import React, { useState } from 'react'
 import SignUpDataFiled from '../../SignUpDataFiled/SignUpDataFiled'
-import StyledInfoPaper from '../../StyledInfoPaper/StyledInfoPaper'
+import StyledInfoPaper from '@/common/StyledInfoPaper/StyledInfoPaper'
 import useStyles from './styles'
 
 type Props = {}
