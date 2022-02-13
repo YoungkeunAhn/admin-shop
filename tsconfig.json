@@ -21,7 +21,7 @@
       "@components": ["src/components/*"],
       "@pages": ["pages/*"],
       "@types/*": ["src/types/*"],
-      "@commons/*": ["src/types/*"],
+      "@commons/*": ["src/common/*"],
       "@domain": ["src/domain/*"]
     }
   },
