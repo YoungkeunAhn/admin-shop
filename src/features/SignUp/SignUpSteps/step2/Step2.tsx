@@ -1,7 +1,7 @@
 import { FormControl, MenuItem, Select } from '@material-ui/core'
 import React, { useState } from 'react'
 import SignUpDataFiled from '../../SignUpDataFiled/SignUpDataFiled'
-import StepPaperBox from '../../StepPaperBox/StepPaperBox'
+import StyledInfoPaper from '../../StyledInfoPaper/StyledInfoPaper'
 
 type Props = {
   userName: string
@@ -54,51 +54,51 @@ export default function SignUp2(props: Props) {
 
   return (
     <>
-      <StepPaperBox title='계정정보'>
+      <StyledInfoPaper title="계정정보">
         <>
           <SignUpDataFiled
-            label='아이디'
-            name='userId'
+            label="아이디"
+            name="userId"
             value={userInputs.userId}
             onChange={onChangeUserInputs}
           />
           <SignUpDataFiled
-            label='이름'
-            name='userName'
+            label="이름"
+            name="userName"
             value={'test1'}
             onChange={onChangeUserInputs}
             disabled={true}
           />
           <SignUpDataFiled
-            label='비밀번호'
-            name='passwd'
+            label="비밀번호"
+            name="passwd"
             value={userInputs.passwd}
-            type='password'
+            type="password"
             onChange={onChangeUserInputs}
           />
           <SignUpDataFiled
-            label='비밀번호 확인'
-            name='passwdMatch'
+            label="비밀번호 확인"
+            name="passwdMatch"
             value={userInputs.passwdMatch}
-            type='password'
+            type="password"
             onChange={onChangeUserInputs}
           />
         </>
-      </StepPaperBox>
-      <StepPaperBox title='정산정보'>
+      </StyledInfoPaper>
+      <StyledInfoPaper title="정산정보">
         <>
           <SignUpDataFiled
-            label='은행'
-            name='bankName'
+            label="은행"
+            name="bankName"
             value={bankInputs.bankName}
             onChange={onChangeBankInputs}
             require={true}
             noInput={true}
           >
-            <FormControl variant='outlined' size='small'>
+            <FormControl variant="outlined" size="small">
               <Select
-                labelId='demo-simple-select-outlined-label'
-                id='demo-simple-select-outlined'
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
                 value={'국민'}
                 onChange={handleChange}
               >
@@ -109,21 +109,21 @@ export default function SignUp2(props: Props) {
             </FormControl>
           </SignUpDataFiled>
           <SignUpDataFiled
-            label='예금주명'
-            name='bankOwnerName'
+            label="예금주명"
+            name="bankOwnerName"
             value={bankInputs.bankOwnerName}
             onChange={onChangeBankInputs}
             require={true}
           />
           <SignUpDataFiled
-            label='계좌번호'
-            name='bankAccount'
+            label="계좌번호"
+            name="bankAccount"
             value={bankInputs.bankAccount}
             onChange={onChangeBankInputs}
             require={true}
           />
         </>
-      </StepPaperBox>
+      </StyledInfoPaper>
     </>
   )
 }

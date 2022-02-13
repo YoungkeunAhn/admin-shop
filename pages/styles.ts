@@ -20,10 +20,10 @@ const useStyles = makeStyles((theme: Theme) =>
       },
       '& .MuiFormControl-root': {
         marginBottom: theme.spacing(2),
-        width: '25vw',
+        width: '100%',
       },
       '& > button': {
-        width: '25vw',
+        width: '100%',
         marginBottom: theme.spacing(3),
       },
     },

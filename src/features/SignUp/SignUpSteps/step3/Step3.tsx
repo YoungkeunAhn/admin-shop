@@ -1,7 +1,7 @@
 import { Box, FormControlLabel, Radio, RadioGroup } from '@material-ui/core'
 import React, { useState } from 'react'
 import SignUpDataFiled from '../../SignUpDataFiled/SignUpDataFiled'
-import StepPaperBox from '../../StepPaperBox/StepPaperBox'
+import StyledInfoPaper from '../../StyledInfoPaper/StyledInfoPaper'
 import useStyles from './styles'
 
 type Props = {}
@@ -69,32 +69,32 @@ export default function SignUp3(props: Props) {
   }
   return (
     <>
-      <StepPaperBox title='지점정보'>
+      <StyledInfoPaper title="지점정보">
         <Box className={classes.shopInfoContainer}>
           <Box>
             <SignUpDataFiled
-              label='지점명'
-              name='shopName'
+              label="지점명"
+              name="shopName"
               value={shopInfoInputs.shopName}
               onChange={onChangeShopInputs}
               require
             />
             <SignUpDataFiled
-              label='사업자번호'
-              name='businessNum'
+              label="사업자번호"
+              name="businessNum"
               value={shopInfoInputs.businessNum}
               onChange={onChangeShopInputs}
               require
             />
             <SignUpDataFiled
-              label='지점번호'
-              name='shopTel'
+              label="지점번호"
+              name="shopTel"
               value={shopInfoInputs.shopTel}
               onChange={onChangeShopInputs}
             />
             <SignUpDataFiled
-              label='휴무'
-              name='holiday'
+              label="휴무"
+              name="holiday"
               value={shopInfoInputs.holiday}
               onChange={onChangeShopInputs}
             />
@@ -102,74 +102,74 @@ export default function SignUp3(props: Props) {
 
           <Box>
             <SignUpDataFiled
-              label='업종형태'
-              name='category'
+              label="업종형태"
+              name="category"
               value={shopInfoInputs.category}
               onChange={onChangeShopInputs}
             />
             <SignUpDataFiled
-              label='대표자명'
-              name='ownerName'
+              label="대표자명"
+              name="ownerName"
               value={shopInfoInputs.ownerName}
               onChange={onChangeShopInputs}
               require
             />
             <SignUpDataFiled
-              label='대표자 연락처'
-              name='ownerPhoneNum'
+              label="대표자 연락처"
+              name="ownerPhoneNum"
               value={shopInfoInputs.ownerPhoneNum}
               onChange={onChangeShopInputs}
               require
             />
             <SignUpDataFiled
-              label='공휴일'
-              name='holiday'
+              label="공휴일"
+              name="holiday"
               value={shopInfoInputs.legalHoliday}
               onChange={onChangeShopInputs}
               noInput
             >
               <RadioGroup
-                name='legalHoliday'
+                name="legalHoliday"
                 value={shopInfoInputs.legalHoliday}
                 onChange={onChangeShopInputs}
               >
                 <FormControlLabel
                   // value={true}
-                  control={<Radio size='small' />}
-                  label='영업중'
-                  labelPlacement='end'
+                  control={<Radio size="small" />}
+                  label="영업중"
+                  labelPlacement="end"
                 />
                 <FormControlLabel
                   // value={false}
-                  control={<Radio size='small' />}
-                  label='영업안함'
-                  labelPlacement='end'
+                  control={<Radio size="small" />}
+                  label="영업안함"
+                  labelPlacement="end"
                 />
               </RadioGroup>
             </SignUpDataFiled>
           </Box>
         </Box>
-      </StepPaperBox>
-      <StepPaperBox title='위치 정보'>
+      </StyledInfoPaper>
+      <StyledInfoPaper title="위치 정보">
         <Box className={classes.positionInfoContainer}>
           <Box>
             <SignUpDataFiled
-              label='우편번호'
-              name='zipNum'
+              label="우편번호"
+              name="zipNum"
               value={positionInfoInputs.zipNum}
               onChange={onChangePositionInputs}
               require
             />
             <SignUpDataFiled
-              label='기본주소'
-              name='address'
+              label="기본주소"
+              name="address"
               value={positionInfoInputs.address}
               onChange={onChangePositionInputs}
               require
             />
             <SignUpDataFiled
-              label='주차장 유무'
-              name='havePark'
+              label="주차장 유무"
+              name="havePark"
               value={positionInfoInputs.havePark}
               onChange={onChangePositionInputs}
               noInput
@@ -178,36 +178,36 @@ export default function SignUp3(props: Props) {
                 <FormControlLabel
                   // value={false}
 
-                  control={<Radio size='small' color='primary' />}
-                  label='없음'
-                  labelPlacement='end'
+                  control={<Radio size="small" color="primary" />}
+                  label="없음"
+                  labelPlacement="end"
                 />
                 <FormControlLabel
                   // value={false}
-                  control={<Radio size='small' color='primary' />}
-                  label='상가 주차장'
-                  labelPlacement='end'
+                  control={<Radio size="small" color="primary" />}
+                  label="상가 주차장"
+                  labelPlacement="end"
                 />
                 <FormControlLabel
                   // value={false}
-                  control={<Radio size='small' color='primary' />}
-                  label='개인 주차장'
-                  labelPlacement='end'
+                  control={<Radio size="small" color="primary" />}
+                  label="개인 주차장"
+                  labelPlacement="end"
                 />
               </RadioGroup>
             </SignUpDataFiled>
           </Box>
           <Box>
             <SignUpDataFiled
-              label='상세주소'
-              name='detailAddress'
+              label="상세주소"
+              name="detailAddress"
               value={positionInfoInputs.detailAddress}
               onChange={onChangePositionInputs}
               require
             />
             <SignUpDataFiled
-              label='드라이브 스루'
-              name='haveDriveThru'
+              label="드라이브 스루"
+              name="haveDriveThru"
               value={positionInfoInputs.haveDriveThru}
               onChange={onChangePositionInputs}
               noInput
@@ -218,21 +218,21 @@ export default function SignUp3(props: Props) {
               >
                 <FormControlLabel
                   value={false}
-                  control={<Radio size='small' color='primary' />}
-                  label='없음'
-                  labelPlacement='end'
+                  control={<Radio size="small" color="primary" />}
+                  label="없음"
+                  labelPlacement="end"
                 />
                 <FormControlLabel
                   value={true}
-                  control={<Radio size='small' color='primary' />}
-                  label='있음'
-                  labelPlacement='end'
+                  control={<Radio size="small" color="primary" />}
+                  label="있음"
+                  labelPlacement="end"
                 />
               </RadioGroup>
             </SignUpDataFiled>
           </Box>
         </Box>
-      </StepPaperBox>
+      </StyledInfoPaper>
     </>
   )
 }

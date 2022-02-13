@@ -22,31 +22,31 @@ export default function Home() {
   }
 
   return (
-    <Container maxWidth='xs' className={classes.container}>
+    <Container maxWidth="xs" className={classes.container}>
       <Box className={classes.root}>
-        <MainTitle titleSize='h2' />
-        <TextField fullWidth variant='outlined' label='아이디 입력' />
+        <MainTitle titleSize="h2" />
+        <TextField fullWidth variant="outlined" label="아이디 입력" />
         <TextField
           fullWidth
-          variant='outlined'
-          label='비밀번호 입력'
-          type='password'
+          variant="outlined"
+          label="비밀번호 입력"
+          type="password"
         />
-        <Button variant='contained' color='primary' onClick={onLogin}>
+        <Button variant="contained" color="primary" onClick={onLogin}>
           로그인
         </Button>
         <Box className={classes.menuPart}>
           <ButtonBase>
             <Typography
-              variant='caption'
+              variant="caption"
               onClick={() => alert('준비중인 페이지 입니다.')}
             >
               비밀번호 찾기
             </Typography>
           </ButtonBase>
-          <Divider orientation='vertical' variant='middle' flexItem />
+          <Divider orientation="vertical" variant="middle" flexItem />
           <ButtonBase onClick={() => router.push('sign-up')}>
-            <Typography variant='caption'>회원가입</Typography>
+            <Typography variant="caption">회원가입</Typography>
           </ButtonBase>
         </Box>
       </Box>
