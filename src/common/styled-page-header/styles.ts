@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme: Theme) =>
       background: '#fff',
       marginTop: theme.spacing(4),
       marginBottom: theme.spacing(4),
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
     },
   })
 )

@@ -5,7 +5,6 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {},
     selectForm: {
       minWidth: 150,
-      marginRight: theme.spacing(1),
     },
     circle: {
       borderRadius: '100%',

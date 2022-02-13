@@ -24,13 +24,13 @@ export default function ReviewManageTbodyRow(props: Props) {
     props
   return (
     <TableRow>
-      <TableCell>{seq}</TableCell>
-      <TableCell>{ordernum}</TableCell>
-      <TableCell>{date}</TableCell>
-      <TableCell>{nickname}</TableCell>
-      <TableCell>{score}</TableCell>
-      <TableCell>{content}</TableCell>
-      <TableCell>
+      <TableCell align='center'>{seq}</TableCell>
+      <TableCell align='center'>{ordernum}</TableCell>
+      <TableCell align='center'>{date}</TableCell>
+      <TableCell align='center'>{nickname}</TableCell>
+      <TableCell align='center'>{score}점</TableCell>
+      <TableCell style={{ width: 400 }}>{content}</TableCell>
+      <TableCell align='center'>
         {hasReply ? (
           <ButtonBase>
             <Typography>대기중</Typography>
@@ -41,7 +41,7 @@ export default function ReviewManageTbodyRow(props: Props) {
           </ButtonBase>
         )}
       </TableCell>
-      <TableCell>
+      <TableCell align='center'>
         <IconButton size='small'>
           <ReportProblemOutlinedIcon
             fontSize='small'

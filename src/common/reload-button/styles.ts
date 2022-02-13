@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: 4,
       width: 40,
       height: 40,
+      margin: theme.spacing(0, 2),
     },
   })
 )

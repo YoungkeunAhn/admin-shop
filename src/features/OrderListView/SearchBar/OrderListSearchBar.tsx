@@ -8,7 +8,7 @@ import {
 import useStyles from './styles'
 import React, { useState } from 'react'
 import StyledOptionPaper from '@/common/styled-page-header/StyledOptionPaper'
-import ResetButton from '@/common/reset-button/ResetButton'
+import ReloadButton from '@/common/reload-button/ReloadButton'
 import SearchForm from '@/common/search-form/SearchForm'
 
 type OrderStateType = {
@@ -46,44 +46,42 @@ export default function OrderListSearchBar() {
 
   return (
     <StyledOptionPaper>
-      <Box display='flex' justifyContent='space-between'>
-        <Box display='flex'>
-          <FormControl
-            size='small'
-            variant='outlined'
-            className={classes.selectForm}
+      <Box display='flex'>
+        <FormControl
+          size='small'
+          variant='outlined'
+          className={classes.selectForm}
+        >
+          <InputLabel htmlFor='order-select'>주문 상태</InputLabel>
+          <Select
+            label='주문 상태'
+            value={orderState}
+            onChange={onChangeSelect}
+            inputProps={{ id: 'order-select' }}
           >
-            <InputLabel htmlFor='order-select'>주문 상태</InputLabel>
-            <Select
-              label='주문 상태'
-              value={orderState}
-              onChange={onChangeSelect}
-              inputProps={{ id: 'order-select' }}
-            >
-              <MenuItem value={0}>주문 상태</MenuItem>
-              {orderStates.map((item, idx) => (
-                <MenuItem key={idx} value={item.value}>
-                  {item.label}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <ResetButton />
-          <Box display='flex'>
-            {orderStates.map((state, idx) => (
-              <Box key={idx} className={classes.stateBox}>
-                <span
-                  className={classes.circle}
-                  style={{ background: `${state.color}` }}
-                ></span>
-                <span>{state.label}</span>
-                <span className={classes.stateCount}>{state.count}</span>
-              </Box>
+            <MenuItem value={0}>주문 상태</MenuItem>
+            {orderStates.map((item, idx) => (
+              <MenuItem key={idx} value={item.value}>
+                {item.label}
+              </MenuItem>
             ))}
-          </Box>
+          </Select>
+        </FormControl>
+        <ReloadButton />
+        <Box display='flex'>
+          {orderStates.map((state, idx) => (
+            <Box key={idx} className={classes.stateBox}>
+              <span
+                className={classes.circle}
+                style={{ background: `${state.color}` }}
+              ></span>
+              <span>{state.label}</span>
+              <span className={classes.stateCount}>{state.count}</span>
+            </Box>
+          ))}
         </Box>
-        <SearchForm onSearch={onSearch} menuList={searchMenuList} />
       </Box>
+      <SearchForm onSearch={onSearch} menuList={searchMenuList} />
     </StyledOptionPaper>
   )
 }
