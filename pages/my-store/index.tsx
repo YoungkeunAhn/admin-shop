@@ -1,4 +1,4 @@
-import MyStoreInfo from '@/features/MyStore/MyStoreInfo'
+import MyStoreInfo from '@/features/MyStoreInfo/MyStoreInfo'
 import MainLayout from '@/layouts/MainLayout'
 import React from 'react'
 

@@ -1,6 +1,6 @@
 import DataInputForm from '@/common/data-input-form/DataInputForm'
 import StyledInfoPaper from '@/common/styled-info-paper/StyledInfoPaper'
-import { InputsType3 } from '@/features/MyStore/MyStoreInfo'
+import { InputsType3 } from '@/features/MyStoreInfo/MyStoreInfo'
 import { Box, FormControlLabel, Radio, RadioGroup } from '@material-ui/core'
 import React, { useState } from 'react'
 

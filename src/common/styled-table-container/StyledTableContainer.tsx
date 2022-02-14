@@ -2,7 +2,7 @@ import { TableContainer } from '@material-ui/core'
 import React from 'react'
 import useStyles from './styles'
 type Props = {
-  children: React.ReactChild
+  children: React.ReactNode
 }
 export default function StyledTableContainer(props: Props) {
   const { children } = props
