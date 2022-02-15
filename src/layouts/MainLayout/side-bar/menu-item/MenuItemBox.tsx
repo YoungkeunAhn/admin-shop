@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import useStyles from './styles'
 
@@ -23,9 +24,14 @@ type Props = {
 export default function MenuItemBox(props: Props) {
   const { menu, expand, drawerOpen, onClickMenu } = props
   const { subMenu, icon } = menu
+  const router = useRouter()
   const classes = useStyles()
 
   const [menuExpand, setMenuExpand] = useState<boolean>(expand)
+
+  const goDashboard = () => {
+    router.push('/dashboard')
+  }
 
   useEffect(() => {
     if (!drawerOpen) setMenuExpand(false)
@@ -37,7 +43,14 @@ export default function MenuItemBox(props: Props) {
         <Box className={classes.titleBox}>
           <Box display='flex'>
             <Icon className={classes.titleIcon}>{icon}</Icon>
-            <Typography variant='body1'>{menu.title}</Typography>
+            <ButtonBase
+              onClick={() => {
+                // if (menu.title === '대쉬보드') console.log('click')
+                console.log(menu.title)
+              }}
+            >
+              <Typography variant='body1'>{menu.title}</Typography>
+            </ButtonBase>
           </Box>
 
           {subMenu ? (
