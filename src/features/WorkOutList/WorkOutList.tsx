@@ -1,7 +1,7 @@
 import InfoView from '@/components/WorkOutList/info-view/InfoView'
+import WorkOutListSearchBar from '@/components/WorkOutList/search-bar/WorkOutListSearchBar'
+import WorkOutListTable from '@/components/WorkOutList/table/WorkOutListTable'
 import React from 'react'
-import WorkOutListSearchBar from './searchBar/WorkOutListSearchBar'
-import WorkOutListTable from './table/WorkOutListTable'
 
 export default function WorkOutList() {
   return (
