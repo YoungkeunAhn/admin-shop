@@ -13,7 +13,7 @@ type Props = {
   require?: true
   noInput?: true
   children?: React.ReactChild
-  disabled?: true
+  disabled?: boolean
 }
 
 export default function DataInputForm(props: Props) {

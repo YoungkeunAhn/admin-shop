@@ -1,5 +1,5 @@
 import React from 'react'
-import ReviewManageSearchBar from '@/components/ReviewManage/searchBar/ReviewManageSearchBar'
+import ReviewManageSearchBar from '@/components/ReviewManage/search-bar/ReviewManageSearchBar'
 import ReviewManageTable from '@/components/ReviewManage/table/ReviewManageTable'
 
 export default function ReviewManage() {

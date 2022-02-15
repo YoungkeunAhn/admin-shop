@@ -15,8 +15,11 @@ const useStyles = makeStyles((theme: Theme) =>
           textAlign: 'center',
         },
       },
-      '& tbody': {
-        '&:nth-of-type(2)': {
+      '& tbody tr': {
+        '&:nth-of-type(odd)': {
+          backgroundColor: theme.palette.action.hover,
+        },
+        '&:hover': {
           backgroundColor: theme.palette.action.hover,
         },
       },

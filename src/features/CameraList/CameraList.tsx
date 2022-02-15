@@ -1,4 +1,4 @@
-import CameraListTable from '@/components/CameraList/camera-list-table/CameraListTable'
+import CameraListTable from '@/components/CameraList/table/CameraListTable'
 import CameraAddPaper from '@/components/CameraList/carmera-add-paper/CameraAddPaper'
 import { Box } from '@material-ui/core'
 import React from 'react'

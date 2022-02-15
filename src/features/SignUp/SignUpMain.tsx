@@ -35,7 +35,11 @@ export default function SignUpMain() {
 
   //이전 스탭
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1)
+    if (activeStep === 0) {
+      router.push('/')
+    } else {
+      setActiveStep((prevActiveStep) => prevActiveStep - 1)
+    }
   }
 
   //스탭관련 데이터
@@ -49,7 +53,7 @@ export default function SignUpMain() {
       case 0:
         return <SignUp1 />
       case 1:
-        return <SignUp2 userName='test1' />
+        return <SignUp2 userName="test1" />
       case 2:
         return <SignUp3 />
 
@@ -58,17 +62,17 @@ export default function SignUpMain() {
     }
   }
   return (
-    <Container maxWidth='md' className={classes.root}>
+    <Container maxWidth="md" className={classes.root}>
       <Box
         className={classes.header}
-        display='flex'
-        flexDirection='column'
-        alignItems='center'
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
       >
         <ButtonBase onClick={onClickLogo}>
-          <MainTitle titleSize='h3' />
+          <MainTitle titleSize="h3" />
         </ButtonBase>
-        <Typography variant='body1' color='textSecondary'>
+        <Typography variant="body1" color="textSecondary">
           회원가입
         </Typography>
         <Stepper className={classes.stepper} activeStep={activeStep}>
@@ -98,8 +102,8 @@ export default function SignUpMain() {
       ) : (
         <Box className={classes.btnSpacing}>
           <Button
-            variant='contained'
-            color='primary'
+            variant="contained"
+            color="primary"
             onClick={() => router.push('/')}
           >
             로그인 화면으로 이동
