@@ -1,56 +1,18 @@
-import { FormControl, MenuItem, Select } from '@material-ui/core'
-import React, { useState } from 'react'
 import DataInputForm from '@/common/data-input-form/DataInputForm'
 import StyledInfoPaper from '@/common/styled-info-paper/StyledInfoPaper'
+import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core'
+import React from 'react'
+import { Step2InputsType } from '../../SignUpMain'
 
 type Props = {
   userName: string
-}
-
-type UserInfoInputysType = {
-  userId: string
-  passwd: string
-  passwdMatch: string
-}
-
-type BankInfoInputsType = {
-  bankName: string
-  bankOwnerName: string
-  bankAccount: string
-}
-
-const initialUserInfo: UserInfoInputysType = {
-  userId: '',
-  passwd: '',
-  passwdMatch: '',
-}
-
-const initialBankInfo: BankInfoInputsType = {
-  bankName: '',
-  bankOwnerName: '',
-  bankAccount: '',
+  inputs: Step2InputsType
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onChangeBankName: (event: React.ChangeEvent<{ value: unknown }>) => void
 }
 
 export default function SignUp2(props: Props) {
-  const {} = props
-
-  const [userInputs, setUserInputs] =
-    useState<UserInfoInputysType>(initialUserInfo)
-  const [bankInputs, setBankInputs] =
-    useState<BankInfoInputsType>(initialBankInfo)
-  const [selectBank, setSelectBank] = useState<string>('국민')
-
-  const onChangeUserInputs = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUserInputs({ ...userInputs, [event.target.name]: event.target.value })
-  }
-
-  const onChangeBankInputs = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setBankInputs({ ...bankInputs, [event.target.name]: event.target.value })
-  }
-
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setSelectBank(event.target.value as string)
-  }
+  const { userName, inputs, onChange, onChangeBankName } = props
 
   return (
     <>
@@ -59,29 +21,29 @@ export default function SignUp2(props: Props) {
           <DataInputForm
             label="아이디"
             name="userId"
-            value={userInputs.userId}
-            onChange={onChangeUserInputs}
+            value={inputs.userId}
+            onChange={onChange}
           />
           <DataInputForm
             label="이름"
             name="userName"
-            value={'test1'}
-            onChange={onChangeUserInputs}
+            value={userName}
+            onChange={onChange}
             disabled={true}
           />
           <DataInputForm
             label="비밀번호"
             name="passwd"
-            value={userInputs.passwd}
+            value={inputs.passwd}
             type="password"
-            onChange={onChangeUserInputs}
+            onChange={onChange}
           />
           <DataInputForm
             label="비밀번호 확인"
             name="passwdMatch"
-            value={userInputs.passwdMatch}
+            value={inputs.passwdMatch}
             type="password"
-            onChange={onChangeUserInputs}
+            onChange={onChange}
           />
         </>
       </StyledInfoPaper>
@@ -90,17 +52,19 @@ export default function SignUp2(props: Props) {
           <DataInputForm
             label="은행"
             name="bankName"
-            value={bankInputs.bankName}
-            onChange={onChangeBankInputs}
+            value={inputs.bankName}
+            onChange={onChange}
             require={true}
             noInput={true}
           >
             <FormControl variant="outlined" size="small">
+              <InputLabel onAnimationStart={undefined}>은행명</InputLabel>
               <Select
+                label="은행명"
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
-                value={'국민'}
-                onChange={handleChange}
+                value={inputs.bankName}
+                onChange={onChangeBankName}
               >
                 <MenuItem value={'국민'}>국민</MenuItem>
                 <MenuItem value={'신한'}>신한</MenuItem>
@@ -111,15 +75,15 @@ export default function SignUp2(props: Props) {
           <DataInputForm
             label="예금주명"
             name="bankOwnerName"
-            value={bankInputs.bankOwnerName}
-            onChange={onChangeBankInputs}
+            value={inputs.bankOwnerName}
+            onChange={onChange}
             require={true}
           />
           <DataInputForm
             label="계좌번호"
             name="bankAccount"
-            value={bankInputs.bankAccount}
-            onChange={onChangeBankInputs}
+            value={inputs.bankAccount}
+            onChange={onChange}
             require={true}
           />
         </>

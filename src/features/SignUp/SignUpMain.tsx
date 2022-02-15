@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useState } from 'react'
 import SignUpDone from './SignUpSteps/done/StepDone'
 import SignUp1 from './SignUpSteps/step1/Step1'
 import SignUp2 from './SignUpSteps/step2/Step2'
@@ -18,10 +18,96 @@ import SignUp3 from './SignUpSteps/step3/Step3'
 import StepMoveBtnBox from './SignUpSteps/StepMoveBtnBox/StepMoveBtnBox'
 import useStyles from './styles'
 
+export type Step1InputsType = {
+  username: string
+  phoneNum: string
+  authNum: number | null
+}
+
+const initialStep1Inputs: Step1InputsType = {
+  username: '',
+  phoneNum: '',
+  authNum: null,
+}
+
+export type Step2InputsType = {
+  userId: string
+  passwd: string
+  passwdMatch: string
+  bankName: string
+  bankOwnerName: string
+  bankAccount: string
+}
+
+const initialStep2Inputs: Step2InputsType = {
+  userId: '',
+  passwd: '',
+  passwdMatch: '',
+  bankName: '',
+  bankOwnerName: '',
+  bankAccount: '',
+}
+
+export type Step3InputsType = {
+  shopName: string
+  businessNum: string
+  shopTel: string
+  category: string
+  ownerName: string
+  ownerPhoneNum: string
+  holiday: string
+  legalHoliday: boolean
+  zipNum: number | null
+  address: string
+  detailAddress: string
+  havePark: 0 | 1 | 2
+  haveDriveThru: boolean
+}
+
+const initialStep3Inputs: Step3InputsType = {
+  shopName: '',
+  businessNum: '',
+  shopTel: '',
+  category: '',
+  ownerName: '',
+  ownerPhoneNum: '',
+  holiday: '',
+  legalHoliday: true,
+  zipNum: null,
+  address: '',
+  detailAddress: '',
+  havePark: 0,
+  haveDriveThru: false,
+}
+
 export default function SignUpMain() {
   const [activeStep, setActiveStep] = React.useState(0)
   const classes = useStyles()
   const router = useRouter()
+
+  const [step1Inputs, setStep1Inputs] =
+    useState<Step1InputsType>(initialStep1Inputs)
+  const [step2Inputs, setStep2Inputs] =
+    useState<Step2InputsType>(initialStep2Inputs)
+  const [step3Inputs, setStep3Inputs] =
+    useState<Step3InputsType>(initialStep3Inputs)
+
+  //input change event
+  const onChangeStep1Inputs = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setStep1Inputs({ ...step1Inputs, [event.target.name]: event.target.value })
+  }
+
+  const onChangeStep2Inputs = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setStep2Inputs({ ...step2Inputs, [event.target.name]: event.target.value })
+  }
+
+  const onChangeBankName = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setStep2Inputs({ ...step2Inputs, bankName: event.target.value as string })
+  }
+
+  const onChangeStep3Inputs = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setStep3Inputs({ ...step3Inputs, [event.target.value]: event.target.value })
+  }
 
   //INCAPPAY 클릭이벤트
   const onClickLogo = () => {
@@ -51,9 +137,16 @@ export default function SignUpMain() {
   function getStepContent(step: number) {
     switch (step) {
       case 0:
-        return <SignUp1 />
+        return <SignUp1 inputs={step1Inputs} onChange={onChangeStep1Inputs} />
       case 1:
-        return <SignUp2 userName="test1" />
+        return (
+          <SignUp2
+            userName={step1Inputs.username}
+            inputs={step2Inputs}
+            onChange={onChangeStep2Inputs}
+            onChangeBankName={onChangeBankName}
+          />
+        )
       case 2:
         return <SignUp3 />
 
