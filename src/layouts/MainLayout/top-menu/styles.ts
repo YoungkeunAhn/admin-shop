@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       padding: theme.spacing(1),
       width: '100%',
-      // boxShadow: '1px 1px 3px #888',
+      margin: theme.spacing(0, 'auto'),
       '& > div': {
         display: 'flex',
         alignItems: 'center',

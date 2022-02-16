@@ -3,6 +3,7 @@ import StyledInfoPaper from '@/common/styled-info-paper/StyledInfoPaper'
 import AccountInfoBox from '@/components/MyShop/account-info-box/AccountInfoBox'
 import LocationInfoBox from '@/components/MyShop/location-info-box/LocationInfoBox'
 import ShopInfoBox from '@/components/MyShop/shop-info-box/ShopInfoBox'
+import { saveMsg } from '@/types/alert-msg'
 import { Box, Button } from '@material-ui/core'
 import React, { useState } from 'react'
 import useStyles from './styles'
@@ -64,7 +65,7 @@ export default function MyStoreInfo() {
   const classes = useStyles()
 
   const onSave = () => {
-    alert(`저장되었습니다.`)
+    alert(saveMsg)
   }
 
   return (

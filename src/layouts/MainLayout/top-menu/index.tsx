@@ -45,7 +45,7 @@ export default function TopMenu(props: Props) {
   }
 
   return (
-    <Paper className={classes.root} component="div">
+    <Paper className={classes.root}>
       <div className={classes.titleBox}>
         <IconButton size="small">
           <MenuIcon fontSize="small" />

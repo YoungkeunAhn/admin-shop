@@ -41,26 +41,27 @@ export default function MenuItemBox(props: Props) {
     <div className={classes.root}>
       <ListItem>
         <Box className={classes.titleBox}>
-          <Box display='flex'>
+          <Box display="flex">
             <Icon className={classes.titleIcon}>{icon}</Icon>
             <ButtonBase
               onClick={() => {
-                // if (menu.title === '대쉬보드') console.log('click')
-                console.log(menu.title)
+                if (menu.title === '대시보드') {
+                  router.push('/dashboard')
+                }
               }}
             >
-              <Typography variant='body1'>{menu.title}</Typography>
+              <Typography variant="body1">{menu.title}</Typography>
             </ButtonBase>
           </Box>
 
           {subMenu ? (
             menuExpand ? (
-              <IconButton size='small'>
-                <ExpandMoreIcon fontSize='small' />
+              <IconButton size="small">
+                <ExpandMoreIcon fontSize="small" />
               </IconButton>
             ) : (
-              <IconButton size='small'>
-                <ExpandLessIcon fontSize='small' />
+              <IconButton size="small">
+                <ExpandLessIcon fontSize="small" />
               </IconButton>
             )
           ) : null}
@@ -70,8 +71,8 @@ export default function MenuItemBox(props: Props) {
           <Collapse in={menuExpand} className={classes.subMenuBox}>
             <Box
               className={classes.subMenuBox}
-              display='flex'
-              flexDirection='column'
+              display="flex"
+              flexDirection="column"
             >
               {subMenu.map((sub, idx) => (
                 <ButtonBase
@@ -79,7 +80,7 @@ export default function MenuItemBox(props: Props) {
                   className={classes.itemButton}
                   onClick={() => onClickMenu(sub.url)}
                 >
-                  <Typography variant='body2'>{sub.label}</Typography>
+                  <Typography variant="body2">{sub.label}</Typography>
                 </ButtonBase>
               ))}
             </Box>

@@ -28,6 +28,10 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'flex-start',
     },
+    submitBtn: {
+      marginLeft: theme.spacing(18.75),
+      marginTop: theme.spacing(2),
+    },
   })
 )
 

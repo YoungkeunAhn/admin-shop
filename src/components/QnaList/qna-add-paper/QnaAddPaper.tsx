@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   FormControl,
   MenuItem,
   Paper,
@@ -79,6 +80,13 @@ export default function QnaAddPaper() {
               minRows={5}
             />
           </Box>
+          <Button
+            className={classes.submitBtn}
+            variant="contained"
+            color="primary"
+          >
+            제출하기
+          </Button>
         </Box>
       </Box>
     </Paper>

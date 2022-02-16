@@ -19,7 +19,9 @@ function MainLayout(props: Props) {
 
       <main className={classes.main}>
         <TopMenu title={title} />
-        <Box p={1}>{children}</Box>
+        <Box p={1} style={{ boxSizing: 'border-box' }}>
+          {children}
+        </Box>
       </main>
     </Box>
   )

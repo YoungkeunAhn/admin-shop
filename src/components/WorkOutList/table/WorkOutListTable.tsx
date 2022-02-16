@@ -74,7 +74,12 @@ const dataList: WorkOutTableDataType[] = [
 export default function WorkOutListTable() {
   return (
     <StyledTableContainer>
-      <Box display="flex" alignItems="center" justifyContent="space-between">
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        p={2}
+      >
         <Typography variant="h6">정산 이력</Typography>
         <Button variant="contained" color="primary">
           엑셀 다운로드
