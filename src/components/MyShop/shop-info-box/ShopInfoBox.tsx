@@ -18,7 +18,7 @@ export default function ShopInfoBox(props: Props) {
 
   return (
     <StyledInfoPaper title="지점 정보" fullWidth>
-      <Box display="flex" justifyContent="space-between" alignItems="flex-end">
+      <Box display="flex" alignItems="flex-end">
         <Box>
           <DataInputForm
             label="지점명"
@@ -47,7 +47,7 @@ export default function ShopInfoBox(props: Props) {
             onChange={onChange2}
           />
         </Box>
-        <Box>
+        <Box ml={10}>
           <DataInputForm
             label="업종형태"
             name="shoptype"

@@ -18,7 +18,7 @@ export default function LocationInfoBox(props: Props) {
 
   return (
     <StyledInfoPaper title="위치 정보" fullWidth>
-      <Box display="flex" justifyContent="space-between" alignItems="flex-end">
+      <Box display="flex" alignItems="flex-end">
         <Box>
           <DataInputForm
             label="우편번호"
@@ -60,7 +60,7 @@ export default function LocationInfoBox(props: Props) {
             </RadioGroup>
           </DataInputForm>
         </Box>
-        <Box>
+        <Box ml={10}>
           <DataInputForm
             label="상세주소"
             name="detailAddress"

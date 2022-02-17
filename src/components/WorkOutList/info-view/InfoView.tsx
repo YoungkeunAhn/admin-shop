@@ -7,7 +7,7 @@ import useStyles from './stlyes'
 export default function InfoView() {
   const classes = useStyles()
   return (
-    <Box display="flex">
+    <Box className={classes.root}>
       <Paper className={classes.paper}>
         <Typography variant="h6" className={classes.title}>
           금액 정보

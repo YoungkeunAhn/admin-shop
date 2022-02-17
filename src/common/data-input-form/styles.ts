@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'center',
       '& .MuiSelect-root': {
-        width: 250,
+        width: 300,
         boxSizing: 'border-box',
       },
       '& + &': {
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 600,
     },
     input: {
-      width: 250,
+      width: 300,
     },
     require: {
       color: '#EEBA00',

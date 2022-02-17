@@ -12,10 +12,7 @@ export default function StyledInfoPaper(props: Props) {
   const { title, children, fullWidth } = props
 
   return (
-    <Paper
-      className={clsx(classes.root, fullWidth && classes.fullWidth)}
-      elevation={0}
-    >
+    <Paper className={clsx(classes.root, fullWidth && classes.fullWidth)}>
       <Typography variant="h6">{title}</Typography>
       <Box>{children}</Box>
     </Paper>

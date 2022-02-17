@@ -10,9 +10,5 @@ type Props = {
 export default function StyledOptionPaper(props: Props) {
   const { children, className } = props
   const classes = useStyles()
-  return (
-    <Paper className={clsx(classes.root, className)} elevation={0}>
-      {children}
-    </Paper>
-  )
+  return <Paper className={clsx(classes.root, className)}>{children}</Paper>
 }

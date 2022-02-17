@@ -5,9 +5,9 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {},
     saveBtn: {
       display: 'block',
-      marginTop: theme.spacing(2),
+      marginTop: theme.spacing(5),
       marginBottom: theme.spacing(2),
-      marginLeft: '50%',
+      marginLeft: '20%',
       // transform: 'translateX(-50%)',
     },
   })

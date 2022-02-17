@@ -21,21 +21,21 @@ export type CameraDataType = {
 
 const dataList: CameraDataType[] = [
   {
-    image: '',
+    image: 'cctv1.jpg',
     name: '메인 카메라',
     mac: 'AA-BB-CC-DD',
     location: '주차장 입구',
     date: '2021-01-01',
   },
   {
-    image: 'checkOk.png',
+    image: 'cctv2.jpg',
     name: '서브 카메라1',
     mac: 'AA-BB-CC-EE',
     location: '지하 1층',
     date: '2021-01-01',
   },
   {
-    image: '',
+    image: 'cctv3.jpg',
     name: '서브 카메라2',
     mac: 'AA-BB-CC-FF',
     location: '지하 2층',

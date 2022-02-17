@@ -5,8 +5,6 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       width: '100%',
       padding: theme.spacing(2),
-      borderRadius: 8,
-      border: '1px solid #ddd',
       background: '#fff',
       '& thead': {
         whiteSpace: 'nowrap',

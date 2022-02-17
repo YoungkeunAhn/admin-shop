@@ -21,7 +21,7 @@ type DataType = {
 
 const dataList: DataType[] = [
   {
-    image: 'checkOk.png',
+    image: 'original_chicken.jpg',
     name: '오리지널 치킨',
     summary: '기본 메뉴 입니다.',
     date: '2021-01-01',
@@ -30,7 +30,7 @@ const dataList: DataType[] = [
     hidden: false,
   },
   {
-    image: '',
+    image: 'source_chicken.png',
     name: '양념 치킨',
     summary: '기본 메뉴 입니다.',
     date: '2021-01-01',
@@ -39,7 +39,7 @@ const dataList: DataType[] = [
     hidden: false,
   },
   {
-    image: 'checkOk.png',
+    image: 'ganjang_chicken.jpg',
     name: '간장 치킨',
     summary: '기본 메뉴 입니다.',
     date: '2021-01-01',
@@ -48,7 +48,7 @@ const dataList: DataType[] = [
     hidden: false,
   },
   {
-    image: '',
+    image: 'oven_chicken.jpg',
     name: '오븐 치킨',
     summary: '기본 메뉴 입니다.',
     date: '2021-01-01',

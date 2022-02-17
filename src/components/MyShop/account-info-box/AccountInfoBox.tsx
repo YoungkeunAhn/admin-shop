@@ -18,7 +18,7 @@ export default function AccountInfoBox(props: Props) {
 
   return (
     <StyledInfoPaper title="계정 정보" fullWidth>
-      <Box display="flex" justifyContent="space-between" alignItems="flex-end">
+      <Box display="flex" alignItems="flex-end">
         <Box>
           <DataInputForm
             label="아이디"
@@ -44,7 +44,7 @@ export default function AccountInfoBox(props: Props) {
             require
           />
         </Box>
-        <Box>
+        <Box ml={10}>
           <DataInputForm
             label="휴대폰번호"
             name="phonenum"

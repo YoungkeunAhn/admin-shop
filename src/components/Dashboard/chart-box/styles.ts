@@ -3,22 +3,20 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core'
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      display: 'flex',
-      marginBottom: theme.spacing(3),
+      background: '#fff',
+      padding: theme.spacing(2),
+      width: '49%',
     },
-    paper: {
-      minWidth: 400,
-      padding: theme.spacing(3),
-      flex: 1,
-      '& + & ': {
-        marginLeft: theme.spacing(3),
+    headerBox: {
+      display: 'flex',
+      alignItems: 'center',
+      marginBottom: theme.spacing(3),
+      '& h6': {
+        fontWeight: 600,
       },
     },
-    title: {
-      marginRight: theme.spacing(2),
-    },
-    infoBox: {
-      marginTop: theme.spacing(3),
+    btnBox: {
+      marginLeft: theme.spacing(2),
     },
   })
 )
