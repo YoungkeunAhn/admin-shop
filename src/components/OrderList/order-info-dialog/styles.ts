@@ -11,16 +11,32 @@ const useStyles = makeStyles((theme: Theme) =>
     infoBox: {
       '& > div': {
         display: 'flex',
-        '& p:first-child': {
-          marginRight: theme.spacing(2),
-          color: '#888',
-        },
         '& p:last-child': {
           fontWeight: 600,
         },
       },
       '& > div + div': {
         marginTop: theme.spacing(2),
+      },
+    },
+    infoLine: {
+      '& p:first-child': {
+        marginRight: theme.spacing(2),
+        color: '#888',
+      },
+    },
+    goodsListBox: {
+      display: 'flex',
+      alignItems: 'center',
+      '& p:first-child': {
+        marginRight: theme.spacing(2),
+        color: '#000',
+        fontWeight: 600,
+      },
+      '& p': {
+        marginRight: theme.spacing(2),
+        color: '#000',
+        fontWeight: 600,
       },
     },
   })

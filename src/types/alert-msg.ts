@@ -5,3 +5,6 @@ export const reportSubmitMsg = `주문 신고가 제출되었습니다.
 내용확인후, 해당부서 관계자가 문제해결을 도와드리겠습니다.`
 
 export const saveMsg = `저장되었습니다.`
+
+export const orderReportMsg = `리뷰 신고가 제출되었습니다.
+신고된 리뷰는 앱내에 표시되지 않습니다.`

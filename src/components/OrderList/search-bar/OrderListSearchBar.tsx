@@ -11,7 +11,7 @@ import StyledOptionPaper from '@/common/styled-page-header/StyledOptionPaper'
 import ReloadButton from '@/common/reload-button/ReloadButton'
 import SearchForm from '@/common/search-form/SearchForm'
 
-type OrderStateType = {
+export type OrderStateType = {
   value: number
   color: string
   count: number
@@ -46,15 +46,15 @@ export default function OrderListSearchBar() {
 
   return (
     <StyledOptionPaper>
-      <Box display='flex'>
+      <Box display="flex">
         <FormControl
-          size='small'
-          variant='outlined'
+          size="small"
+          variant="outlined"
           className={classes.selectForm}
         >
-          <InputLabel htmlFor='order-select'>주문 상태</InputLabel>
+          <InputLabel htmlFor="order-select">주문 상태</InputLabel>
           <Select
-            label='주문 상태'
+            label="주문 상태"
             value={orderState}
             onChange={onChangeSelect}
             inputProps={{ id: 'order-select' }}
@@ -68,7 +68,7 @@ export default function OrderListSearchBar() {
           </Select>
         </FormControl>
         <ReloadButton />
-        <Box display='flex'>
+        <Box display="flex">
           {orderStates.map((state, idx) => (
             <Box key={idx} className={classes.stateBox}>
               <span

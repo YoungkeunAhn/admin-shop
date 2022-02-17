@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   ButtonBase,
   TableCell,
@@ -11,87 +12,85 @@ import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined'
 import AccountBalanceWalletOutlinedIcon from '@material-ui/icons/AccountBalanceWalletOutlined'
 import ReportProblemOutlinedIcon from '@material-ui/icons/ReportProblemOutlined'
 import useStyles from './styles'
-import { DialogType } from '../OrderListTable'
+import { DialogType, OrderInfoType } from '../OrderListTable'
 
 type Props = {
   seq: number
-  id: string
-  time: string
-  nickname: string
-  carNum: string
-  price: number
-  goodsList: Array<{ amount: number; goodsId: string }>
-  state: number
-  openDialog: (dialogId: DialogType) => void
+  data: OrderInfoType
+  openStateChnageDialog: (data: OrderInfoType) => void
+  openLocationDialog: (data: OrderInfoType) => void
+  openOrderInfoDialog: (data: OrderInfoType) => void
+  openOrderReportDialog: (data: OrderInfoType) => void
 }
 
 export default function OrderListTableRow(props: Props) {
   const {
     seq,
-    id,
-    time,
-    nickname,
-    carNum,
-    price,
-    goodsList,
-    state,
-    openDialog,
+    data,
+    openStateChnageDialog,
+    openLocationDialog,
+    openOrderInfoDialog,
+    openOrderReportDialog,
   } = props
   const classes = useStyles()
 
   return (
     <TableRow className={classes.root}>
-      <TableCell align='center'>{seq}</TableCell>
-      <TableCell align='center' className={classes.nowrap}>
-        {id}
+      <TableCell align="center">{seq}</TableCell>
+      <TableCell align="center" className={classes.nowrap}>
+        {data.ordernum}
       </TableCell>
-      <TableCell align='center'>{time}</TableCell>
-      <TableCell align='center'>{nickname}</TableCell>
-      <TableCell align='center' className={classes.nowrap}>
-        {carNum}
+      <TableCell align="center">{data.time}</TableCell>
+      <TableCell align="center">{data.nickname}</TableCell>
+      <TableCell align="center" className={classes.nowrap}>
+        {data.carNum}
       </TableCell>
-      <TableCell align='center'>{price}</TableCell>
+      <TableCell align="center">{data.price}</TableCell>
       <TableCell style={{ minWidth: 200 }}>
-        {goodsList.map(
+        {data.goodsList.map(
           (goods, idx) =>
             `${goods.goodsId}(${goods.amount})
-            ${goodsList.length - 1 !== idx ? ',' : ''}
+            ${data.goodsList.length - 1 !== idx ? ',' : ''}
             `
         )}
       </TableCell>
-      <TableCell>{state}</TableCell>
-      <TableCell align='center'>
+      <TableCell>
+        <Box display="flex" alignItems="center">
+          <div
+            style={{
+              borderRadius: '100%',
+              background: data.state.color,
+              width: 10,
+              height: 10,
+              marginRight: 8,
+            }}
+          ></div>
+          <Typography variant="body2">{data.state.label}</Typography>
+        </Box>
+      </TableCell>
+      <TableCell align="center">
         <Button
-          size='small'
-          endIcon={<ShoppingBasketOutlinedIcon fontSize='small' />}
+          size="small"
+          endIcon={<ShoppingBasketOutlinedIcon fontSize="small" />}
           className={classes.stateChangeBtn}
-          onClick={() => openDialog('stateChangeDialog')}
+          onClick={() => openStateChnageDialog(data)}
         >
           상태변경
         </Button>
       </TableCell>
-      <TableCell align='center'>
-        <ButtonBase
-          color='primary'
-          onClick={() => openDialog('locationViewDialog')}
-        >
-          <LocationOnOutlinedIcon fontSize='small' />
+      <TableCell align="center">
+        <ButtonBase color="primary" onClick={() => openLocationDialog(data)}>
+          <LocationOnOutlinedIcon fontSize="small" />
         </ButtonBase>
       </TableCell>
-      <TableCell align='center'>
-        <ButtonBase
-          color='primary'
-          onClick={() => openDialog('orderInfoDialog')}
-        >
-          <AccountBalanceWalletOutlinedIcon fontSize='small' />
+      <TableCell align="center">
+        <ButtonBase color="primary" onClick={() => openOrderInfoDialog(data)}>
+          <AccountBalanceWalletOutlinedIcon fontSize="small" />
         </ButtonBase>
       </TableCell>
-      <TableCell align='center'>
-        <ButtonBase
-          color='primary'
-          onClick={() => openDialog('orderReportDialog')}
-        >
-          <ReportProblemOutlinedIcon fontSize='small' />
+      <TableCell align="center">
+        <ButtonBase color="primary" onClick={() => openOrderReportDialog(data)}>
+          <ReportProblemOutlinedIcon fontSize="small" />
         </ButtonBase>
       </TableCell>
     </TableRow>
