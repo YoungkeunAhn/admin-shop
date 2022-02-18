@@ -9,14 +9,16 @@ type Props = {
   image: string
   name: string
   summary: string
-  price: number
-  sale: number
+  price: number | null
+  sale: number | null
   date: string
-  hidden: boolean
+  hidden: number
+  onRemove: (name: string) => void
 }
 
 export default function GoodsListTbodyRow(props: Props) {
-  const { seq, image, name, summary, price, sale, date, hidden } = props
+  const { seq, image, name, summary, price, sale, date, hidden, onRemove } =
+    props
   const classes = useStyles()
 
   return (
@@ -37,14 +39,14 @@ export default function GoodsListTbodyRow(props: Props) {
       <TableCell align="center">{price}원</TableCell>
       <TableCell align="center">{sale !== 0 ? `${sale}%` : '-'}</TableCell>
       <TableCell align="center">{date}</TableCell>
-      <TableCell align="center">{hidden ? '숨김' : '게시중'}</TableCell>
+      <TableCell align="center">{hidden === 0 ? '숨김' : '게시중'}</TableCell>
       <TableCell align="center">
         <IconButton size="small">
           <BorderColorOutlinedIcon fontSize="small" color="primary" />
         </IconButton>
       </TableCell>
       <TableCell align="center">
-        <IconButton size="small">
+        <IconButton size="small" onClick={() => onRemove(name)}>
           <DeleteOutlinedIcon fontSize="small" />
         </IconButton>
       </TableCell>

@@ -69,7 +69,7 @@ export default function OrderReportDialog(props: Props) {
                 key={idx}
                 label={item.label}
                 value={item.value}
-                control={<Radio />}
+                control={<Radio color="primary" size="small" />}
               />
             ))}
           </RadioGroup>

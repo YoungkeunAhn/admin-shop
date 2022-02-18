@@ -6,20 +6,20 @@ import {
   TableHead,
   TableRow,
 } from '@material-ui/core'
-import React from 'react'
+import React, { useState } from 'react'
 import GoodsListTbodyRow from './tbody-row/GoodsListTbodyRow'
 
-type DataType = {
+export type GoodsDataType = {
   image: string
   name: string
   summary: string
-  price: number
-  sale: number
+  price: number | null
+  sale: number | null
   date: string
-  hidden: boolean
+  hidden: number
 }
 
-const dataList: DataType[] = [
+export const goodsList: GoodsDataType[] = [
   {
     image: 'original_chicken.jpg',
     name: '오리지널 치킨',
@@ -27,7 +27,7 @@ const dataList: DataType[] = [
     date: '2021-01-01',
     price: 19000,
     sale: 10,
-    hidden: false,
+    hidden: 1,
   },
   {
     image: 'source_chicken.png',
@@ -36,7 +36,7 @@ const dataList: DataType[] = [
     date: '2021-01-01',
     price: 20000,
     sale: 10,
-    hidden: false,
+    hidden: 1,
   },
   {
     image: 'ganjang_chicken.jpg',
@@ -45,7 +45,7 @@ const dataList: DataType[] = [
     date: '2021-01-01',
     price: 20000,
     sale: 0,
-    hidden: false,
+    hidden: 1,
   },
   {
     image: 'oven_chicken.jpg',
@@ -54,11 +54,18 @@ const dataList: DataType[] = [
     date: '2021-01-01',
     price: 21000,
     sale: 10,
-    hidden: false,
+    hidden: 1,
   },
 ]
 
 export default function GoodsListTable() {
+  const [menuList, setMenuList] = useState<GoodsDataType[]>(goodsList)
+
+  const onRemoveGoods = (name: string) => {
+    if (confirm('삭제하시겠습니까?')) {
+      setMenuList(menuList.filter((goods) => goods.name !== name))
+    }
+  }
   return (
     <StyledTableContainer>
       <Table>
@@ -77,8 +84,13 @@ export default function GoodsListTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {dataList.map((data, idx) => (
-            <GoodsListTbodyRow key={idx} seq={idx + 1} {...data} />
+          {menuList.map((data, idx) => (
+            <GoodsListTbodyRow
+              key={idx}
+              seq={idx + 1}
+              {...data}
+              onRemove={onRemoveGoods}
+            />
           ))}
         </TableBody>
       </Table>

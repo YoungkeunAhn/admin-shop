@@ -11,9 +11,18 @@ type Props = {
 export default function LocationInfoBox(props: Props) {
   const { data } = props
   const [inputs3, setInputs3] = useState<InputsType3>(data)
+  const [parkValue, setParkValue] = useState<number>(data.park)
+  const [thruValue, setThruValue] = useState<number>(data.thru)
 
   const onChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputs3({ ...inputs3, [event.target.name]: event.target.value })
+  }
+
+  const onChangeParkValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setParkValue(parseInt(event.target.value))
+  }
+  const onChangeThruValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setThruValue(parseInt(event.target.value))
   }
 
   return (
@@ -41,21 +50,24 @@ export default function LocationInfoBox(props: Props) {
             onChange={onChange3}
             noInput
           >
-            <RadioGroup value={inputs3.park}>
+            <RadioGroup value={parkValue} onChange={onChangeParkValue}>
               <FormControlLabel
-                control={<Radio value={0} size="small" color="primary" />}
+                value={0}
                 label="없음"
                 labelPlacement="end"
+                control={<Radio size="small" color="primary" />}
               />
               <FormControlLabel
-                control={<Radio value={1} size="small" color="primary" />}
+                value={1}
                 label="상가 주차장"
                 labelPlacement="end"
+                control={<Radio size="small" color="primary" />}
               />
               <FormControlLabel
-                control={<Radio value={2} size="small" color="primary" />}
+                value={2}
                 label="개인 주차장"
                 labelPlacement="end"
+                control={<Radio size="small" color="primary" />}
               />
             </RadioGroup>
           </DataInputForm>
@@ -75,15 +87,15 @@ export default function LocationInfoBox(props: Props) {
             onChange={onChange3}
             noInput
           >
-            <RadioGroup onChange={onChange3} value={inputs3.thru}>
+            <RadioGroup onChange={onChangeThruValue} value={thruValue}>
               <FormControlLabel
-                value={false}
+                value={0}
                 control={<Radio size="small" color="primary" />}
                 label="없음"
                 labelPlacement="end"
               />
               <FormControlLabel
-                value={true}
+                value={1}
                 control={<Radio size="small" color="primary" />}
                 label="있음"
                 labelPlacement="end"

@@ -7,8 +7,8 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'block',
       marginTop: theme.spacing(5),
       marginBottom: theme.spacing(2),
-      marginLeft: '20%',
-      // transform: 'translateX(-50%)',
+      marginLeft: '50%',
+      transform: 'translateX(-50%)',
     },
   })
 )

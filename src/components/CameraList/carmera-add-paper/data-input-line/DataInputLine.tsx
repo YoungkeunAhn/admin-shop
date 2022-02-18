@@ -5,13 +5,16 @@ import useStyles from './styles'
 type Props = {
   title: string
   name: string
-  value: string
-  placeholder: string
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  value: string | number | null
+  placeholder?: string
+  multiLine?: true
+  minRows?: number
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export default function DataInputLine(props: Props) {
-  const { title, name, value, placeholder, onChange } = props
+  const { title, name, value, placeholder, multiLine, minRows, onChange } =
+    props
   const classes = useStyles()
 
   return (
@@ -25,6 +28,8 @@ export default function DataInputLine(props: Props) {
         variant="outlined"
         size="small"
         fullWidth
+        multiline={multiLine}
+        minRows={minRows}
       />
     </Box>
   )

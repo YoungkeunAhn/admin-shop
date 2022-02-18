@@ -23,15 +23,15 @@ export type InputsType2 = {
   ownername: string
   ownercall: string
   holiday: string
-  setHoliday: boolean
+  setHoliday: number
 }
 
 export type InputsType3 = {
   zipCode: string
   address: string
   detailAddress: string
-  park: 0 | 1 | 2
-  thru: boolean
+  park: number
+  thru: number
 }
 
 const initialInput1: InputsType1 = {
@@ -50,7 +50,7 @@ const initialInput2: InputsType2 = {
   ownername: '홍길동',
   ownercall: '010-1234-1234',
   holiday: '매월 2,4째주 수요일 휴무',
-  setHoliday: true,
+  setHoliday: 0,
 }
 
 const initialInput3: InputsType3 = {
@@ -58,7 +58,7 @@ const initialInput3: InputsType3 = {
   address: '서울시 마포구 도화대로 433번길',
   detailAddress: '30-1 로엔빌 101동 302호',
   park: 1,
-  thru: true,
+  thru: 0,
 }
 
 export default function MyStoreInfo() {

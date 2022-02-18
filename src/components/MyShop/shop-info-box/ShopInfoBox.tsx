@@ -11,9 +11,14 @@ type Props = {
 export default function ShopInfoBox(props: Props) {
   const { data } = props
   const [inputs2, setInputs2] = useState<InputsType2>(data)
+  const [radioValue, setRadioValue] = useState<number>(data.setHoliday)
 
   const onChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputs2({ ...inputs2, [event.target.name]: event.target.value })
+  }
+
+  const onChangeRadioValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRadioValue(parseInt(event.target.value))
   }
 
   return (
@@ -77,18 +82,20 @@ export default function ShopInfoBox(props: Props) {
           >
             <RadioGroup
               name="legalHoliday"
-              value={inputs2.setHoliday}
-              onChange={onChange2}
+              value={radioValue}
+              onChange={onChangeRadioValue}
             >
               <FormControlLabel
-                control={<Radio color="primary" size="small" value={true} />}
+                value={0}
                 label="영업중"
                 labelPlacement="end"
+                control={<Radio color="primary" size="small" />}
               />
               <FormControlLabel
-                control={<Radio color="primary" size="small" value={false} />}
+                value={1}
                 label="영업안함"
                 labelPlacement="end"
+                control={<Radio color="primary" size="small" />}
               />
             </RadioGroup>
           </DataInputForm>
