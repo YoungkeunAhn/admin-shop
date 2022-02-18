@@ -14,7 +14,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import React, { useState } from 'react'
-import { goodsStateType, OrderInfoType } from '../table/OrderListTable'
+import { OrderInfoType } from '../table/OrderListTable'
 import useStyles from './styles'
 
 export type StateChangeDialogPropsType = {
