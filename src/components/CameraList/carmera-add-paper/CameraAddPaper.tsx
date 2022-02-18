@@ -1,23 +1,34 @@
+import { CameraDataType } from '@/features/CameraList/CameraList'
 import { Box, Button, Paper, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 import DataInputLine from './data-input-line/DataInputLine'
 import useStyles from './styles'
 
+type Props = {
+  onCreate: (data: CameraDataType) => void
+}
+
 type InputsType = {
-  cameraName: string
+  name: string
   mac: string
   location: string
 }
 
 const initialInputs: InputsType = {
-  cameraName: '',
+  name: '',
   mac: '',
   location: '',
 }
 
-export default function CameraAddPaper() {
+export default function CameraAddPaper(props: Props) {
+  const { onCreate } = props
   const classes = useStyles()
   const [cameraInputs, setCameraInputs] = useState<InputsType>(initialInputs)
+
+  const cameraAdd = () => {
+    onCreate({ ...cameraInputs, image: '', date: Date.now().toString() })
+    setCameraInputs(initialInputs)
+  }
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCameraInputs({
@@ -34,8 +45,8 @@ export default function CameraAddPaper() {
       <Box className={classes.infoBox}>
         <DataInputLine
           title="카메라 이름"
-          name="cameraName"
-          value={cameraInputs.cameraName}
+          name="name"
+          value={cameraInputs.name}
           onChange={onChange}
           placeholder="카메라 이름 입력"
         />
@@ -54,7 +65,12 @@ export default function CameraAddPaper() {
           placeholder="카메라 사용위치 입력"
         />
       </Box>
-      <Button variant="contained" color="primary" className={classes.addBtn}>
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.addBtn}
+        onClick={cameraAdd}
+      >
         추가하기
       </Button>
     </Paper>

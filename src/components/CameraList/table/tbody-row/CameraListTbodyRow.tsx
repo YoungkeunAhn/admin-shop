@@ -1,8 +1,8 @@
+import { CameraDataType } from '@/features/CameraList/CameraList'
 import { Box, IconButton, TableCell, TableRow } from '@material-ui/core'
 import BorderColorOutlinedIcon from '@material-ui/icons/BorderColorOutlined'
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined'
 import React from 'react'
-import { CameraDataType } from '../CameraListTable'
 import useStyles from './styles'
 
 type Props = {
