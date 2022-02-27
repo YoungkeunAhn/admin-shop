@@ -23,10 +23,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     imgBox: {
       width: '100%',
-      objectFit: 'contain',
-      '& img': {
-        width: '100%',
-        height: '100%',
+      height: '100%',
+      '& #map': {
+        height: 500,
       },
     },
   })

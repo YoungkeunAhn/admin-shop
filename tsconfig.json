@@ -25,6 +25,14 @@
       "@domain": ["src/domain/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/**/*", "pages/*"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/**/*",
+    "pages/*",
+    "env-config.js",
+    "**/*.d.ts"
+  ],
   "exclude": ["node_modules"]
 }

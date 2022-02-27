@@ -36,18 +36,18 @@ export type InputsType3 = {
 
 const initialInput1: InputsType1 = {
   id: 'test',
-  nickname: '홍길동',
+  nickname: '안영근',
   password: '123123',
   passwordCheck: '123123',
   phonenum: '010-1234-1234',
 }
 
 const initialInput2: InputsType2 = {
-  shopname: '깐부치킨',
+  shopname: '바른치킨',
   shopnum: '123-45-6789',
   shopcall: '02-1234-1234',
   shoptype: '요식업',
-  ownername: '홍길동',
+  ownername: '안영근',
   ownercall: '010-1234-1234',
   holiday: '매월 2,4째주 수요일 휴무',
   setHoliday: 0,

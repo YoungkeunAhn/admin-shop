@@ -1,6 +1,6 @@
-import React from "react"
-import Document, { Head, Html, Main, NextScript } from "next/document"
-import { ServerStyleSheets } from "@material-ui/styles"
+import React from 'react'
+import Document, { Head, Html, Main, NextScript } from 'next/document'
+import { ServerStyleSheets } from '@material-ui/styles'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -32,9 +32,13 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link
-            rel='stylesheet'
-            href='https://fonts.googleapis.com/icon?family=Material+Icons'
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
           />
+          <script
+            type="text/javascript"
+            src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=biimms28c3"
+          ></script>
         </Head>
         <body>
           <Main />

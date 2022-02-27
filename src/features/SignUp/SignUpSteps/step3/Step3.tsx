@@ -14,15 +14,15 @@ type ShopInfoInputsType = {
   ownerName: string
   ownerPhoneNum: string
   holiday: string
-  legalHoliday: boolean
+  legalHoliday: number
 }
 
 type PositionInfoInputsType = {
   zipNum: number | null
   address: string
   detailAddress: string
-  havePark: 0 | 1 | 2
-  haveDriveThru: boolean
+  havePark: number
+  haveDriveThru: number
 }
 
 const initialShopInfoInputs: ShopInfoInputsType = {
@@ -33,7 +33,7 @@ const initialShopInfoInputs: ShopInfoInputsType = {
   ownerName: '',
   ownerPhoneNum: '',
   holiday: '',
-  legalHoliday: true,
+  legalHoliday: 1,
 }
 
 const initialPositionInfoInputs: PositionInfoInputsType = {
@@ -41,7 +41,7 @@ const initialPositionInfoInputs: PositionInfoInputsType = {
   address: '',
   detailAddress: '',
   havePark: 0,
-  haveDriveThru: false,
+  haveDriveThru: 0,
 }
 
 export default function SignUp3(props: Props) {
@@ -65,6 +65,25 @@ export default function SignUp3(props: Props) {
     setPositionInfoInputs({
       ...positionInfoInputs,
       [event.target.name]: event.target.value,
+    })
+  }
+
+  const onChangeLegalHoliday = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setShopInfoInputs({
+      ...shopInfoInputs,
+      legalHoliday: parseInt(event.target.value),
+    })
+  }
+  const onChangePark = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPositionInfoInputs({
+      ...positionInfoInputs,
+      havePark: parseInt(event.target.value),
+    })
+  }
+  const onChangeThru = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPositionInfoInputs({
+      ...positionInfoInputs,
+      haveDriveThru: parseInt(event.target.value),
     })
   }
   return (
@@ -131,17 +150,17 @@ export default function SignUp3(props: Props) {
               <RadioGroup
                 name="legalHoliday"
                 value={shopInfoInputs.legalHoliday}
-                onChange={onChangeShopInputs}
+                onChange={onChangeLegalHoliday}
               >
                 <FormControlLabel
-                  // value={true}
-                  control={<Radio size="small" />}
+                  value={1}
+                  control={<Radio size="small" color="primary" />}
                   label="영업중"
                   labelPlacement="end"
                 />
                 <FormControlLabel
-                  // value={false}
-                  control={<Radio size="small" />}
+                  value={0}
+                  control={<Radio size="small" color="primary" />}
                   label="영업안함"
                   labelPlacement="end"
                 />
@@ -174,22 +193,24 @@ export default function SignUp3(props: Props) {
               onChange={onChangePositionInputs}
               noInput
             >
-              <RadioGroup>
+              <RadioGroup
+                onChange={onChangePark}
+                value={positionInfoInputs.havePark}
+              >
                 <FormControlLabel
-                  // value={false}
-
+                  value={0}
                   control={<Radio size="small" color="primary" />}
                   label="없음"
                   labelPlacement="end"
                 />
                 <FormControlLabel
-                  // value={false}
+                  value={1}
                   control={<Radio size="small" color="primary" />}
                   label="상가 주차장"
                   labelPlacement="end"
                 />
                 <FormControlLabel
-                  // value={false}
+                  value={2}
                   control={<Radio size="small" color="primary" />}
                   label="개인 주차장"
                   labelPlacement="end"
@@ -213,17 +234,17 @@ export default function SignUp3(props: Props) {
               noInput
             >
               <RadioGroup
-                onChange={onChangePositionInputs}
+                onChange={onChangeThru}
                 value={positionInfoInputs.haveDriveThru}
               >
                 <FormControlLabel
-                  value={false}
+                  value={0}
                   control={<Radio size="small" color="primary" />}
                   label="없음"
                   labelPlacement="end"
                 />
                 <FormControlLabel
-                  value={true}
+                  value={1}
                   control={<Radio size="small" color="primary" />}
                   label="있음"
                   labelPlacement="end"

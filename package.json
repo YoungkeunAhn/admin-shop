@@ -12,6 +12,7 @@
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "@types/date-fns": "^2.6.0",
+    "@types/navermaps": "^3.0.13",
     "axios": "^0.25.0",
     "chart.js": "^3.7.1",
     "clsx": "^1.1.1",

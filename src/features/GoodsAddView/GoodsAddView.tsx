@@ -1,7 +1,7 @@
 import DataInputLine from '@/components/CameraList/carmera-add-paper/data-input-line/DataInputLine'
 import {
-  goodsList,
   GoodsDataType,
+  goodsList,
 } from '@/components/GoodsList/table/GoodsListTable'
 import {
   Box,
@@ -15,7 +15,7 @@ import {
   Typography,
 } from '@material-ui/core'
 import { useRouter } from 'next/router'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import useStyles from './styles'
 
 const initialInputs: GoodsDataType = {
@@ -134,6 +134,7 @@ export default function GoodsAddView() {
               </Button>
               <input
                 type="file"
+                accept="image/*"
                 name="image"
                 ref={inputFileRef}
                 value={inputs.image}

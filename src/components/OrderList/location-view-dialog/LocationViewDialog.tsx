@@ -1,4 +1,5 @@
 import CustomDialogTitle from '@/common/custom-dialog-title/CustomDialogTitle'
+import NaverMapView from '@/common/naver-map-view/NaverMapView'
 import {
   Box,
   Dialog,
@@ -45,7 +46,7 @@ export default function LocationViewDialog(props: Props) {
           </Box>
         </Box>
         <Box className={classes.imgBox}>
-          <img src="/map_image.png" alt="map image" />
+          <NaverMapView />
         </Box>
       </DialogContent>
       <DialogActions></DialogActions>
