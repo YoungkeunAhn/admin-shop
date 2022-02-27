@@ -45,7 +45,7 @@ export default function Login() {
             </Typography>
           </ButtonBase>
           <Divider orientation="vertical" variant="middle" flexItem />
-          <ButtonBase onClick={() => router.push('sign-up')}>
+          <ButtonBase onClick={() => router.push('sign-in')}>
             <Typography variant="caption">회원가입</Typography>
           </ButtonBase>
         </Box>

@@ -2,7 +2,7 @@ import DataInputForm from '@/common/data-input-form/DataInputForm'
 import StyledInfoPaper from '@/common/styled-info-paper/StyledInfoPaper'
 import { Box, Button } from '@material-ui/core'
 import React, { useState } from 'react'
-import { Step1InputsType } from '../../SignUpMain'
+import { Step1InputsType } from '../../SignInMain'
 import useStyles from './styles'
 
 type Props = {

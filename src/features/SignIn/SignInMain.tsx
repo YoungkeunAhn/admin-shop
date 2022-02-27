@@ -11,11 +11,11 @@ import {
 } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import SignUpDone from './SignUpSteps/done/StepDone'
-import SignUp1 from './SignUpSteps/step1/Step1'
-import SignUp2 from './SignUpSteps/step2/Step2'
-import SignUp3 from './SignUpSteps/step3/Step3'
-import StepMoveBtnBox from './SignUpSteps/StepMoveBtnBox/StepMoveBtnBox'
+import SignUpDone from './SignInSteps/done/StepDone'
+import SignUp1 from './SignInSteps/step1/Step1'
+import SignUp2 from './SignInSteps/step2/Step2'
+import SignUp3 from './SignInSteps/step3/Step3'
+import StepMoveBtnBox from './SignInSteps/StepMoveBtnBox/StepMoveBtnBox'
 import useStyles from './styles'
 
 export type Step1InputsType = {
@@ -80,7 +80,7 @@ const initialStep3Inputs: Step3InputsType = {
   haveDriveThru: false,
 }
 
-export default function SignUpMain() {
+export default function SignInMain() {
   const [activeStep, setActiveStep] = React.useState(0)
   const classes = useStyles()
   const router = useRouter()

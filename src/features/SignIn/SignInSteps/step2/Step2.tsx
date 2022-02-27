@@ -2,7 +2,7 @@ import DataInputForm from '@/common/data-input-form/DataInputForm'
 import StyledInfoPaper from '@/common/styled-info-paper/StyledInfoPaper'
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core'
 import React from 'react'
-import { Step2InputsType } from '../../SignUpMain'
+import { Step2InputsType } from '../../SignInMain'
 
 type Props = {
   userName: string
