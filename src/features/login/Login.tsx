@@ -1,4 +1,5 @@
 import MainTitle from '@/common/main-title/MainTitle'
+import { loginFailMsg } from '@/types/alert-msg'
 import {
   Box,
   Button,
@@ -12,6 +13,8 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import useStyles from './styles'
+
+export const baseUrl = 'http://pilot.inautopay.com:8070/'
 
 export default function Login() {
   const classes = useStyles()
@@ -27,28 +30,28 @@ export default function Login() {
   const onChangePasswd = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPasswd(event.target.value)
   }
-  
 
-  const onLogin = async() => {
-    try{
-      // const {data} = await axios.get('http://pilot.inautopay.com:8070/test')
-      const {data} = await axios({
-        method: 'post',
-        url:'http://pilot.inautopay.com:8070/test',
-        data: {passwd, shopid: shopId}
-      })
-      console.log(data)
-    }catch(e){
+  const onLogin = async () => {
+    try {
+      const { data } = await axios.post(baseUrl + 'apiv1/shop/login/login')
+      router.push('/dashboard')
+    } catch (e) {
       console.error(e)
+      alert(loginFailMsg)
     }
-    // router.push('/dashboard')
   }
 
   return (
     <Container maxWidth="xs" className={classes.container}>
       <Box className={classes.root}>
         <MainTitle titleSize="h2" />
-        <TextField fullWidth variant="outlined" label="아이디 입력" value={shopId} onChange={onChangeShopId}/>
+        <TextField
+          fullWidth
+          variant="outlined"
+          label="아이디 입력"
+          value={shopId}
+          onChange={onChangeShopId}
+        />
         <TextField
           fullWidth
           variant="outlined"

@@ -22,7 +22,10 @@
       "@pages": ["pages/*"],
       "@types/*": ["src/types/*"],
       "@commons/*": ["src/common/*"],
-      "@domain": ["src/domain/*"]
+      "@domain": ["src/domain/*"],
+      "@api": ["src/api/*"],
+      "@hooks": ["src/hooks/*"],
+      "@validation": ["src/validation/*"]
     }
   },
   "include": [
