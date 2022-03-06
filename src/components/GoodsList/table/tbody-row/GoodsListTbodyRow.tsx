@@ -1,25 +1,23 @@
-import { Box, IconButton, TableCell, TableRow } from '@material-ui/core'
-import React from 'react'
-import BorderColorOutlinedIcon from '@material-ui/icons/BorderColorOutlined'
-import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined'
-import useStyles from './styles'
+import { Box, IconButton, TableCell, TableRow } from "@material-ui/core";
+import React from "react";
+import BorderColorOutlinedIcon from "@material-ui/icons/BorderColorOutlined";
+import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
+import useStyles from "./styles";
 
 type Props = {
-  seq: number
-  image: string
-  name: string
-  summary: string
-  price: number | null
-  sale: number | null
-  date: string
-  hidden: number
-  onRemove: (name: string) => void
-}
+  seq: number;
+  image: string;
+  name: string;
+  summary: string;
+  price: number | null;
+  date: string;
+  hidden: number;
+  onRemove: (name: string) => void;
+};
 
 export default function GoodsListTbodyRow(props: Props) {
-  const { seq, image, name, summary, price, sale, date, hidden, onRemove } =
-    props
-  const classes = useStyles()
+  const { seq, image, name, summary, price, date, hidden, onRemove } = props;
+  const classes = useStyles();
 
   return (
     <TableRow>
@@ -27,7 +25,7 @@ export default function GoodsListTbodyRow(props: Props) {
       <TableCell align="center">
         <Box className={classes.imgBox}>
           <img
-            src={image.length !== 0 ? `/${image}` : '/noImage.png'}
+            src={image.length !== 0 ? `/${image}` : "/noImage.png"}
             alt="thumbnail image"
           />
         </Box>
@@ -37,9 +35,8 @@ export default function GoodsListTbodyRow(props: Props) {
         {summary}
       </TableCell>
       <TableCell align="center">{price}원</TableCell>
-      <TableCell align="center">{sale !== 0 ? `${sale}%` : '-'}</TableCell>
       <TableCell align="center">{date}</TableCell>
-      <TableCell align="center">{hidden === 0 ? '숨김' : '게시중'}</TableCell>
+      <TableCell align="center">{hidden === 0 ? "숨김" : "게시중"}</TableCell>
       <TableCell align="center">
         <IconButton size="small">
           <BorderColorOutlinedIcon fontSize="small" color="primary" />
@@ -51,5 +48,5 @@ export default function GoodsListTbodyRow(props: Props) {
         </IconButton>
       </TableCell>
     </TableRow>
-  )
+  );
 }

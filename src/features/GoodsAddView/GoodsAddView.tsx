@@ -1,8 +1,8 @@
-import DataInputLine from '@/components/CameraList/carmera-add-paper/data-input-line/DataInputLine'
+import DataInputLine from "@/components/CameraList/carmera-add-paper/data-input-line/DataInputLine";
 import {
   GoodsDataType,
   goodsList,
-} from '@/components/GoodsList/table/GoodsListTable'
+} from "@/components/GoodsList/table/GoodsListTable";
 import {
   Box,
   Button,
@@ -13,46 +13,45 @@ import {
   RadioGroup,
   TextField,
   Typography,
-} from '@material-ui/core'
-import { useRouter } from 'next/router'
-import React, { useRef, useState } from 'react'
-import useStyles from './styles'
+} from "@material-ui/core";
+import { useRouter } from "next/router";
+import React, { useRef, useState } from "react";
+import useStyles from "./styles";
 
 const initialInputs: GoodsDataType = {
-  name: '',
+  name: "",
   price: null,
-  sale: null,
-  image: '',
-  summary: '',
+  image: "",
+  summary: "",
   hidden: 1,
   date: Date.now().toString(),
-}
+};
 export default function GoodsAddView() {
-  const classes = useStyles()
-  const router = useRouter()
-  const [inputs, setInputs] = useState<GoodsDataType>(initialInputs)
-  const [radioValue, setRadioValue] = useState<number>(initialInputs.hidden)
-  const inputFileRef = useRef<HTMLInputElement>(null)
+  const classes = useStyles();
+  const router = useRouter();
+  const [inputs, setInputs] = useState<GoodsDataType>(initialInputs);
+  const [radioValue, setRadioValue] = useState<number>(initialInputs.hidden);
+  const inputFileRef = useRef<HTMLInputElement>(null);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputs({ ...inputs, [event.target.name]: event.target.value })
-  }
+    setInputs({ ...inputs, [event.target.name]: event.target.value });
+  };
 
   const onChangeRadioValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRadioValue(parseInt(event.target.value))
-    setInputs({ ...inputs, hidden: parseInt(event.target.value) })
-  }
+    setRadioValue(parseInt(event.target.value));
+    setInputs({ ...inputs, hidden: parseInt(event.target.value) });
+  };
 
   const onClickUploadBtn = () => {
     if (inputFileRef.current) {
-      inputFileRef.current.click()
+      inputFileRef.current.click();
     }
-  }
+  };
 
   const onCreateGoods = (data: GoodsDataType) => {
-    goodsList.concat(data)
-    router.push('/my-store/goods')
-  }
+    goodsList.concat(data);
+    router.push("/my-store/goods");
+  };
 
   return (
     <Box className={classes.root}>
@@ -61,7 +60,7 @@ export default function GoodsAddView() {
           <Typography variant="h6" className={classes.title}>
             메뉴 정보
           </Typography>
-          <Box display="flex" alignItems="center" mb={2}>
+          {/* <Box display="flex" alignItems="center" mb={2}>
             <Typography variant="body1" className={classes.lineTitle}>
               게시상태
             </Typography>
@@ -85,7 +84,7 @@ export default function GoodsAddView() {
                 />
               </RadioGroup>
             </FormControl>
-          </Box>
+          </Box> */}
           <Box width={600}>
             <DataInputLine
               title="메뉴명"
@@ -100,12 +99,6 @@ export default function GoodsAddView() {
               value={inputs.price}
               onChange={onChange}
               placeholder="가격 입력"
-            />
-            <DataInputLine
-              title="할인율"
-              name="sale"
-              value={inputs.sale}
-              placeholder="0~100% 입력"
             />
           </Box>
 
@@ -165,5 +158,5 @@ export default function GoodsAddView() {
         등록하기
       </Button>
     </Box>
-  )
+  );
 }
