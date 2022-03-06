@@ -1,17 +1,16 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core'
+import { createStyles, makeStyles, Theme } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      background: '#fff',
+      background: "#fff",
       padding: theme.spacing(2),
-      width: '49%',
+      width: "49%",
     },
     headerBox: {
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: theme.spacing(3),
-      '& h6': {
+      display: "flex",
+      alignItems: "center",
+      "& h6": {
         fontWeight: 600,
       },
     },
@@ -19,6 +18,6 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: theme.spacing(2),
     },
   })
-)
+);
 
-export default useStyles
+export default useStyles;
