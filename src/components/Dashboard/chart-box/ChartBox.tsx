@@ -1,4 +1,4 @@
-import { Box, Button, Paper, Typography } from "@material-ui/core";
+import { Box, Button, Paper, Typography } from "@material-ui/core"
 import {
   CategoryScale,
   Chart as ChartJS,
@@ -8,10 +8,10 @@ import {
   PointElement,
   Title,
   Tooltip,
-} from "chart.js";
-import React, { useState } from "react";
-import { Line } from "react-chartjs-2";
-import useStyles from "./styles";
+} from "chart.js"
+import React, { useState } from "react"
+import { Line } from "react-chartjs-2"
+import useStyles from "./styles"
 
 ChartJS.register(
   CategoryScale,
@@ -21,7 +21,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend
-);
+)
 
 const options = {
   responsive: true,
@@ -34,24 +34,24 @@ const options = {
       text: "Chart.js Line Chart",
     },
   },
-};
+}
 
 const createLables = () => {
-  const returnValue = [];
+  const returnValue = []
   for (let i = 1; i < 13; i++) {
-    returnValue.push(`${i}월`);
+    returnValue.push(`${i}월`)
   }
-  return returnValue;
-};
+  return returnValue
+}
 
 const randomData = () => {
-  const dataList = [];
+  const dataList = []
   for (let i = 0; i < 12; i++) {
-    dataList.push(Math.floor(Math.random() * 100));
+    dataList.push(Math.floor(Math.random() * 100))
   }
 
-  return dataList;
-};
+  return dataList
+}
 
 const data = {
   labels: createLables(),
@@ -70,16 +70,16 @@ const data = {
     //   backgroundColor: 'rgba(53, 162, 235, 0.5)',
     // },
   ],
-};
+}
 
 type Props = {
-  title: string;
-};
+  title: string
+}
 
 export default function ChartBox(props: Props) {
-  const classes = useStyles();
-  const { title } = props;
-  const [activeBtn, setActiveBtn] = useState<string>("month");
+  const classes = useStyles()
+  const { title } = props
+  const [activeBtn, setActiveBtn] = useState<string>("month")
 
   return (
     <Paper className={classes.root}>
@@ -115,5 +115,5 @@ export default function ChartBox(props: Props) {
       </Box>
       <Line options={options} data={data} height={100} />
     </Paper>
-  );
+  )
 }

@@ -1,15 +1,15 @@
-import ChartBox from "@/components/Dashboard/chart-box/ChartBox";
-import DashboardDataBox from "@/components/Dashboard/data-box/DashboardDataBox";
-import { Box } from "@material-ui/core";
-import React from "react";
+import ChartBox from "@/components/Dashboard/chart-box/ChartBox"
+import DashboardDataBox from "@/components/Dashboard/data-box/DashboardDataBox"
+import { Box } from "@material-ui/core"
+import React from "react"
 
 type DataType = {
-  title: string;
-  url: string;
-  mainData: { title: string; data: string; total?: number };
-  subDataList: Array<{ title: string; data: string }>;
-  color: string;
-};
+  title: string
+  url: string
+  mainData: { title: string; data: string; total?: number }
+  subDataList: Array<{ title: string; data: string }>
+  color: string
+}
 
 const firstData: DataType = {
   title: "실시간 주문 현황",
@@ -21,7 +21,7 @@ const firstData: DataType = {
     { title: "수령완료", data: "120 건" },
   ],
   color: "#3266F1",
-};
+}
 
 const secondData: DataType = {
   title: "정산 관리",
@@ -33,7 +33,7 @@ const secondData: DataType = {
     { title: "수령 완료", data: "5,342,120 원" },
   ],
   color: "#F09000",
-};
+}
 
 export default function Dashboard() {
   return (
@@ -47,5 +47,5 @@ export default function Dashboard() {
         <ChartBox title="매출현황 그래프" />
       </Box>
     </Box>
-  );
+  )
 }

@@ -1,8 +1,8 @@
-import DataInputLine from "@/components/CameraList/carmera-add-paper/data-input-line/DataInputLine";
+import DataInputLine from "@/components/CameraList/carmera-add-paper/data-input-line/DataInputLine"
 import {
   GoodsDataType,
   goodsList,
-} from "@/components/GoodsList/table/GoodsListTable";
+} from "@/components/GoodsList/table/GoodsListTable"
 import {
   Box,
   Button,
@@ -13,10 +13,10 @@ import {
   RadioGroup,
   TextField,
   Typography,
-} from "@material-ui/core";
-import { useRouter } from "next/router";
-import React, { useRef, useState } from "react";
-import useStyles from "./styles";
+} from "@material-ui/core"
+import { useRouter } from "next/router"
+import React, { useRef, useState } from "react"
+import useStyles from "./styles"
 
 const initialInputs: GoodsDataType = {
   name: "",
@@ -24,27 +24,27 @@ const initialInputs: GoodsDataType = {
   image: "",
   summary: "",
   date: Date.now().toString(),
-};
+}
 export default function GoodsAddView() {
-  const classes = useStyles();
-  const router = useRouter();
-  const [inputs, setInputs] = useState<GoodsDataType>(initialInputs);
-  const inputFileRef = useRef<HTMLInputElement>(null);
+  const classes = useStyles()
+  const router = useRouter()
+  const [inputs, setInputs] = useState<GoodsDataType>(initialInputs)
+  const inputFileRef = useRef<HTMLInputElement>(null)
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputs({ ...inputs, [event.target.name]: event.target.value });
-  };
+    setInputs({ ...inputs, [event.target.name]: event.target.value })
+  }
 
   const onClickUploadBtn = () => {
     if (inputFileRef.current) {
-      inputFileRef.current.click();
+      inputFileRef.current.click()
     }
-  };
+  }
 
   const onCreateGoods = (data: GoodsDataType) => {
-    goodsList.concat(data);
-    router.push("/my-store/goods");
-  };
+    goodsList.concat(data)
+    router.push("/my-store/goods")
+  }
 
   return (
     <Box className={classes.root}>
@@ -127,5 +127,5 @@ export default function GoodsAddView() {
         등록하기
       </Button>
     </Box>
-  );
+  )
 }

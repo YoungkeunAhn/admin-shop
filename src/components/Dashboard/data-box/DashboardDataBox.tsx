@@ -1,22 +1,22 @@
-import { Box, ButtonBase, Divider, Typography } from "@material-ui/core";
-import React from "react";
-import useStyles from "./styles";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import { useRouter } from "next/router";
+import { Box, ButtonBase, Divider, Typography } from "@material-ui/core"
+import React from "react"
+import useStyles from "./styles"
+import ChevronRightIcon from "@material-ui/icons/ChevronRight"
+import { useRouter } from "next/router"
 
 type Props = {
-  title: string;
-  url: string;
-  mainData: { title: string; data: string; total?: number };
-  subDataList: Array<{ title: string; data: string }>;
-  color: string;
-};
+  title: string
+  url: string
+  mainData: { title: string; data: string; total?: number }
+  subDataList: Array<{ title: string; data: string }>
+  color: string
+}
 
 export default function DashboardDataBox(props: Props) {
-  const { title, url, mainData, subDataList, color } = props;
-  const styledProps = { color: color };
-  const classes = useStyles(styledProps);
-  const router = useRouter();
+  const { title, url, mainData, subDataList, color } = props
+  const styledProps = { color: color }
+  const classes = useStyles(styledProps)
+  const router = useRouter()
 
   return (
     <Box className={classes.root}>
@@ -53,5 +53,5 @@ export default function DashboardDataBox(props: Props) {
         </Box>
       ))}
     </Box>
-  );
+  )
 }

@@ -1,21 +1,21 @@
-import StyledTableContainer from "@/common/styled-table-container/StyledTableContainer";
+import StyledTableContainer from "@/common/styled-table-container/StyledTableContainer"
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-} from "@material-ui/core";
-import React, { useState } from "react";
-import GoodsListTbodyRow from "./tbody-row/GoodsListTbodyRow";
+} from "@material-ui/core"
+import React, { useState } from "react"
+import GoodsListTbodyRow from "./tbody-row/GoodsListTbodyRow"
 
 export type GoodsDataType = {
-  image: string;
-  name: string;
-  summary: string;
-  price: number | null;
-  date: string;
-};
+  image: string
+  name: string
+  summary: string
+  price: number | null
+  date: string
+}
 
 export const goodsList: GoodsDataType[] = [
   {
@@ -46,16 +46,16 @@ export const goodsList: GoodsDataType[] = [
     date: "2021-01-01",
     price: 21000,
   },
-];
+]
 
 export default function GoodsListTable() {
-  const [menuList, setMenuList] = useState<GoodsDataType[]>(goodsList);
+  const [menuList, setMenuList] = useState<GoodsDataType[]>(goodsList)
 
   const onRemoveGoods = (name: string) => {
     if (confirm("삭제하시겠습니까?")) {
-      setMenuList(menuList.filter((goods) => goods.name !== name));
+      setMenuList(menuList.filter((goods) => goods.name !== name))
     }
-  };
+  }
   return (
     <StyledTableContainer>
       <Table>
@@ -83,5 +83,5 @@ export default function GoodsListTable() {
         </TableBody>
       </Table>
     </StyledTableContainer>
-  );
+  )
 }

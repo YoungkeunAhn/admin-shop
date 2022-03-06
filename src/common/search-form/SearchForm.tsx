@@ -6,9 +6,9 @@ import {
   MenuItem,
   Select,
   TextField,
-} from '@material-ui/core'
-import React, { useState } from 'react'
-import useStyles from './styles'
+} from "@material-ui/core"
+import React, { useState } from "react"
+import useStyles from "./styles"
 
 type Props = {
   onSearch: (value: string, type: string) => void
@@ -18,8 +18,8 @@ type Props = {
 export default function SearchForm(props: Props) {
   const classes = useStyles()
   const { onSearch, menuList } = props
-  const [searchValue, setSearchValue] = useState('')
-  const [searchType, setSearchType] = useState('all')
+  const [searchValue, setSearchValue] = useState("")
+  const [searchType, setSearchType] = useState("all")
 
   const onChangeSelect = (event: React.ChangeEvent<{ value: unknown }>) => {
     setSearchType(event.target.value as string)
@@ -53,7 +53,7 @@ export default function SearchForm(props: Props) {
         value={searchValue}
         onChange={onChangeSearchValue}
         onKeyDown={(e) => {
-          if (e.key === 'Enter') {
+          if (e.key === "Enter") {
             onSearch(searchValue, searchType)
           }
         }}

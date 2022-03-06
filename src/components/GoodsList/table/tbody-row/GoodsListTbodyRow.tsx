@@ -1,22 +1,22 @@
-import { Box, IconButton, TableCell, TableRow } from "@material-ui/core";
-import React from "react";
-import BorderColorOutlinedIcon from "@material-ui/icons/BorderColorOutlined";
-import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
-import useStyles from "./styles";
+import { Box, IconButton, TableCell, TableRow } from "@material-ui/core"
+import React from "react"
+import BorderColorOutlinedIcon from "@material-ui/icons/BorderColorOutlined"
+import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined"
+import useStyles from "./styles"
 
 type Props = {
-  seq: number;
-  image: string;
-  name: string;
-  summary: string;
-  price: number | null;
-  date: string;
-  onRemove: (name: string) => void;
-};
+  seq: number
+  image: string
+  name: string
+  summary: string
+  price: number | null
+  date: string
+  onRemove: (name: string) => void
+}
 
 export default function GoodsListTbodyRow(props: Props) {
-  const { seq, image, name, summary, price, date, onRemove } = props;
-  const classes = useStyles();
+  const { seq, image, name, summary, price, date, onRemove } = props
+  const classes = useStyles()
 
   return (
     <TableRow>
@@ -46,5 +46,5 @@ export default function GoodsListTbodyRow(props: Props) {
         </IconButton>
       </TableCell>
     </TableRow>
-  );
+  )
 }
