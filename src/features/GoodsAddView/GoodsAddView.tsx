@@ -23,23 +23,16 @@ const initialInputs: GoodsDataType = {
   price: null,
   image: "",
   summary: "",
-  hidden: 1,
   date: Date.now().toString(),
 };
 export default function GoodsAddView() {
   const classes = useStyles();
   const router = useRouter();
   const [inputs, setInputs] = useState<GoodsDataType>(initialInputs);
-  const [radioValue, setRadioValue] = useState<number>(initialInputs.hidden);
   const inputFileRef = useRef<HTMLInputElement>(null);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
-  };
-
-  const onChangeRadioValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRadioValue(parseInt(event.target.value));
-    setInputs({ ...inputs, hidden: parseInt(event.target.value) });
   };
 
   const onClickUploadBtn = () => {
@@ -60,31 +53,7 @@ export default function GoodsAddView() {
           <Typography variant="h6" className={classes.title}>
             메뉴 정보
           </Typography>
-          {/* <Box display="flex" alignItems="center" mb={2}>
-            <Typography variant="body1" className={classes.lineTitle}>
-              게시상태
-            </Typography>
-            <FormControl>
-              <RadioGroup
-                value={radioValue}
-                onChange={onChangeRadioValue}
-                className={classes.radioBox}
-              >
-                <FormControlLabel
-                  value={1}
-                  control={<Radio size="small" color="primary" />}
-                  label="게시"
-                  labelPlacement="end"
-                />
-                <FormControlLabel
-                  value={0}
-                  control={<Radio size="small" color="primary" />}
-                  label="숨김"
-                  labelPlacement="end"
-                />
-              </RadioGroup>
-            </FormControl>
-          </Box> */}
+
           <Box width={600}>
             <DataInputLine
               title="메뉴명"

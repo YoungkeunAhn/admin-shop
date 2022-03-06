@@ -11,12 +11,11 @@ type Props = {
   summary: string;
   price: number | null;
   date: string;
-  hidden: number;
   onRemove: (name: string) => void;
 };
 
 export default function GoodsListTbodyRow(props: Props) {
-  const { seq, image, name, summary, price, date, hidden, onRemove } = props;
+  const { seq, image, name, summary, price, date, onRemove } = props;
   const classes = useStyles();
 
   return (
@@ -36,7 +35,6 @@ export default function GoodsListTbodyRow(props: Props) {
       </TableCell>
       <TableCell align="center">{price}원</TableCell>
       <TableCell align="center">{date}</TableCell>
-      <TableCell align="center">{hidden === 0 ? "숨김" : "게시중"}</TableCell>
       <TableCell align="center">
         <IconButton size="small">
           <BorderColorOutlinedIcon fontSize="small" color="primary" />

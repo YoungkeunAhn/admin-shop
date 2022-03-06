@@ -15,7 +15,6 @@ export type GoodsDataType = {
   summary: string;
   price: number | null;
   date: string;
-  hidden: number;
 };
 
 export const goodsList: GoodsDataType[] = [
@@ -25,7 +24,6 @@ export const goodsList: GoodsDataType[] = [
     summary: "기본 메뉴 입니다.",
     date: "2021-01-01",
     price: 19000,
-    hidden: 1,
   },
   {
     image: "source_chicken.png",
@@ -33,7 +31,6 @@ export const goodsList: GoodsDataType[] = [
     summary: "기본 메뉴 입니다.",
     date: "2021-01-01",
     price: 20000,
-    hidden: 1,
   },
   {
     image: "ganjang_chicken.jpg",
@@ -41,7 +38,6 @@ export const goodsList: GoodsDataType[] = [
     summary: "기본 메뉴 입니다.",
     date: "2021-01-01",
     price: 20000,
-    hidden: 1,
   },
   {
     image: "oven_chicken.jpg",
@@ -49,7 +45,6 @@ export const goodsList: GoodsDataType[] = [
     summary: "기본 메뉴 입니다.",
     date: "2021-01-01",
     price: 21000,
-    hidden: 1,
   },
 ];
 
@@ -72,7 +67,6 @@ export default function GoodsListTable() {
             <TableCell align="center">간단 설명</TableCell>
             <TableCell align="center">가격</TableCell>
             <TableCell align="center">등록일</TableCell>
-            <TableCell align="center">게시 상태</TableCell>
             <TableCell align="center">수정</TableCell>
             <TableCell align="center">삭제</TableCell>
           </TableRow>
