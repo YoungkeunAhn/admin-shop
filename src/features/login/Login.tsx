@@ -1,5 +1,6 @@
-import MainTitle from '@/common/main-title/MainTitle'
-import { loginFailMsg } from '@/types/alert-msg'
+import MainTitle from "@/common/main-title/MainTitle"
+import { loginFailMsg } from "@/types/alert-msg"
+import { baseUrl } from "@/types/api"
 import {
   Box,
   Button,
@@ -8,20 +9,23 @@ import {
   Divider,
   TextField,
   Typography,
-} from '@material-ui/core'
-import axios from 'axios'
-import { useRouter } from 'next/router'
-import React, { useState } from 'react'
-import useStyles from './styles'
-
-export const baseUrl = 'http://pilot.inautopay.com:8070/'
+} from "@material-ui/core"
+import axios from "axios"
+import { useRouter } from "next/router"
+import React, { useRef, useState } from "react"
+import useStyles from "./styles"
 
 export default function Login() {
   const classes = useStyles()
   const router = useRouter()
 
-  const [shopId, setShopId] = useState<string>('')
-  const [passwd, setPasswd] = useState<string>('')
+  const [shopid, setShopId] = useState<string>("")
+  const [passwd, setPasswd] = useState<string>("")
+
+  const [isValid, setIsValid] = useState<boolean>(false)
+
+  const idRef = useRef(null)
+  const passwdRef = useRef(null)
 
   const onChangeShopId = (event: React.ChangeEvent<HTMLInputElement>) => {
     setShopId(event.target.value)
@@ -33,11 +37,32 @@ export default function Login() {
 
   const onLogin = async () => {
     try {
-      const { data } = await axios.post(baseUrl + 'apiv1/shop/login/login')
-      router.push('/dashboard')
+      const { data } = await axios.post(baseUrl + "apiv1/shop/login/login")
+      router.push("/dashboard")
+      console.log(data)
     } catch (e) {
       console.error(e)
       alert(loginFailMsg)
+    }
+  }
+
+  const onValidLogin = () => {
+    if (shopid.length < 4) {
+      setIsValid(true)
+      alert(loginFailMsg)
+      return false
+    } else if (passwd.length < 6) {
+      setIsValid(true)
+      alert(loginFailMsg)
+      return false
+    } else {
+      return true
+    }
+  }
+
+  const onClickLogin = () => {
+    if (onValidLogin()) {
+      onLogin
     }
   }
 
@@ -49,8 +74,10 @@ export default function Login() {
           fullWidth
           variant="outlined"
           label="아이디 입력"
-          value={shopId}
+          value={shopid}
           onChange={onChangeShopId}
+          color={isValid ? "secondary" : "primary"}
+          ref={idRef}
         />
         <TextField
           fullWidth
@@ -59,6 +86,8 @@ export default function Login() {
           type="password"
           value={passwd}
           onChange={onChangePasswd}
+          color={isValid ? "secondary" : "primary"}
+          ref={passwdRef}
         />
         <Button variant="contained" color="primary" onClick={onLogin}>
           로그인
@@ -67,13 +96,13 @@ export default function Login() {
           <ButtonBase>
             <Typography
               variant="caption"
-              onClick={() => alert('준비중인 페이지 입니다.')}
+              onClick={() => alert("준비중인 페이지 입니다.")}
             >
               비밀번호 찾기
             </Typography>
           </ButtonBase>
           <Divider orientation="vertical" variant="middle" flexItem />
-          <ButtonBase onClick={() => router.push('sign-in')}>
+          <ButtonBase onClick={() => router.push("sign-in")}>
             <Typography variant="caption">회원가입</Typography>
           </ButtonBase>
         </Box>
