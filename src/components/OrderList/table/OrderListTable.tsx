@@ -3,13 +3,16 @@ import LocationViewDialog from '@/components/OrderList/location-view-dialog/Loca
 import OrderInfoDialog from '@/components/OrderList/order-info-dialog/OrderInfoDialog'
 import OrderReportDialog from '@/components/OrderList/order-report-dialog/OrderReportDialog'
 import StateChangeDialog from '@/components/OrderList/state-change-dialog/StateChangeDialog'
+import LocalStorage from '@/hooks/LocalStorage'
+import { baseUrl } from '@/types/api'
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
-  TableRow,
+  TableRow
 } from '@material-ui/core'
+import axios from 'axios'
 import React, { useState } from 'react'
 import OrderListTableRow from './tbody-row/OrderListTbodyRow'
 
@@ -138,6 +141,9 @@ export default function OrderListTable() {
     useState<OrderInfoType>()
   const [orderReportDialogProps, setOrderReportDialogProps] =
     useState<OrderInfoType>()
+    const shopid = LocalStorage.getItem('shop')
+
+  const [loading, setLoading] = useState<boolean>(false);
 
   const closeDialog = () => {
     setDialogId(undefined)
@@ -194,6 +200,15 @@ export default function OrderListTable() {
     })
     closeDialog()
   }
+
+  const onload =async () => {
+    setLoading(true)
+    try{
+      const {data} = axios.get(baseUrl + 'apiv1/shop/main/realtimeoredrlist', {params: shopid})
+      set
+    }
+  }
+
 
   return (
     <>

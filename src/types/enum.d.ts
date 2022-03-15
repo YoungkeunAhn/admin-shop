@@ -44,3 +44,35 @@ export type ShopInfoDataType = {
   shopid: string
   passwd: string
 }
+
+export type RealTimeOrderDataType = {
+  carnum: string
+  category: string
+  dateorder: string
+  goodslist: [
+    {
+      amount: number
+      goodsid: number
+      goodsname: string
+    }
+  ]
+  orderid: number
+  /*OrderState 0:무효 10:주문접수 20:상품준비완료 30:DT진입 40:상품수령 50:완료 60:취소*/
+  orderstate: number
+  point_x: number
+  point_y: number
+  price: number
+  userid: number
+  username: string
+}
+
+export type OrderStateType = {
+ 
+}
+
+
+ {key: 0 color: '#dc0000', label: '주문접수' }
+   { color: '#55bd04', label: '주문확인' }
+   { color: '#32acf1', label: '상품 준비중' }
+   { color: '#9628ed', label: '준비완료' }
+   { color: '#1864ab', label: '수령완료' }
