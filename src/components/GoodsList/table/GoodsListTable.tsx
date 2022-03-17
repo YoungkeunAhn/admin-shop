@@ -1,4 +1,7 @@
 import StyledTableContainer from "@/common/styled-table-container/StyledTableContainer"
+import LocalStorage from "@/hooks/LocalStorage"
+import { baseUrl } from "@/types/api"
+import { GoodsDataType } from "@/types/enum"
 import {
   Table,
   TableBody,
@@ -6,56 +9,39 @@ import {
   TableHead,
   TableRow,
 } from "@material-ui/core"
-import React, { useState } from "react"
+import axios from "axios"
+import React, { useEffect, useState } from "react"
 import GoodsListTbodyRow from "./tbody-row/GoodsListTbodyRow"
 
-export type GoodsDataType = {
-  image: string
-  name: string
-  summary: string
-  price: number | null
-  date: string
-}
-
-export const goodsList: GoodsDataType[] = [
-  {
-    image: "original_chicken.jpg",
-    name: "오리지널 치킨",
-    summary: "기본 메뉴 입니다.",
-    date: "2021-01-01",
-    price: 19000,
-  },
-  {
-    image: "source_chicken.png",
-    name: "양념 치킨",
-    summary: "기본 메뉴 입니다.",
-    date: "2021-01-01",
-    price: 20000,
-  },
-  {
-    image: "ganjang_chicken.jpg",
-    name: "간장 치킨",
-    summary: "기본 메뉴 입니다.",
-    date: "2021-01-01",
-    price: 20000,
-  },
-  {
-    image: "oven_chicken.jpg",
-    name: "오븐 치킨",
-    summary: "기본 메뉴 입니다.",
-    date: "2021-01-01",
-    price: 21000,
-  },
-]
-
 export default function GoodsListTable() {
-  const [menuList, setMenuList] = useState<GoodsDataType[]>(goodsList)
+  const [goodsList, setGoodsList] = useState<GoodsDataType[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
+  const shopid = LocalStorage.getItem("shopid")
 
-  const onRemoveGoods = (name: string) => {
+  const onRemoveGoods = (goodsname: string) => {
     if (confirm("삭제하시겠습니까?")) {
-      setMenuList(menuList.filter((goods) => goods.name !== name))
+      setGoodsList(goodsList.filter((goods) => goods.goodsname !== goodsname))
     }
   }
+
+  const goodsListLoad = async () => {
+    setLoading(true)
+    try {
+      const { data } = await axios.get(
+        baseUrl + "apiv1​/shop​/setting​/goodslist"
+      )
+      setGoodsList(data)
+    } catch (e) {
+      console.error(e)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    goodsListLoad()
+  }, [goodsList])
+
   return (
     <StyledTableContainer>
       <Table>
@@ -66,19 +52,16 @@ export default function GoodsListTable() {
             <TableCell align="center">메뉴명</TableCell>
             <TableCell align="center">간단 설명</TableCell>
             <TableCell align="center">가격</TableCell>
-            <TableCell align="center">할인율</TableCell>
-            <TableCell align="center">등록일</TableCell>
-            <TableCell align="center">게시 상태</TableCell>
             <TableCell align="center">수정</TableCell>
             <TableCell align="center">삭제</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {menuList.map((data, idx) => (
+          {goodsList.map((data, idx) => (
             <GoodsListTbodyRow
               key={idx}
               seq={idx + 1}
-              {...data}
+              data={data}
               onRemove={onRemoveGoods}
             />
           ))}

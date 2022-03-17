@@ -1,13 +1,13 @@
-import ReloadButton from '@/common/reload-button/ReloadButton'
-import SearchForm from '@/common/search-form/SearchForm'
-import StyledOptionPaper from '@/common/styled-page-header/StyledOptionPaper'
-import { Box, TextField } from '@material-ui/core'
-import React, { useState } from 'react'
-import useStyles from './styles'
+import ReloadButton from "@/common/reload-button/ReloadButton"
+import SearchForm from "@/common/search-form/SearchForm"
+import StyledOptionPaper from "@/common/styled-page-header/StyledOptionPaper"
+import { Box, TextField } from "@material-ui/core"
+import React, { useState } from "react"
+import useStyles from "./styles"
 
 const searchMenuList = [
-  { value: 'nickname', title: '닉네임' },
-  { value: 'carnum', title: '자동차번호' },
+  { value: "nickname", title: "닉네임" },
+  { value: "carnum", title: "자동차번호" },
 ]
 
 export default function OrderHistorySearchBar() {
@@ -24,21 +24,21 @@ export default function OrderHistorySearchBar() {
   }
 
   const onSearch = () => {
-    console.log('search')
+    console.log("search")
   }
 
   return (
     <StyledOptionPaper>
-      <Box display='flex'>
+      <Box display="flex">
         <Box className={classes.dateBox}>
           <TextField
-            type='date'
+            type="date"
             value={firstDate}
             onChange={onChangeFirstDate}
           />
           <span>~</span>
           <TextField
-            type='date'
+            type="date"
             value={secondDate}
             onChange={onChangeSecondDate}
           />

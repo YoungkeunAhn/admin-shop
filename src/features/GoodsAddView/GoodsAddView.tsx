@@ -1,25 +1,33 @@
 import DataInputLine from "@/components/CameraList/carmera-add-paper/data-input-line/DataInputLine"
-import {
-  GoodsDataType,
-  goodsList,
-} from "@/components/GoodsList/table/GoodsListTable"
+import { errorSaveMsg, successSaveMsg } from "@/types/alert-msg"
+import { baseUrl } from "@/types/api"
+import { GoodsDataType } from "@/types/enum"
 import { Box, Button, Paper, TextField, Typography } from "@material-ui/core"
+import axios from "axios"
 import { useRouter } from "next/router"
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import useStyles from "./styles"
 
 const initialInputs: GoodsDataType = {
-  name: "",
-  price: null,
+  goodsid: 0,
+  goodsname: "",
+  price: 0,
   image: "",
   summary: "",
-  date: Date.now().toString(),
 }
-export default function GoodsAddView() {
+
+type Props = {
+  goodsid?: number
+}
+
+export default function GoodsAddView(props: Props) {
   const classes = useStyles()
+  const { goodsid } = props
   const router = useRouter()
   const [inputs, setInputs] = useState<GoodsDataType>(initialInputs)
   const inputFileRef = useRef<HTMLInputElement>(null)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [goodsData, setGoodsData] = useState<GoodsDataType>(initialInputs)
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputs({ ...inputs, [event.target.name]: event.target.value })
@@ -31,10 +39,32 @@ export default function GoodsAddView() {
     }
   }
 
-  const onCreateGoods = (data: GoodsDataType) => {
-    goodsList.concat(data)
-    router.push("/my-store/goods")
+  const onSave = async () => {
+    try {
+      await axios.post(baseUrl + "")
+      alert(successSaveMsg)
+    } catch (e) {
+      console.error(e)
+      alert(errorSaveMsg)
+    }
   }
+
+  const goodsDataLoad = async () => {
+    setLoading(true)
+    try {
+      const { data } = await axios.get(baseUrl + "apiv1/shop/setting/goodslist")
+    } catch (e) {
+      console.error(e)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (goodsid) {
+      goodsDataLoad()
+    }
+  }, [])
 
   return (
     <Box className={classes.root}>
@@ -48,7 +78,7 @@ export default function GoodsAddView() {
             <DataInputLine
               title="메뉴명"
               name="name"
-              value={inputs.name}
+              value={inputs.goodsname}
               onChange={onChange}
               placeholder="메뉴명 입력"
             />
@@ -112,7 +142,7 @@ export default function GoodsAddView() {
         variant="contained"
         color="primary"
         className={classes.addBtn}
-        onClick={() => onCreateGoods(inputs)}
+        onClick={() => {}}
       >
         등록하기
       </Button>

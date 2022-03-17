@@ -1,3 +1,4 @@
+import LocalStorage from "@/hooks/LocalStorage"
 import {
   Avatar,
   Box,
@@ -9,30 +10,30 @@ import {
   Paper,
   Select,
   Typography,
-} from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu'
-import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew'
-import { useRouter } from 'next/router'
-import React, { useState } from 'react'
-import useStyles from './styles'
+} from "@material-ui/core"
+import MenuIcon from "@material-ui/icons/Menu"
+import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew"
+import { useRouter } from "next/router"
+import React, { useState } from "react"
+import useStyles from "./styles"
 
-const username = '테스터'
+const username = "테스터"
 
 type Props = {
   title: string
 }
 
-type ShopStateKey = 'A001' | 'A002'
+type ShopStateKey = "A001" | "A002"
 const shopState: Record<ShopStateKey, string> = {
-  A001: '정상 업무중',
-  A002: '영업 종료',
+  A001: "정상 업무중",
+  A002: "영업 종료",
 }
 
 export default function TopMenu(props: Props) {
   const { title } = props
   const classes = useStyles()
   const [profileUrl, setProfileUrl] = useState<string | null>(null)
-  const [shopCurrentState, setShopCurrentState] = useState<ShopStateKey>('A001')
+  const [shopCurrentState, setShopCurrentState] = useState<ShopStateKey>("A001")
   const router = useRouter()
 
   const onChangeShopState = (event: React.ChangeEvent<{ value: unknown }>) => {
@@ -41,7 +42,8 @@ export default function TopMenu(props: Props) {
   }
 
   const onLogout = () => {
-    router.push('/')
+    LocalStorage.clear()
+    router.push("/")
   }
 
   return (
@@ -55,7 +57,7 @@ export default function TopMenu(props: Props) {
       <div>
         <Box className={classes.profile}>
           <Avatar
-            src={profileUrl ?? 'nullProfileImg.png'} // src={profileUrl}
+            src={profileUrl ?? "/nullProfileImg.png"} // src={profileUrl}
           />
           <Typography variant="body1">{username}</Typography>
         </Box>

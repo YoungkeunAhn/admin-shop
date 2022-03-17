@@ -1,7 +1,7 @@
-import React from 'react'
-import OrderListSearchBar from '@/components/OrderList/search-bar/OrderListSearchBar'
-import useStyles from './styles'
-import OrderListTable from '@/components/OrderList/table/OrderListTable'
+import React from "react"
+import OrderListSearchBar from "@/components/OrderList/search-bar/OrderListSearchBar"
+import useStyles from "./styles"
+import OrderListTable from "@/components/OrderList/table/OrderListTable"
 
 export default function OrderListView() {
   const classes = useStyles()

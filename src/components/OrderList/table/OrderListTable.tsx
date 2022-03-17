@@ -1,20 +1,21 @@
-import StyledTableContainer from '@/common/styled-table-container/StyledTableContainer'
-import LocationViewDialog from '@/components/OrderList/location-view-dialog/LocationViewDialog'
-import OrderInfoDialog from '@/components/OrderList/order-info-dialog/OrderInfoDialog'
-import OrderReportDialog from '@/components/OrderList/order-report-dialog/OrderReportDialog'
-import StateChangeDialog from '@/components/OrderList/state-change-dialog/StateChangeDialog'
-import LocalStorage from '@/hooks/LocalStorage'
-import { baseUrl } from '@/types/api'
+import StyledTableContainer from "@/common/styled-table-container/StyledTableContainer"
+import LocationViewDialog from "@/components/OrderList/location-view-dialog/LocationViewDialog"
+import OrderInfoDialog from "@/components/OrderList/order-info-dialog/OrderInfoDialog"
+import OrderReportDialog from "@/components/OrderList/order-report-dialog/OrderReportDialog"
+import StateChangeDialog from "@/components/OrderList/state-change-dialog/StateChangeDialog"
+import LocalStorage from "@/hooks/LocalStorage"
+import { baseUrl } from "@/types/api"
+import { RealTimeOrderDataType } from "@/types/enum"
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
-  TableRow
-} from '@material-ui/core'
-import axios from 'axios'
-import React, { useState } from 'react'
-import OrderListTableRow from './tbody-row/OrderListTbodyRow'
+  TableRow,
+} from "@material-ui/core"
+import axios from "axios"
+import React, { useEffect, useState } from "react"
+import OrderListTableRow from "./tbody-row/OrderListTbodyRow"
 
 export type goodsStateType = {
   value: number
@@ -22,128 +23,28 @@ export type goodsStateType = {
   label: string
 }
 
-export type OrderInfoType = {
-  ordernum: string
-  time: string
-  nickname: string
-  carNum: string
-  price: number
-  goodsList: Array<{ amount: number; goodsId: string }>
-  state: goodsStateType
-}
-
-const randomPrice = () => {
-  const price = Math.floor(Math.random() * 100) * 1000
-  if (price > 1000000) {
-    return price / 10
-  } else if (price < 10000) {
-    return price * 10
-  } else {
-    return price
-  }
-}
-const dataList: OrderInfoType[] = [
-  {
-    ordernum: 'A-SD-30221-1',
-    time: '16:20:04',
-    nickname: '김하니',
-    carNum: '12가 3456',
-    price: randomPrice(),
-    goodsList: [
-      { amount: 1, goodsId: '오리지널 치킨' },
-      { amount: 2, goodsId: '양념 치킨' },
-    ],
-    state: { value: 10, color: '#dc0000', label: '주문접수' },
-  },
-  {
-    ordernum: 'A-SD-30221-2',
-    time: '16:20:04',
-    nickname: '최민정',
-    carNum: '123가 3456',
-    price: randomPrice(),
-    goodsList: [
-      { amount: 1, goodsId: '오리지널 치킨' },
-      { amount: 2, goodsId: '양념 치킨' },
-      { amount: 1, goodsId: '오리지널 치킨' },
-      { amount: 2, goodsId: '양념 치킨' },
-    ],
-    state: { value: 10, color: '#dc0000', label: '주문접수' },
-  },
-  {
-    ordernum: 'A-SD-30221-3',
-    time: '16:20:04',
-    nickname: '황대헌',
-    carNum: '123가 3456',
-    price: randomPrice(),
-    goodsList: [
-      { amount: 1, goodsId: '오리지널 치킨' },
-      { amount: 2, goodsId: '양념 치킨' },
-    ],
-    state: { value: 20, color: '#55bd04', label: '주문확인' },
-  },
-  {
-    ordernum: 'A-SD-30221-4',
-    time: '16:20:04',
-    nickname: '김아랑',
-    carNum: '123가 3456',
-    price: randomPrice(),
-    goodsList: [
-      { amount: 1, goodsId: '오리지널 치킨' },
-      { amount: 2, goodsId: '양념 치킨' },
-      { amount: 1, goodsId: '오리지널 치킨' },
-      { amount: 2, goodsId: '양념 치킨' },
-    ],
-    state: { value: 30, color: '#32acf1', label: '상품 준비중' },
-  },
-  {
-    ordernum: 'A-SD-30221-5',
-    time: '16:20:04',
-    nickname: '곽윤기',
-    carNum: '123가 3456',
-    price: randomPrice(),
-    goodsList: [
-      { amount: 1, goodsId: '오리지널 치킨' },
-      { amount: 2, goodsId: '양념 치킨' },
-      { amount: 1, goodsId: '오리지널 치킨' },
-      { amount: 2, goodsId: '양념 치킨' },
-    ],
-    state: { value: 40, color: '#9628ed', label: '준비완료' },
-  },
-  {
-    ordernum: 'A-SD-30221-6',
-    time: '16:20:04',
-    nickname: '김선영',
-    carNum: '123가 3456',
-    price: randomPrice(),
-    goodsList: [
-      { amount: 1, goodsId: '오리지널 치킨' },
-      { amount: 2, goodsId: '양념 치킨' },
-      { amount: 1, goodsId: '오리지널 치킨' },
-      { amount: 2, goodsId: '양념 치킨' },
-    ],
-    state: { value: 50, color: '#e73ac1', label: '진입' },
-  },
-]
-
 export type DialogType =
-  | 'stateChangeDialog'
-  | 'locationDialog'
-  | 'orderInfoDialog'
-  | 'orderReportDialog'
+  | "stateChangeDialog"
+  | "locationDialog"
+  | "orderInfoDialog"
+  | "orderReportDialog"
 
 export default function OrderListTable() {
+  const [realTimeOrderData, setRealTimeOrderData] = useState<
+    RealTimeOrderDataType[]
+  >([])
   const [dialogId, setDialogId] = useState<DialogType>()
   const [stateChangeDialogProps, setStateChangeDialogProps] =
-    useState<OrderInfoType>()
+    useState<RealTimeOrderDataType>()
   const [locationDialogProps, setLocationDialogProps] =
-    useState<OrderInfoType>()
+    useState<RealTimeOrderDataType>()
   const [orderInfoDialogProps, setOrderInfoDialogProps] =
-    useState<OrderInfoType>()
+    useState<RealTimeOrderDataType>()
   const [orderReportDialogProps, setOrderReportDialogProps] =
-    useState<OrderInfoType>()
-    const shopid = LocalStorage.getItem('shop')
+    useState<RealTimeOrderDataType>()
+  const shopid = LocalStorage.getItem("shop")
 
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false)
 
   const closeDialog = () => {
     setDialogId(undefined)
@@ -153,62 +54,52 @@ export default function OrderListTable() {
     setOrderReportDialogProps(undefined)
   }
 
-  const openStateDialog = (data: OrderInfoType) => {
-    setDialogId('stateChangeDialog')
+  const openStateDialog = (data: RealTimeOrderDataType) => {
+    setDialogId("stateChangeDialog")
     setStateChangeDialogProps(data)
   }
-  const openLocationDialog = (data: OrderInfoType) => {
-    setDialogId('locationDialog')
+  const openLocationDialog = (data: RealTimeOrderDataType) => {
+    setDialogId("locationDialog")
     setLocationDialogProps(data)
   }
-  const openOrderInfoDialog = (data: OrderInfoType) => {
-    setDialogId('orderInfoDialog')
+  const openOrderInfoDialog = (data: RealTimeOrderDataType) => {
+    setDialogId("orderInfoDialog")
     setOrderInfoDialogProps(data)
   }
-  const openOrderReportDialog = (data: OrderInfoType) => {
-    setDialogId('orderReportDialog')
+  const openOrderReportDialog = (data: RealTimeOrderDataType) => {
+    setDialogId("orderReportDialog")
     setOrderReportDialogProps(data)
   }
 
-  const stateReturn = (
-    stateValue: number
-  ): { color: string; label: string } => {
-    switch (stateValue) {
-      case 10:
-        return { color: '#dc0000', label: '주문접수' }
-      case 20:
-        return { color: '#55bd04', label: '주문확인' }
-      case 30:
-        return { color: '#32acf1', label: '상품 준비중' }
-      case 40:
-        return { color: '#9628ed', label: '준비완료' }
-      case 50:
-        return { color: '#1864ab', label: '수령완료' }
-      default:
-        return { color: '', label: 'error' }
-    }
-  }
-
-  const onChangeState = (ordernum: string, stateValue: number) => {
-    const optionValue = stateReturn(stateValue)
-    dataList.map((data) => {
-      if (data.ordernum === ordernum) {
-        data.state.value = stateValue
-        data.state.color = optionValue.color
-        data.state.label = optionValue.label
-      }
-    })
+  const onChangeState = (orderid: string, stateValue: number) => {
+    // const optionValue = stateReturn(stateValue)
+    // dataList.map((data) => {
+    //   if (data.orderid === orderid) {
+    //     data.state.value = stateValue
+    //     data.state.color = optionValue.color
+    //     data.state.label = optionValue.label
+    //   }
+    // })
     closeDialog()
   }
 
-  const onload =async () => {
+  const loadRealTimeList = async () => {
     setLoading(true)
-    try{
-      const {data} = axios.get(baseUrl + 'apiv1/shop/main/realtimeoredrlist', {params: shopid})
-      set
+    try {
+      const { data } = await axios.get(
+        baseUrl + "apiv1/shop/main/realtimeoredrlist"
+      )
+      setRealTimeOrderData(data)
+    } catch (e) {
+      console.error(e)
+    } finally {
+      setLoading(false)
     }
   }
 
+  useEffect(() => {
+    loadRealTimeList()
+  }, [realTimeOrderData])
 
   return (
     <>
@@ -231,7 +122,7 @@ export default function OrderListTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {dataList.map((data, idx) => (
+            {realTimeOrderData.map((data, idx) => (
               <OrderListTableRow
                 key={idx}
                 seq={idx + 1}
@@ -245,20 +136,20 @@ export default function OrderListTable() {
           </TableBody>
         </Table>
       </StyledTableContainer>
-      {dialogId === 'stateChangeDialog' && stateChangeDialogProps && (
+      {dialogId === "stateChangeDialog" && stateChangeDialogProps && (
         <StateChangeDialog
           onClose={closeDialog}
           data={stateChangeDialogProps}
           onChangeState={onChangeState}
         />
       )}
-      {dialogId === 'locationDialog' && locationDialogProps && (
+      {dialogId === "locationDialog" && locationDialogProps && (
         <LocationViewDialog onClose={closeDialog} data={locationDialogProps} />
       )}
-      {dialogId === 'orderInfoDialog' && orderInfoDialogProps && (
+      {dialogId === "orderInfoDialog" && orderInfoDialogProps && (
         <OrderInfoDialog onClose={closeDialog} data={orderInfoDialogProps} />
       )}
-      {dialogId === 'orderReportDialog' && orderReportDialogProps && (
+      {dialogId === "orderReportDialog" && orderReportDialogProps && (
         <OrderReportDialog
           onClose={closeDialog}
           data={orderReportDialogProps}

@@ -19,12 +19,14 @@ export type OrderDetailDataType = {
   orderid: number
   /*OrderState 0:무효 10:주문접수 20:상품준비완료 30:DT진입 40:상품수령 50:완료 60:취소*/
   orderstate: number
+  ordermethod: string
+  ordertime: string
   price: number
   /*유저 id는 number가 아닌 string 아닌가??? */
   /*그리고 userid가 아닌 주문자 name이 들어감 */
   userid: number
   /*goods정보들이 들어가 있어야함 -> 메뉴 이름, */
-  goodslist: Array<{ amount: number; goosid: number }>
+  goodslist: Array<{ amount: number; goosid: number; goodsname: string }>
   carnum: string
   category: string //thru/parking/oiling
   dateorder: string //사용자가 주문한 시간
@@ -35,9 +37,8 @@ export type GoodsDataType = {
   goodsid: number
   goodsname: string
   image: string
-  discount: number
-  listprice: number
-  realprice: number
+  price: number
+  summary: string
 }
 
 export type ShopInfoDataType = {
@@ -66,13 +67,17 @@ export type RealTimeOrderDataType = {
   username: string
 }
 
-export type OrderStateType = {
- 
+export type CameraDataType = {
+  cameraid: number
+  cameraname: string
+  image: string
+  macaddress: string
+  regdate: string
 }
 
-
- {key: 0 color: '#dc0000', label: '주문접수' }
-   { color: '#55bd04', label: '주문확인' }
-   { color: '#32acf1', label: '상품 준비중' }
-   { color: '#9628ed', label: '준비완료' }
-   { color: '#1864ab', label: '수령완료' }
+export type OrderStateType = {}
+//  {key: 0 color: '#dc0000', label: '주문접수' }
+//    { color: '#55bd04', label: '주문확인' }
+//    { color: '#32acf1', label: '상품 준비중' }
+//    { color: '#9628ed', label: '준비완료' }
+//    { color: '#1864ab', label: '수령완료' }

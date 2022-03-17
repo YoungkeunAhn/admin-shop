@@ -4,12 +4,12 @@ import {
   InputLabel,
   MenuItem,
   Select,
-} from '@material-ui/core'
-import useStyles from './styles'
-import React, { useState } from 'react'
-import StyledOptionPaper from '@/common/styled-page-header/StyledOptionPaper'
-import ReloadButton from '@/common/reload-button/ReloadButton'
-import SearchForm from '@/common/search-form/SearchForm'
+} from "@material-ui/core"
+import useStyles from "./styles"
+import React, { useState } from "react"
+import StyledOptionPaper from "@/common/styled-page-header/StyledOptionPaper"
+import ReloadButton from "@/common/reload-button/ReloadButton"
+import SearchForm from "@/common/search-form/SearchForm"
 
 export type OrderStateType = {
   value: number
@@ -19,11 +19,11 @@ export type OrderStateType = {
 }
 
 const orderStates: OrderStateType[] = [
-  { value: 1, color: '#dc0000', count: 10, label: '주문접수' },
-  { value: 2, color: '#55bd04', count: 10, label: '주문확인' },
-  { value: 3, color: '#32acf1', count: 2, label: '상품 준비중' },
-  { value: 4, color: '#9628ed', count: 2, label: '준비완료' },
-  { value: 5, color: '#e73ac1', count: 5, label: '진입' },
+  { value: 1, color: "#dc0000", count: 10, label: "주문접수" },
+  { value: 2, color: "#55bd04", count: 10, label: "주문확인" },
+  { value: 3, color: "#32acf1", count: 2, label: "상품 준비중" },
+  { value: 4, color: "#9628ed", count: 2, label: "준비완료" },
+  { value: 5, color: "#e73ac1", count: 5, label: "진입" },
 ]
 
 export default function OrderListSearchBar() {
@@ -39,9 +39,9 @@ export default function OrderListSearchBar() {
   }
 
   const searchMenuList = [
-    { value: 'orderNum', title: '주문번호' },
-    { value: 'nickname', title: '닉네임' },
-    { value: 'carNum', title: '주문번호' },
+    { value: "orderNum", title: "주문번호" },
+    { value: "nickname", title: "닉네임" },
+    { value: "carNum", title: "주문번호" },
   ]
 
   return (
@@ -57,7 +57,7 @@ export default function OrderListSearchBar() {
             label="주문 상태"
             value={orderState}
             onChange={onChangeSelect}
-            inputProps={{ id: 'order-select' }}
+            inputProps={{ id: "order-select" }}
           >
             <MenuItem value={0}>주문 상태</MenuItem>
             {orderStates.map((item, idx) => (
@@ -81,7 +81,7 @@ export default function OrderListSearchBar() {
           ))}
         </Box>
       </Box>
-      <SearchForm onSearch={onSearch} menuList={searchMenuList} />
+      {/* <SearchForm onSearch={onSearch} menuList={searchMenuList} /> */}
     </StyledOptionPaper>
   )
 }

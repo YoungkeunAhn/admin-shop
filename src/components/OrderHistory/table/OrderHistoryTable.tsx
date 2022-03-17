@@ -1,16 +1,18 @@
-import StyledTableContainer from '@/common/styled-table-container/StyledTableContainer'
-import DetailInfoDialog from '@/features/OrderHistory/detail-info-dialog/DetailInfoDialog'
-import HistoryReportDialog from '@/features/OrderHistory/history-report-dialog/HistoryReportDialog'
-import { reportSubmitMsg } from '@/types/alert-msg'
+import StyledTableContainer from "@/common/styled-table-container/StyledTableContainer"
+import DetailInfoDialog from "@/features/OrderHistory/detail-info-dialog/DetailInfoDialog"
+import HistoryReportDialog from "@/features/OrderHistory/history-report-dialog/HistoryReportDialog"
+import { reportSubmitMsg } from "@/types/alert-msg"
+import { baseUrl } from "@/types/api"
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-} from '@material-ui/core'
-import React, { useState } from 'react'
-import OrderHistoryTbodyRow from './tbody-row/OrderHistoryTbodyRow'
+} from "@material-ui/core"
+import axios from "axios"
+import React, { useState } from "react"
+import OrderHistoryTbodyRow from "./tbody-row/OrderHistoryTbodyRow"
 
 export type HistoryDataType = {
   ordernum: string
@@ -24,68 +26,23 @@ export type HistoryDataType = {
   result: string
 }
 
-const dataList: HistoryDataType[] = [
-  {
-    ordernum: 'A-SD-30221-1',
-    nickname: '하니',
-    date: '2021-01-01',
-    time: '16:20:04',
-    pickupTime: '16:30:04',
-    carnum: '12가 3455',
-    state: '정상/계좌',
-    price: '20,000원',
-    result: '주문접수',
-  },
-  {
-    ordernum: 'A-SD-30221-1',
-    nickname: '하니',
-    date: '2021-01-01',
-    time: '16:20:04',
-    pickupTime: '16:30:04',
-    carnum: '12가 3455',
-    state: '정상/카드',
-    price: '20,000원',
-    result: '주문접수',
-  },
-  {
-    ordernum: 'A-SD-30221-1',
-    nickname: '하니',
-    date: '2021-01-01',
-    time: '16:20:04',
-    pickupTime: '16:30:04',
-    carnum: '12가 3455',
-    state: '정상/계좌',
-    price: '200,000원',
-    result: '주문접수',
-  },
-  {
-    ordernum: 'A-SD-30221-1',
-    nickname: '하니',
-    date: '2021-01-01',
-    time: '16:20:04',
-    pickupTime: '16:30:04',
-    carnum: '12가 3455',
-    state: '정상/계좌',
-    price: '20,000원',
-    result: '주문접수',
-  },
-]
-
-type DialogId = 'detailInfoDialog' | 'reportDialog'
+type DialogId = "detailInfoDialog" | "reportDialog"
 
 export default function OrderHistoryTable() {
+  const [orderList, SetOrderList] = useState<HistoryDataType[]>([])
   const [dialogId, setDialogId] = useState<DialogId>()
   const [detailInfoDialogProps, setDetailInfoDialogProps] =
     useState<HistoryDataType>()
   const [reportDialogProps, setReportDialogProps] = useState<HistoryDataType>()
+  const [loading, setLoading] = useState<boolean>(false)
 
   const openDetailInfoDialog = (data: HistoryDataType) => {
-    setDialogId('detailInfoDialog')
+    setDialogId("detailInfoDialog")
     setDetailInfoDialogProps(data)
   }
 
   const openReportDialog = (data: HistoryDataType) => {
-    setDialogId('reportDialog')
+    setDialogId("reportDialog")
     setReportDialogProps(data)
   }
 
@@ -98,6 +55,18 @@ export default function OrderHistoryTable() {
   const onSubmit = () => {
     setDialogId(undefined)
     alert(reportSubmitMsg)
+  }
+
+  const orderListLoad = async () => {
+    setLoading(true)
+    try {
+      const { data } = await axios.get(baseUrl + "apiv1​/shop​/main​/orderlist")
+      SetOrderList(data)
+    } catch (e) {
+      console.error(e)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -120,7 +89,7 @@ export default function OrderHistoryTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {dataList.map((data, idx) => (
+            {orderList.map((data, idx) => (
               <OrderHistoryTbodyRow
                 key={idx}
                 seq={idx + 1}
@@ -131,14 +100,14 @@ export default function OrderHistoryTable() {
           </TableBody>
         </Table>
       </StyledTableContainer>
-      {dialogId === 'detailInfoDialog' && detailInfoDialogProps && (
+      {dialogId === "detailInfoDialog" && detailInfoDialogProps && (
         <DetailInfoDialog
           onClose={onCloseDialog}
           data={detailInfoDialogProps}
           openReportDialog={openReportDialog}
         />
       )}
-      {dialogId === 'reportDialog' && reportDialogProps && (
+      {dialogId === "reportDialog" && reportDialogProps && (
         <HistoryReportDialog
           onClose={onCloseDialog}
           data={reportDialogProps}

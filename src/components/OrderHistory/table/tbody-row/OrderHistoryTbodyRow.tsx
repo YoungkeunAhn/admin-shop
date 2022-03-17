@@ -1,7 +1,7 @@
-import { IconButton, TableCell, TableRow } from '@material-ui/core'
-import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined'
-import React from 'react'
-import { HistoryDataType } from '../OrderHistoryTable'
+import { IconButton, TableCell, TableRow } from "@material-ui/core"
+import DescriptionOutlinedIcon from "@material-ui/icons/DescriptionOutlined"
+import React from "react"
+import { HistoryDataType } from "../OrderHistoryTable"
 
 type Props = {
   seq: number
