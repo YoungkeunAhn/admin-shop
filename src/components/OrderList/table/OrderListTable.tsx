@@ -1,21 +1,22 @@
-import StyledTableContainer from "@/common/styled-table-container/StyledTableContainer"
-import LocationViewDialog from "@/components/OrderList/location-view-dialog/LocationViewDialog"
-import OrderInfoDialog from "@/components/OrderList/order-info-dialog/OrderInfoDialog"
-import OrderReportDialog from "@/components/OrderList/order-report-dialog/OrderReportDialog"
-import StateChangeDialog from "@/components/OrderList/state-change-dialog/StateChangeDialog"
-import LocalStorage from "@/hooks/LocalStorage"
-import { baseUrl } from "@/types/api"
-import { RealTimeOrderDataType } from "@/types/enum"
+import StyledTableContainer from '@/common/styled-table-container/StyledTableContainer'
+import LocationViewDialog from '@/components/OrderList/location-view-dialog/LocationViewDialog'
+import OrderInfoDialog from '@/components/OrderList/order-info-dialog/OrderInfoDialog'
+import OrderReportDialog from '@/components/OrderList/order-report-dialog/OrderReportDialog'
+import StateChangeDialog from '@/components/OrderList/state-change-dialog/StateChangeDialog'
+import LocalStorage from '@/hooks/LocalStorage'
+import { baseUrl } from '@/types/api'
+import { RealTimeOrderDataType } from '@/types/enum'
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-} from "@material-ui/core"
-import axios from "axios"
-import React, { useEffect, useState } from "react"
-import OrderListTableRow from "./tbody-row/OrderListTbodyRow"
+} from '@material-ui/core'
+import axios from 'axios'
+import { url } from 'inspector'
+import React, { useEffect, useState } from 'react'
+import OrderListTableRow from './tbody-row/OrderListTbodyRow'
 
 export type goodsStateType = {
   value: number
@@ -24,10 +25,10 @@ export type goodsStateType = {
 }
 
 export type DialogType =
-  | "stateChangeDialog"
-  | "locationDialog"
-  | "orderInfoDialog"
-  | "orderReportDialog"
+  | 'stateChangeDialog'
+  | 'locationDialog'
+  | 'orderInfoDialog'
+  | 'orderReportDialog'
 
 export default function OrderListTable() {
   const [realTimeOrderData, setRealTimeOrderData] = useState<
@@ -42,7 +43,7 @@ export default function OrderListTable() {
     useState<RealTimeOrderDataType>()
   const [orderReportDialogProps, setOrderReportDialogProps] =
     useState<RealTimeOrderDataType>()
-  const shopid = LocalStorage.getItem("shop")
+  const shopid = LocalStorage.getItem('shop')
 
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -55,19 +56,19 @@ export default function OrderListTable() {
   }
 
   const openStateDialog = (data: RealTimeOrderDataType) => {
-    setDialogId("stateChangeDialog")
+    setDialogId('stateChangeDialog')
     setStateChangeDialogProps(data)
   }
   const openLocationDialog = (data: RealTimeOrderDataType) => {
-    setDialogId("locationDialog")
+    setDialogId('locationDialog')
     setLocationDialogProps(data)
   }
   const openOrderInfoDialog = (data: RealTimeOrderDataType) => {
-    setDialogId("orderInfoDialog")
+    setDialogId('orderInfoDialog')
     setOrderInfoDialogProps(data)
   }
   const openOrderReportDialog = (data: RealTimeOrderDataType) => {
-    setDialogId("orderReportDialog")
+    setDialogId('orderReportDialog')
     setOrderReportDialogProps(data)
   }
 
@@ -86,14 +87,22 @@ export default function OrderListTable() {
   const loadRealTimeList = async () => {
     setLoading(true)
     try {
-      const { data } = await axios.get(
-        baseUrl + "apiv1/shop/main/realtimeoredrlist"
-      )
-      setRealTimeOrderData(data)
+      // const { data } = await axios.get(
+      //   baseUrl + 'apiv1/shop/main/realtimeorderlist',
+      //   { headers: { shopid: 'test' } }
+      // )
+
+      const { data } = await axios({
+        url: 'apiv1/shop/main/realtimeorderlist',
+        baseURL: baseUrl,
+        method: 'GET',
+        params: { shopid: 'test' },
+        // headers: { shopid: 'test' },
+      })
+      console.log(data)
     } catch (e) {
       console.error(e)
-    } finally {
-      setLoading(false)
+      // alert(loginFailMsg)
     }
   }
 
@@ -136,20 +145,20 @@ export default function OrderListTable() {
           </TableBody>
         </Table>
       </StyledTableContainer>
-      {dialogId === "stateChangeDialog" && stateChangeDialogProps && (
+      {dialogId === 'stateChangeDialog' && stateChangeDialogProps && (
         <StateChangeDialog
           onClose={closeDialog}
           data={stateChangeDialogProps}
           onChangeState={onChangeState}
         />
       )}
-      {dialogId === "locationDialog" && locationDialogProps && (
+      {dialogId === 'locationDialog' && locationDialogProps && (
         <LocationViewDialog onClose={closeDialog} data={locationDialogProps} />
       )}
-      {dialogId === "orderInfoDialog" && orderInfoDialogProps && (
+      {dialogId === 'orderInfoDialog' && orderInfoDialogProps && (
         <OrderInfoDialog onClose={closeDialog} data={orderInfoDialogProps} />
       )}
-      {dialogId === "orderReportDialog" && orderReportDialogProps && (
+      {dialogId === 'orderReportDialog' && orderReportDialogProps && (
         <OrderReportDialog
           onClose={closeDialog}
           data={orderReportDialogProps}
