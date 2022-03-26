@@ -1,25 +1,25 @@
-import StyledTableContainer from "@/common/styled-table-container/StyledTableContainer"
-import LocalStorage from "@/hooks/LocalStorage"
-import { baseUrl } from "@/types/api"
-import { GoodsDataType } from "@/types/enum"
+import StyledTableContainer from '@/common/styled-table-container/StyledTableContainer'
+import LocalStorage from '@/hooks/LocalStorage'
+import { baseUrl } from '@/types/api'
+import { GoodsDataType } from '@/types/enum'
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-} from "@material-ui/core"
-import axios from "axios"
-import React, { useEffect, useState } from "react"
-import GoodsListTbodyRow from "./tbody-row/GoodsListTbodyRow"
+} from '@material-ui/core'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import GoodsListTbodyRow from './tbody-row/GoodsListTbodyRow'
 
 export default function GoodsListTable() {
   const [goodsList, setGoodsList] = useState<GoodsDataType[]>([])
   const [loading, setLoading] = useState<boolean>(false)
-  const shopid = LocalStorage.getItem("shopid")
+  const shopid = LocalStorage.getItem('shopid')
 
   const onRemoveGoods = (goodsname: string) => {
-    if (confirm("삭제하시겠습니까?")) {
+    if (confirm('삭제하시겠습니까?')) {
       setGoodsList(goodsList.filter((goods) => goods.goodsname !== goodsname))
     }
   }
@@ -27,9 +27,12 @@ export default function GoodsListTable() {
   const goodsListLoad = async () => {
     setLoading(true)
     try {
-      const { data } = await axios.get(
-        baseUrl + "apiv1​/shop​/setting​/goodslist"
-      )
+      const { data } = await axios({
+        url: 'apiv1/shop/setting/goodslist',
+        baseURL: baseUrl,
+        method: 'GET',
+        params: { shopid: 'test' },
+      })
       setGoodsList(data)
     } catch (e) {
       console.error(e)

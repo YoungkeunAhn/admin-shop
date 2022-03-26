@@ -1,4 +1,5 @@
 import StyledTableContainer from '@/common/styled-table-container/StyledTableContainer'
+import { baseUrl } from '@/types/api'
 import {
   Table,
   TableBody,
@@ -6,7 +7,8 @@ import {
   TableHead,
   TableRow,
 } from '@material-ui/core'
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import NoticeListTbodyRow from './tbody-row/NoticeListTbodyRow'
 
 export type NoticeDataType = {
@@ -54,6 +56,26 @@ const dataList: NoticeDataType[] = [
 ]
 
 export default function NoticeListTable() {
+  const [loading, setLoading] = useState<boolean>(false)
+
+  const noticeLoad = async () => {
+    setLoading(true)
+    try {
+      const { data } = await axios({
+        url: 'apiv1/shop/login/notice',
+        baseURL: baseUrl,
+        method: 'GET',
+      })
+    } catch (e) {
+      console.error(e)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    noticeLoad()
+  }, [])
   return (
     <StyledTableContainer>
       <Table>

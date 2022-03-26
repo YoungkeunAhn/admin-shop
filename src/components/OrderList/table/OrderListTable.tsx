@@ -43,7 +43,6 @@ export default function OrderListTable() {
     useState<RealTimeOrderDataType>()
   const [orderReportDialogProps, setOrderReportDialogProps] =
     useState<RealTimeOrderDataType>()
-  const shopid = LocalStorage.getItem('shop')
 
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -87,17 +86,11 @@ export default function OrderListTable() {
   const loadRealTimeList = async () => {
     setLoading(true)
     try {
-      // const { data } = await axios.get(
-      //   baseUrl + 'apiv1/shop/main/realtimeorderlist',
-      //   { headers: { shopid: 'test' } }
-      // )
-
       const { data } = await axios({
-        url: `apiv1/shop/main/realtimeorderlist/${shopid}`,
+        url: 'apiv1/shop/main/realtimeorderlist',
         baseURL: baseUrl,
         method: 'GET',
-        // params: { shopid: 'test' },
-        // headers: { shopid: 'test' },
+        params: { shopid: 'test' },
       })
       console.log(data)
     } catch (e) {

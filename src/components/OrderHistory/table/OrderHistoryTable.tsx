@@ -1,18 +1,19 @@
-import StyledTableContainer from "@/common/styled-table-container/StyledTableContainer"
-import DetailInfoDialog from "@/features/OrderHistory/detail-info-dialog/DetailInfoDialog"
-import HistoryReportDialog from "@/features/OrderHistory/history-report-dialog/HistoryReportDialog"
-import { reportSubmitMsg } from "@/types/alert-msg"
-import { baseUrl } from "@/types/api"
+import StyledTableContainer from '@/common/styled-table-container/StyledTableContainer'
+import DetailInfoDialog from '@/features/OrderHistory/detail-info-dialog/DetailInfoDialog'
+import HistoryReportDialog from '@/features/OrderHistory/history-report-dialog/HistoryReportDialog'
+import LocalStorage from '@/hooks/LocalStorage'
+import { reportSubmitMsg } from '@/types/alert-msg'
+import { baseUrl } from '@/types/api'
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-} from "@material-ui/core"
-import axios from "axios"
-import React, { useState } from "react"
-import OrderHistoryTbodyRow from "./tbody-row/OrderHistoryTbodyRow"
+} from '@material-ui/core'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import OrderHistoryTbodyRow from './tbody-row/OrderHistoryTbodyRow'
 
 export type HistoryDataType = {
   ordernum: string
@@ -26,7 +27,7 @@ export type HistoryDataType = {
   result: string
 }
 
-type DialogId = "detailInfoDialog" | "reportDialog"
+type DialogId = 'detailInfoDialog' | 'reportDialog'
 
 export default function OrderHistoryTable() {
   const [orderList, SetOrderList] = useState<HistoryDataType[]>([])
@@ -35,14 +36,15 @@ export default function OrderHistoryTable() {
     useState<HistoryDataType>()
   const [reportDialogProps, setReportDialogProps] = useState<HistoryDataType>()
   const [loading, setLoading] = useState<boolean>(false)
+  const shopid = LocalStorage.getItem('shop')
 
   const openDetailInfoDialog = (data: HistoryDataType) => {
-    setDialogId("detailInfoDialog")
+    setDialogId('detailInfoDialog')
     setDetailInfoDialogProps(data)
   }
 
   const openReportDialog = (data: HistoryDataType) => {
-    setDialogId("reportDialog")
+    setDialogId('reportDialog')
     setReportDialogProps(data)
   }
 
@@ -60,7 +62,12 @@ export default function OrderHistoryTable() {
   const orderListLoad = async () => {
     setLoading(true)
     try {
-      const { data } = await axios.get(baseUrl + "apiv1​/shop​/main​/orderlist")
+      const { data } = await axios({
+        url: 'apiv1/shop/main/orderlist',
+        baseURL: baseUrl,
+        method: 'GET',
+        params: { shopid: 'test' },
+      })
       SetOrderList(data)
     } catch (e) {
       console.error(e)
@@ -68,6 +75,11 @@ export default function OrderHistoryTable() {
       setLoading(false)
     }
   }
+
+  useEffect(() => {
+    orderListLoad()
+    SetOrderList([])
+  }, [])
 
   return (
     <>
@@ -89,25 +101,25 @@ export default function OrderHistoryTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {orderList.map((data, idx) => (
+            {/* {orderList.map((data, idx) => (
               <OrderHistoryTbodyRow
                 key={idx}
                 seq={idx + 1}
                 data={data}
                 openDetailInfoDialog={openDetailInfoDialog}
               />
-            ))}
+            ))} */}
           </TableBody>
         </Table>
       </StyledTableContainer>
-      {dialogId === "detailInfoDialog" && detailInfoDialogProps && (
+      {dialogId === 'detailInfoDialog' && detailInfoDialogProps && (
         <DetailInfoDialog
           onClose={onCloseDialog}
           data={detailInfoDialogProps}
           openReportDialog={openReportDialog}
         />
       )}
-      {dialogId === "reportDialog" && reportDialogProps && (
+      {dialogId === 'reportDialog' && reportDialogProps && (
         <HistoryReportDialog
           onClose={onCloseDialog}
           data={reportDialogProps}
