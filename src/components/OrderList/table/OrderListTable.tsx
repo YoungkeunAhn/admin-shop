@@ -93,10 +93,10 @@ export default function OrderListTable() {
       // )
 
       const { data } = await axios({
-        url: 'apiv1/shop/main/realtimeorderlist',
+        url: `apiv1/shop/main/realtimeorderlist/${shopid}`,
         baseURL: baseUrl,
         method: 'GET',
-        params: { shopid: 'test' },
+        // params: { shopid: 'test' },
         // headers: { shopid: 'test' },
       })
       console.log(data)
