@@ -1,19 +1,19 @@
-import DataInputLine from "@/components/CameraList/carmera-add-paper/data-input-line/DataInputLine"
-import { errorSaveMsg, successSaveMsg } from "@/types/alert-msg"
-import { baseUrl } from "@/types/api"
-import { GoodsDataType } from "@/types/enum"
-import { Box, Button, Paper, TextField, Typography } from "@material-ui/core"
-import axios from "axios"
-import { useRouter } from "next/router"
-import React, { useEffect, useRef, useState } from "react"
-import useStyles from "./styles"
+import DataInputLine from '@/components/CameraList/carmera-add-paper/data-input-line/DataInputLine'
+import { errorSaveMsg, successSaveMsg } from '@/types/alert-msg'
+import { baseUrl } from '@/types/api'
+import { GoodsDataType } from '@/types/enum'
+import { Box, Button, Paper, TextField, Typography } from '@material-ui/core'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import useStyles from './styles'
 
 const initialInputs: GoodsDataType = {
   goodsid: 0,
-  goodsname: "",
+  goodsname: '',
   price: 0,
-  image: "",
-  summary: "",
+  image: '',
+  summary: '',
 }
 
 type Props = {
@@ -39,20 +39,31 @@ export default function GoodsAddView(props: Props) {
     }
   }
 
-  const onSave = async () => {
+  const onSave = useCallback(async () => {
     try {
-      await axios.post(baseUrl + "")
+      await axios({
+        url: 'apiv1/shop/settig/goodsmodify',
+        baseURL: baseUrl,
+        method: 'POST',
+        data: JSON.stringify({
+          shopid: 'test',
+          goodsname: 'string',
+          image: 'http://12.12.12.12/logo.jpg',
+          price: 0,
+          type: 'add',
+        }),
+      })
       alert(successSaveMsg)
     } catch (e) {
       console.error(e)
       alert(errorSaveMsg)
     }
-  }
+  }, [])
 
   const goodsDataLoad = async () => {
     setLoading(true)
     try {
-      const { data } = await axios.get(baseUrl + "apiv1/shop/setting/goodslist")
+      const { data } = await axios.get(baseUrl + 'apiv1/shop/setting/goodslist')
     } catch (e) {
       console.error(e)
     } finally {
@@ -70,36 +81,36 @@ export default function GoodsAddView(props: Props) {
     <Box className={classes.root}>
       <Paper>
         <Box p={3}>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant='h6' className={classes.title}>
             메뉴 정보
           </Typography>
 
           <Box width={600}>
             <DataInputLine
-              title="메뉴명"
-              name="name"
+              title='메뉴명'
+              name='name'
               value={inputs.goodsname}
               onChange={onChange}
-              placeholder="메뉴명 입력"
+              placeholder='메뉴명 입력'
             />
             <DataInputLine
-              title="가격"
-              name="price"
+              title='가격'
+              name='price'
               value={inputs.price}
               onChange={onChange}
-              placeholder="가격 입력"
+              placeholder='가격 입력'
             />
           </Box>
 
           <Box mt={2} mb={2}>
-            <Box display="flex" alignItems="center">
+            <Box display='flex' alignItems='center'>
               <Typography className={classes.lineTitle}>
                 썸네일 이미지
               </Typography>
               <Box width={450}>
                 <TextField
-                  variant="outlined"
-                  size="small"
+                  variant='outlined'
+                  size='small'
                   value={inputs.image.substring(12)}
                   fullWidth
                   disabled
@@ -107,17 +118,17 @@ export default function GoodsAddView(props: Props) {
                 />
               </Box>
               <Button
-                variant="outlined"
-                color="primary"
+                variant='outlined'
+                color='primary'
                 className={classes.uploadBtn}
                 onClick={onClickUploadBtn}
               >
                 업로드
               </Button>
               <input
-                type="file"
-                accept="image/*"
-                name="image"
+                type='file'
+                accept='image/*'
+                name='image'
                 ref={inputFileRef}
                 value={inputs.image}
                 onChange={onChange}
@@ -127,11 +138,11 @@ export default function GoodsAddView(props: Props) {
           </Box>
           <Box width={775}>
             <DataInputLine
-              title="간단 설명"
-              name="summary"
+              title='간단 설명'
+              name='summary'
               value={inputs.summary}
               onChange={onChange}
-              placeholder="내용 입력"
+              placeholder='내용 입력'
               multiLine
               minRows={3}
             />
@@ -139,10 +150,10 @@ export default function GoodsAddView(props: Props) {
         </Box>
       </Paper>
       <Button
-        variant="contained"
-        color="primary"
+        variant='contained'
+        color='primary'
         className={classes.addBtn}
-        onClick={() => {}}
+        onClick={onSave}
       >
         등록하기
       </Button>

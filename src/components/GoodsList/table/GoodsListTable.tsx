@@ -13,8 +13,18 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import GoodsListTbodyRow from './tbody-row/GoodsListTbodyRow'
 
+export const fakeData: GoodsDataType[] = [
+  {
+    goodsid: 1,
+    image: 'original_chicken.jpg',
+    goodsname: '오리지널 치킨',
+    summary: '기본 메뉴 입니다.',
+    price: 19000,
+  },
+]
+
 export default function GoodsListTable() {
-  const [goodsList, setGoodsList] = useState<GoodsDataType[]>([])
+  const [goodsList, setGoodsList] = useState<GoodsDataType[]>(fakeData)
   const [loading, setLoading] = useState<boolean>(false)
   const shopid = LocalStorage.getItem('shopid')
 
@@ -50,24 +60,24 @@ export default function GoodsListTable() {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell align="center">NO</TableCell>
-            <TableCell align="center">썸네일 이미지</TableCell>
-            <TableCell align="center">메뉴명</TableCell>
-            <TableCell align="center">간단 설명</TableCell>
-            <TableCell align="center">가격</TableCell>
-            <TableCell align="center">수정</TableCell>
-            <TableCell align="center">삭제</TableCell>
+            <TableCell align='center'>NO</TableCell>
+            <TableCell align='center'>썸네일 이미지</TableCell>
+            <TableCell align='center'>메뉴명</TableCell>
+            <TableCell align='center'>간단 설명</TableCell>
+            <TableCell align='center'>가격</TableCell>
+            <TableCell align='center'>수정</TableCell>
+            <TableCell align='center'>삭제</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {goodsList.map((data, idx) => (
+          {/* {goodsList.map((data, idx) => (
             <GoodsListTbodyRow
               key={idx}
               seq={idx + 1}
               data={data}
               onRemove={onRemoveGoods}
             />
-          ))}
+          ))} */}
         </TableBody>
       </Table>
     </StyledTableContainer>

@@ -1,5 +1,6 @@
 import CustomDialogActions from '@/common/custom-dialog-actions/CustomDialogActions'
 import CustomDialogTitle from '@/common/custom-dialog-title/CustomDialogTitle'
+import { RealTimeOrderDataType } from '@/types/enum'
 import {
   Box,
   Button,
@@ -14,13 +15,12 @@ import {
   Typography,
 } from '@material-ui/core'
 import React, { useState } from 'react'
-import { OrderInfoType } from '../table/OrderListTable'
 import useStyles from './styles'
 
 export type StateChangeDialogPropsType = {
-  data: OrderInfoType
+  data: RealTimeOrderDataType
   onClose: () => void
-  onChangeState: (ordernum: string, stateValue: number) => void
+  onChangeState: (ordernum: number, stateValue: number) => void
 }
 
 const radioList = [
@@ -37,59 +37,59 @@ const radioList = [
 export default function StateChangeDialog(props: StateChangeDialogPropsType) {
   const { onClose, data, onChangeState } = props
   const classes = useStyles()
-  const [stateValue, setStateValue] = useState<number>(data.state.value)
+  const [stateValue, setStateValue] = useState<number>(data.orderstate)
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setStateValue(parseInt(event.target.value))
   }
 
   return (
-    <Dialog open={true} onClose={onClose} maxWidth="sm" fullWidth>
-      <CustomDialogTitle title="주문 상태 변경" onClose={onClose} />
+    <Dialog open={true} onClose={onClose} maxWidth='sm' fullWidth>
+      <CustomDialogTitle title='주문 상태 변경' onClose={onClose} />
       <DialogContent className={classes.content}>
         <Box className={classes.infoBox}>
           <Box>
-            <Typography variant="body1" color="textSecondary">
+            <Typography variant='body1' color='textSecondary'>
               주문번호
             </Typography>
-            <Typography variant="body1">{data.ordernum}</Typography>
+            <Typography variant='body1'>{data.orderid}</Typography>
           </Box>
           <Box>
-            <Typography variant="body1" color="textSecondary">
+            <Typography variant='body1' color='textSecondary'>
               주문자
             </Typography>
-            <Typography variant="body1">{data.nickname}</Typography>
+            <Typography variant='body1'>{data.username}</Typography>
           </Box>
           <Box>
-            <Typography variant="body1" color="textSecondary">
+            <Typography variant='body1' color='textSecondary'>
               주문메뉴
             </Typography>
-            <Box display="flex">
-              {data.goodsList.map((goods, idx) => (
-                <Typography key={idx} variant="body1">
-                  {goods.goodsId}({goods.amount})
+            <Box display='flex'>
+              {data.goodslist.map((goods, idx) => (
+                <Typography key={idx} variant='body1'>
+                  {goods.goodsname}({goods.amount})
                 </Typography>
               ))}
             </Box>
           </Box>
           <Box>
-            <Typography variant="body1" color="textSecondary">
+            <Typography variant='body1' color='textSecondary'>
               주문총액
             </Typography>
-            <Typography variant="body1">{data.price}</Typography>
+            <Typography variant='body1'>{data.price}</Typography>
           </Box>
         </Box>
 
         <Box>
-          <FormControl component="fieldset">
-            <FormLabel component="label">주문 신고 작성</FormLabel>
+          <FormControl component='fieldset'>
+            <FormLabel component='label'>주문 신고 작성</FormLabel>
             <RadioGroup value={stateValue} onChange={onChange}>
               {radioList.map((item, idx) => (
                 <FormControlLabel
                   key={idx}
                   label={item.label}
                   value={item.value}
-                  control={<Radio color="primary" />}
+                  control={<Radio color='primary' />}
                 />
               ))}
             </RadioGroup>
@@ -97,22 +97,22 @@ export default function StateChangeDialog(props: StateChangeDialogPropsType) {
         </Box>
         <Divider />
         <Box className={classes.captionBox}>
-          <Typography variant="caption">
+          <Typography variant='caption'>
             * 수령완료 선택 시, 자동으로 '실시간 주문 현황' 목록에서 삭제됩니다.
           </Typography>
-          <Typography variant="caption">
+          <Typography variant='caption'>
             수령완료한 주문은 '주문목록'에서 확인해주세요.
           </Typography>
         </Box>
       </DialogContent>
       <CustomDialogActions>
-        <Button variant="contained" onClick={onClose}>
+        <Button variant='contained' onClick={onClose}>
           돌아가기
         </Button>
         <Button
-          variant="contained"
-          color="primary"
-          onClick={() => onChangeState(data.ordernum, stateValue)}
+          variant='contained'
+          color='primary'
+          onClick={() => onChangeState(data.orderid, stateValue)}
         >
           상태변경
         </Button>

@@ -5,7 +5,8 @@ import { baseUrl } from '@/types/api'
 import { CameraDataType } from '@/types/enum'
 import { Box } from '@material-ui/core'
 import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import React, { useState, useEffect, useCallback } from 'react'
 import useStyles from './styles'
 
 export default function CameraList() {
@@ -14,9 +15,26 @@ export default function CameraList() {
   const shopid = LocalStorage.getItem('shopid')
   const [loading, setLoading] = useState<boolean>(false)
 
-  const onCreateCamera = (data: CameraDataType) => {
-    setCameraList(cameraList.concat(data))
-  }
+  const onCreateCamera = useCallback(async (data: CameraDataType) => {
+    try {
+      await axios({
+        url: 'apiv1/shop/setting/cameramodify',
+        baseURL: baseUrl,
+        method: 'POST',
+        data: JSON.stringify({
+          shopid: 'test',
+          cameraid: 0,
+          cameraname: 'string',
+          image: 'http://12.12.12.12/logo.jpg',
+          macaddress: 'string',
+          regdate: 'string',
+          type: 'add/del/modify',
+        }),
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }, [])
 
   const cameraListLoad = async () => {
     setLoading(true)
@@ -35,9 +53,7 @@ export default function CameraList() {
   }
 
   useEffect(() => {
-    if (shopid) {
-      cameraListLoad()
-    }
+    cameraListLoad()
   }, [])
   return (
     <Box className={classes.root}>

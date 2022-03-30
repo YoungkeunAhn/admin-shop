@@ -15,7 +15,7 @@ import {
 } from '@material-ui/core'
 import axios from 'axios'
 import { url } from 'inspector'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import OrderListTableRow from './tbody-row/OrderListTbodyRow'
 
 export type goodsStateType = {
@@ -24,6 +24,28 @@ export type goodsStateType = {
   label: string
 }
 
+const fakeData: RealTimeOrderDataType[] = [
+  {
+    carnum: '213가1234나',
+    category: '',
+    dateorder: '2022-01-01',
+    goodslist: [
+      {
+        amount: 1,
+        goodsid: 1,
+        goodsname: '테스트',
+      },
+    ],
+    orderid: 1,
+    orderstate: 20,
+    point_x: 1,
+    point_y: 1,
+    userid: 1,
+    username: '테스트',
+    price: 20000,
+  },
+]
+
 export type DialogType =
   | 'stateChangeDialog'
   | 'locationDialog'
@@ -31,9 +53,8 @@ export type DialogType =
   | 'orderReportDialog'
 
 export default function OrderListTable() {
-  const [realTimeOrderData, setRealTimeOrderData] = useState<
-    RealTimeOrderDataType[]
-  >([])
+  const [realTimeOrderData, setRealTimeOrderData] =
+    useState<RealTimeOrderDataType[]>(fakeData)
   const [dialogId, setDialogId] = useState<DialogType>()
   const [stateChangeDialogProps, setStateChangeDialogProps] =
     useState<RealTimeOrderDataType>()
@@ -71,17 +92,23 @@ export default function OrderListTable() {
     setOrderReportDialogProps(data)
   }
 
-  const onChangeState = (orderid: string, stateValue: number) => {
-    // const optionValue = stateReturn(stateValue)
-    // dataList.map((data) => {
-    //   if (data.orderid === orderid) {
-    //     data.state.value = stateValue
-    //     data.state.color = optionValue.color
-    //     data.state.label = optionValue.label
-    //   }
-    // })
-    closeDialog()
-  }
+  const onChangeState = useCallback(
+    async (orderid: number, stateValue: number) => {
+      try {
+        await axios({
+          url: 'apiv1/shop/main/orderstate',
+          baseURL: baseUrl,
+          method: 'POST',
+          data: JSON.stringify({ shopid: 'test' }),
+        })
+
+        closeDialog()
+      } catch (e) {
+        console.error(e)
+      }
+    },
+    []
+  )
 
   const loadRealTimeList = async () => {
     setLoading(true)
@@ -92,10 +119,8 @@ export default function OrderListTable() {
         method: 'GET',
         params: { shopid: 'test' },
       })
-      console.log(data)
     } catch (e) {
       console.error(e)
-      // alert(loginFailMsg)
     }
   }
 
