@@ -1,4 +1,5 @@
 import MainTitle from '@/common/main-title/MainTitle'
+import { baseUrl } from '@/types/api'
 import {
   Box,
   Button,
@@ -9,8 +10,9 @@ import {
   Stepper,
   Typography,
 } from '@material-ui/core'
+import axios from 'axios'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import SignUpDone from './SignInSteps/done/StepDone'
 import SignUp1 from './SignInSteps/step1/Step1'
 import SignUp2 from './SignInSteps/step2/Step2'
@@ -116,7 +118,11 @@ export default function SignInMain() {
 
   //다음 스탭
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1)
+    if (activeStep === 2) {
+      onSave()
+    } else {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1)
+    }
   }
 
   //이전 스탭
@@ -132,6 +138,37 @@ export default function SignInMain() {
   function getSteps() {
     return ['step1', 'step2', 'step3']
   }
+
+  const onSave = useCallback(async () => {
+    try {
+      await axios({
+        url: 'apiv1/shop/login/signin',
+        baseURL: baseUrl,
+        method: 'POST',
+        data: JSON.stringify({
+          accountOwner: '정산계좌 예금주',
+          accountbankid: 0,
+          accountnum: '정산계좌 번호',
+          address: '매장주소',
+          businessnum: '사업자번호',
+          category: 'thru/parking/oiling/tolling',
+          havedrivethru: 0,
+          havepark: 0,
+          holiday: '매월 2, 4째주 수요일 휴무',
+          passwd: 'string',
+          phonenum: '전화번호',
+          shopid: 'string',
+          shopname: 'string',
+          shopnumber: 0,
+          shopowner: 'string',
+          zipcode: 0,
+        }),
+      })
+      setActiveStep((prevActiveStep) => prevActiveStep + 1)
+    } catch (e) {
+      console.error(e)
+    }
+  }, [])
 
   const steps = getSteps()
   function getStepContent(step: number) {
@@ -155,17 +192,17 @@ export default function SignInMain() {
     }
   }
   return (
-    <Container maxWidth="md" className={classes.root}>
+    <Container maxWidth='md' className={classes.root}>
       <Box
         className={classes.header}
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
+        display='flex'
+        flexDirection='column'
+        alignItems='center'
       >
         <ButtonBase onClick={onClickLogo}>
-          <MainTitle titleSize="h3" />
+          <MainTitle titleSize='h3' />
         </ButtonBase>
-        <Typography variant="body1" color="textSecondary">
+        <Typography variant='body1' color='textSecondary'>
           회원가입
         </Typography>
         <Stepper className={classes.stepper} activeStep={activeStep}>
@@ -195,8 +232,8 @@ export default function SignInMain() {
       ) : (
         <Box className={classes.btnSpacing}>
           <Button
-            variant="contained"
-            color="primary"
+            variant='contained'
+            color='primary'
             onClick={() => router.push('/')}
           >
             로그인 화면으로 이동

@@ -73,7 +73,7 @@ export default function MyStoreInfo() {
         baseURL: baseUrl,
         method: 'POST',
         data: JSON.stringify({
-          accountowner: '정산계좌 예금주',
+          accountOwner: '정산계좌 예금주',
           accountbankid: 0,
           accountnum: '정산계좌 번호',
           address: '매장주소',
