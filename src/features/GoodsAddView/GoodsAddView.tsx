@@ -42,7 +42,7 @@ export default function GoodsAddView(props: Props) {
   const onSave = useCallback(async () => {
     try {
       await axios({
-        url: 'apiv1/shop/settig/goodsmodify',
+        url: 'apiv1/shop/setting/goodsmodify',
         baseURL: baseUrl,
         method: 'POST',
         data: JSON.stringify({

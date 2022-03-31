@@ -4,8 +4,10 @@ import AccountInfoBox from '@/components/MyShop/account-info-box/AccountInfoBox'
 import LocationInfoBox from '@/components/MyShop/location-info-box/LocationInfoBox'
 import ShopInfoBox from '@/components/MyShop/shop-info-box/ShopInfoBox'
 import { successSaveMsg } from '@/types/alert-msg'
+import { baseUrl } from '@/types/api'
 import { Box, Button } from '@material-ui/core'
-import React, { useState } from 'react'
+import axios from 'axios'
+import React, { useCallback, useState } from 'react'
 import useStyles from './styles'
 
 export type InputsType1 = {
@@ -64,9 +66,36 @@ const initialInput3: InputsType3 = {
 export default function MyStoreInfo() {
   const classes = useStyles()
 
-  const onSave = () => {
-    alert(successSaveMsg)
-  }
+  const onSave = useCallback(async () => {
+    try {
+      await axios({
+        url: 'apiv1/shop/setting/shopinfo',
+        baseURL: baseUrl,
+        method: 'POST',
+        data: JSON.stringify({
+          accountowner: '정산계좌 예금주',
+          accountbankid: 0,
+          accountnum: '정산계좌 번호',
+          address: '매장주소',
+          businessnum: '사업자번호',
+          category: 'thru/parking/oiling/tolling',
+          havedrivethru: 0,
+          havepark: 0,
+          holiday: '매월 2, 4째주 수요일 휴무',
+          passwd: 'string',
+          phonenum: '전화번호',
+          shopid: 'string',
+          shopname: 'string',
+          shopnumber: 0,
+          shopowner: 'string',
+          zipcode: 0,
+        }),
+      })
+      alert('성공')
+    } catch (e) {
+      console.error(e)
+    }
+  }, [])
 
   return (
     <Box>
@@ -74,8 +103,8 @@ export default function MyStoreInfo() {
       <ShopInfoBox data={initialInput2} />
       <LocationInfoBox data={initialInput3} />
       <Button
-        variant="contained"
-        color="primary"
+        variant='contained'
+        color='primary'
         className={classes.saveBtn}
         onClick={onSave}
       >
