@@ -1,7 +1,7 @@
-import MainTitle from "@/common/main-title/MainTitle"
-import LocalStorage from "@/hooks/LocalStorage"
-import { loginFailMsg } from "@/types/alert-msg"
-import { baseUrl } from "@/types/api"
+import MainTitle from '@/common/main-title/MainTitle'
+import LocalStorage from '@/hooks/LocalStorage'
+import { loginFailMsg } from '@/types/alert-msg'
+import { baseUrl } from '@/types/api'
 import {
   Box,
   Button,
@@ -10,18 +10,18 @@ import {
   Divider,
   TextField,
   Typography,
-} from "@material-ui/core"
-import axios from "axios"
-import { useRouter } from "next/router"
-import React, { useRef, useState } from "react"
-import useStyles from "./styles"
+} from '@material-ui/core'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import React, { useRef, useState } from 'react'
+import useStyles from './styles'
 
 export default function Login() {
   const classes = useStyles()
   const router = useRouter()
 
-  const [shopid, setShopId] = useState<string>("")
-  const [passwd, setPasswd] = useState<string>("")
+  const [shopid, setShopId] = useState<string>('')
+  const [passwd, setPasswd] = useState<string>('')
 
   const [isValid, setIsValid] = useState<boolean>(false)
 
@@ -36,36 +36,20 @@ export default function Login() {
     setPasswd(event.target.value)
   }
 
-  const onLogin = async () => {
-    try {
-      const { data } = await axios.post(baseUrl + "apiv1/shop/login/login")
-      LocalStorage.setItem("shopid", shopid)
-      router.push("/dashboard")
-    } catch (e) {
-      console.error(e)
-      alert(loginFailMsg)
-    }
+  // const onLogin = async () => {
+  //   try {
+  //     const { data } = await axios.post(baseUrl + 'apiv1/shop/login/login')
+  //     LocalStorage.setItem('shopid', shopid)
+  //     router.push('/dashboard')
+  //   } catch (e) {
+  //     console.error(e)
+  //     alert(loginFailMsg)
+  //   }
+  // }
+
+  const onLogin = () => {
+    router.push('/dashboard')
   }
-
-  // const onValidLogin = () => {
-  //   if (shopid.length < 4) {
-  //     setIsValid(true)
-  //     alert(loginFailMsg)
-  //     return false
-  //   } else if (passwd.length < 6) {
-  //     setIsValid(true)
-  //     alert(loginFailMsg)
-  //     return false
-  //   } else {
-  //     return true
-  //   }
-  // }
-
-  // const onClickLogin = () => {
-  //   if (onValidLogin()) {
-  //     onLogin
-  //   }
-  // }
 
   return (
     <Container maxWidth="xs" className={classes.container}>
@@ -77,7 +61,7 @@ export default function Login() {
           label="아이디 입력"
           value={shopid}
           onChange={onChangeShopId}
-          color={isValid ? "secondary" : "primary"}
+          color={isValid ? 'secondary' : 'primary'}
           ref={idRef}
         />
         <TextField
@@ -87,7 +71,7 @@ export default function Login() {
           type="password"
           value={passwd}
           onChange={onChangePasswd}
-          color={isValid ? "secondary" : "primary"}
+          color={isValid ? 'secondary' : 'primary'}
           ref={passwdRef}
         />
         <Button variant="contained" color="primary" onClick={onLogin}>
@@ -97,13 +81,13 @@ export default function Login() {
           <ButtonBase>
             <Typography
               variant="caption"
-              onClick={() => alert("준비중인 페이지 입니다.")}
+              onClick={() => alert('준비중인 페이지 입니다.')}
             >
               비밀번호 찾기
             </Typography>
           </ButtonBase>
           <Divider orientation="vertical" variant="middle" flexItem />
-          <ButtonBase onClick={() => router.push("sign-in")}>
+          <ButtonBase onClick={() => router.push('sign-in')}>
             <Typography variant="caption">회원가입</Typography>
           </ButtonBase>
         </Box>
